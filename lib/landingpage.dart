@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:printez/loginview.dart';
 import 'package:printez/registerview.dart';
 
 import 'package:progress_indicators/progress_indicators.dart';
@@ -89,7 +90,7 @@ class LandingPage extends StatelessWidget {
                       width: 250,
                       child: ElevatedButton(
                         onPressed: () {
-                          Get.offAll(() => RegisterView());
+                          Get.to(() => const RegisterView());
                         },
                         child: const Text('Get Started'),
                       ),
@@ -112,7 +113,7 @@ class LandingPage extends StatelessWidget {
                             ),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
-                                print('gg');
+                                Get.to(() => LoginView());
                               },
                           ),
                         ),

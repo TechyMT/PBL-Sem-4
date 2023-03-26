@@ -1,22 +1,21 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:printez/homepage.dart';
-import 'package:printez/new.dart';
+import 'package:printez/firebase_options.dart';
 
-import 'firebase_options.dart';
+import 'new.dart';
 
-class RegisterView extends StatefulWidget {
-  const RegisterView({super.key});
+class LoginView extends StatefulWidget {
+  const LoginView({super.key});
 
   @override
-  State<RegisterView> createState() => _RegisterViewState();
+  State<LoginView> createState() => _LoginViewState();
 }
 
-class _RegisterViewState extends State<RegisterView> {
+class _LoginViewState extends State<LoginView> {
   late final TextEditingController _email;
   late final TextEditingController _password;
 
@@ -39,7 +38,7 @@ class _RegisterViewState extends State<RegisterView> {
     return Scaffold(
       extendBodyBehindAppBar: false,
       appBar: AppBar(
-        title: Text('Register View'),
+        title: Text('Login View'),
         centerTitle: true,
         foregroundColor: Colors.black,
         elevation: 0,
@@ -55,7 +54,7 @@ class _RegisterViewState extends State<RegisterView> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text('Register Karlo Fren'),
+                const Text('Login Karlo Fren'),
                 SizedBox(
                   height: 40,
                 ),
@@ -68,7 +67,7 @@ class _RegisterViewState extends State<RegisterView> {
                     autocorrect: false,
                     autofocus: false,
                     enableSuggestions: false,
-                    cursorHeight: 30,
+                    cursorHeight: 25,
                     decoration: InputDecoration(
                       hintText: 'Enter Your Email',
                     ),
@@ -97,13 +96,12 @@ class _RegisterViewState extends State<RegisterView> {
                       final password = _password.text;
                       try {
                         final userCredential = await FirebaseAuth.instance
-                            .createUserWithEmailAndPassword(
+                            .signInWithEmailAndPassword(
                           email: email,
                           password: password,
                         );
                         print(userCredential);
                         Get.offAll(() => MyWidget());
-                        Get.snackbar('Registeration Zhala', 'Euuu');
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {
                           Get.snackbar('Hehe', e.code);
@@ -112,7 +110,7 @@ class _RegisterViewState extends State<RegisterView> {
                         }
                       }
                     },
-                    child: Text('Register Now!!'))
+                    child: Text('Login Now!!'))
               ],
             ),
           );

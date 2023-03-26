@@ -38,6 +38,8 @@ dependencies:
   progress_indicators: ^1.0.0
   jumping_dot: ^0.0.4
   get: ^4.6.5
+  firebase_core: ^2.8.0
+  firebase_auth: ^4.3.0
 
 dev_dependencies:
   flutter_test:

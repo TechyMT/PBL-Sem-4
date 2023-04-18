@@ -101,7 +101,7 @@ class _RegisterViewState extends State<RegisterView> {
                           email: email,
                           password: password,
                         );
-                        print(userCredential);
+
                         Get.offAll(() => ProfilePage());
                         Get.snackbar('Registeration Zhala', 'Euuu');
                       } on FirebaseAuthException catch (e) {

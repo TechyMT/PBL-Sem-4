@@ -106,7 +106,6 @@ class _LoginViewState extends State<LoginView> {
                           password: password,
                         );
                         // var roll = prof.rollnocontroller.value.text;
-                        print(userCredential);
                         Get.offAll(
                             () => ( MyWidget()));
                       } on FirebaseAuthException catch (e) {

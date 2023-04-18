@@ -1,13 +1,17 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:printez/controller.dart';
 import 'package:printez/firebase_options.dart';
+import 'package:printez/landingpage.dart';
 import 'package:printez/new.dart';
-import 'package:printez/registerview.dart';
+import 'package:printez/profilepage.dart';
 
-import 'homepage.dart';
-import 'landingpage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'loginview.dart';
 
 Future<void> main() async {
@@ -15,48 +19,76 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+String? finalEmail;
+String? finalrollno;
 
-  // This widget is the root of your application.
+class MyApp extends StatefulWidget {
+  MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final Profile prof = Get.put(Profile());
+  var auth = FirebaseAuth.instance;
+
+  // Future<bool> checkifLogin() async {
+  //   var completer = Completer<bool>();
+  //   auth.authStateChanges().listen((User? user) {
+  //     if (user != null && mounted) {
+  //       completer.complete(true);
+  //     } else {
+  //       completer.complete(false);
+  //     }
+  //   });
+  //   return completer.future;
+  // }
+  Future getValidationData() async {
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    var obtainedEmail = sharedPreferences.getString('email');
+    var obtainedrollno = sharedPreferences.getString('rollno');
+    setState(() {
+      finalEmail = obtainedEmail;
+      finalrollno = obtainedrollno;
+    });
+    print(finalEmail);
+    print(finalrollno);
+  }
+
+  @override
+  void initState() {
+    getValidationData().whenComplete(() async {
+      if (finalEmail == null) {
+        Get.offAll(() => LandingPage());
+      } else {
+        Get.offAll(() => MyWidget());
+      }
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const LandingPage(),
+    return FutureBuilder<bool>(
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else {
+          //       var isLogin = snapshot.data ?? false;
+          return GetMaterialApp(
+            title: 'Flutter Demo',
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+            ),
+            home: const LoginView(),
+          );
+        }
+      },
     );
   }
 }
-
-// class MyHomePage extends StatefulWidget {
-//   const MyHomePage({
-//     super.key,
-//   });
-
-//   @override
-//   State<MyHomePage> createState() => _MyHomePageState();
-// }
-
-// class _MyHomePageState extends State<MyHomePage> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return FutureBuilder(
-//         future: Firebase.initializeApp(
-//           options: DefaultFirebaseOptions.currentPlatform,
-//         ),
-//         builder: (context, snapshot) {
-//           switch (snapshot.connectionState) {
-//             case ConnectionState.done:
-//               return LandingPage();
-//             default:
-//               return const CircularProgressIndicator();
-//           }
-//         });
-//   }
-// }

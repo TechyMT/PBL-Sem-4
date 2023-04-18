@@ -1,11 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+
 import 'package:get/get.dart';
 import 'package:printez/firebase_options.dart';
-
+import 'package:printez/profilepage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'controller.dart';
 import 'new.dart';
 
 class LoginView extends StatefulWidget {
@@ -16,6 +17,7 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
+  final Profile prof = Get.put(Profile());
   late final TextEditingController _email;
   late final TextEditingController _password;
 
@@ -38,7 +40,7 @@ class _LoginViewState extends State<LoginView> {
     return Scaffold(
       extendBodyBehindAppBar: false,
       appBar: AppBar(
-        title: Text('Login View'),
+        title: const Text('Login View'),
         centerTitle: true,
         foregroundColor: Colors.black,
         elevation: 0,
@@ -55,12 +57,12 @@ class _LoginViewState extends State<LoginView> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const Text('Login Karlo Fren'),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 Container(
-                  margin: EdgeInsets.all(8),
-                  padding: EdgeInsets.all(8),
+                  margin: const EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   child: TextField(
                     controller: _email,
                     keyboardType: TextInputType.emailAddress,
@@ -68,30 +70,33 @@ class _LoginViewState extends State<LoginView> {
                     autofocus: false,
                     enableSuggestions: false,
                     cursorHeight: 25,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Enter Your Email',
                     ),
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.all(8),
-                  padding: EdgeInsets.all(8),
+                  margin: const EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   child: TextField(
                     controller: _password,
                     autocorrect: false,
                     enableSuggestions: false,
                     cursorHeight: 30,
                     obscureText: true,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Enter Your Password',
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 TextButton(
                     onPressed: () async {
+                      final SharedPreferences sharedPreferences =
+                          await SharedPreferences.getInstance();
+                      sharedPreferences.setString('email', _email.text);
                       final email = _email.text;
                       final password = _password.text;
                       try {
@@ -100,8 +105,10 @@ class _LoginViewState extends State<LoginView> {
                           email: email,
                           password: password,
                         );
+                        // var roll = prof.rollnocontroller.value.text;
                         print(userCredential);
-                        Get.offAll(() => MyWidget());
+                        Get.offAll(
+                            () => ( MyWidget()));
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {
                           Get.snackbar('Hehe', e.code);
@@ -110,7 +117,7 @@ class _LoginViewState extends State<LoginView> {
                         }
                       }
                     },
-                    child: Text('Login Now!!'))
+                    child: const Text('Login Now!!'))
               ],
             ),
           );

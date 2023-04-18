@@ -1,11 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:printez/homepage.dart';
+
 import 'package:printez/new.dart';
+import 'package:printez/profilepage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'firebase_options.dart';
 
@@ -39,29 +39,26 @@ class _RegisterViewState extends State<RegisterView> {
     return Scaffold(
       extendBodyBehindAppBar: false,
       appBar: AppBar(
-        title: Text('Register View'),
+        title: const Text('Register View'),
         centerTitle: true,
         foregroundColor: Colors.black,
         elevation: 0,
         backgroundColor: Colors.transparent,
       ),
       body: FutureBuilder(
-        future: Firebase.initializeApp(
-          options: DefaultFirebaseOptions.currentPlatform,
-        ),
         builder: (context, snapshot) {
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text('Register Karlo Fren'),
-                SizedBox(
+                const Text('Register Karlo Fren'),
+                const SizedBox(
                   height: 40,
                 ),
                 Container(
-                  margin: EdgeInsets.all(8),
-                  padding: EdgeInsets.all(8),
+                  margin: const EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   child: TextField(
                     controller: _email,
                     keyboardType: TextInputType.emailAddress,
@@ -69,26 +66,26 @@ class _RegisterViewState extends State<RegisterView> {
                     autofocus: false,
                     enableSuggestions: false,
                     cursorHeight: 30,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Enter Your Email',
                     ),
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.all(8),
-                  padding: EdgeInsets.all(8),
+                  margin: const EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   child: TextField(
                     controller: _password,
                     autocorrect: false,
                     enableSuggestions: false,
                     cursorHeight: 30,
                     obscureText: true,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Enter Your Password',
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 TextButton(
@@ -96,13 +93,16 @@ class _RegisterViewState extends State<RegisterView> {
                       final email = _email.text;
                       final password = _password.text;
                       try {
+                        final SharedPreferences sharedPreferences =
+                            await SharedPreferences.getInstance();
+                        sharedPreferences.setString('email', _email.text);
                         final userCredential = await FirebaseAuth.instance
                             .createUserWithEmailAndPassword(
                           email: email,
                           password: password,
                         );
                         print(userCredential);
-                        Get.offAll(() => MyWidget());
+                        Get.offAll(() => ProfilePage());
                         Get.snackbar('Registeration Zhala', 'Euuu');
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {
@@ -112,7 +112,7 @@ class _RegisterViewState extends State<RegisterView> {
                         }
                       }
                     },
-                    child: Text('Register Now!!'))
+                    child: const Text('Register Now!!'))
               ],
             ),
           );

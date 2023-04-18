@@ -1,0 +1,82 @@
+.center {
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    
+
+}
+$color-blue:rgb(9, 9, 253);
+$color-red: rgb(241, 40, 50);
+$color-yellow: rgb(230, 255, 4);
+
+.balls {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  .ball {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    margin: 0 6px 0 0;
+    animation: oscillate 0.7s ease-in forwards infinite;
+  }
+
+  .one {
+    background: $color-blue;
+    animation-delay: 0.5s;
+  }
+
+  .two {
+    background: $color-red;
+    animation-delay: 1s;
+  }
+
+  .three {
+    background: $color-yellow;
+    animation-delay: 1.5s;
+  }
+}
+
+.screen {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  opacity: 0;
+  animation: fade 0.4s ease-in forwards;
+  background: #252525;
+
+  @keyframes fade {
+    0% {
+      opacity: 0.4;
+    }
+
+    50% {
+      opacity: 0.8;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+@keyframes oscillate {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(20px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+

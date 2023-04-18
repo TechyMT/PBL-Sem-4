@@ -1,0 +1,35 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@google-cloud/storage": "^6.9.5",
+    "@mui/material": "^5.12.0",
+    "firebase": "^9.19.1",
+    "firebase-admin": "^11.6.0",
+    "next": "^13.3.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.8.0",
+    "react-router-dom": "^6.10.0",
+    "sass": "^1.62.0",
+    "styled-components": "^5.3.9"
+  },
+  "browser": {
+    "tls": false,
+    "net": false,
+    "fs": false
+  }
+}

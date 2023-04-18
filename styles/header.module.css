@@ -1,0 +1,13 @@
+.title{
+
+    color: aquamarine;
+    text-align: center;
+}
+
+.nav{
+    border-style:solid;
+    border-radius: 20px;
+
+    border-color: azure;
+    margin-bottom: 20px;
+  }

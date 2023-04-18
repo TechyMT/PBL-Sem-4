@@ -1,0 +1,18 @@
+.card{
+
+    justify-items: center;
+    width: 300px;
+    height: 200px;
+    background-color: bisque;
+    display: flexbox;
+    flex-wrap: wrap;
+    text-align: center ;
+    
+    margin: 10px;
+    
+    
+    
+   
+    
+    
+}

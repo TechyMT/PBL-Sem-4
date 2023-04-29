@@ -17,6 +17,7 @@ import 'loginview.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
+    name: "PBL Sem-4",
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(MyApp());
@@ -33,6 +34,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final DefaultDocsController ddc = Get.put(DefaultDocsController());
+  final StorageFilesController sfc = Get.put(StorageFilesController());
   final Profile prof = Get.put(Profile());
   var auth = FirebaseAuth.instance;
 
@@ -85,10 +88,14 @@ class _MyAppState extends State<MyApp> {
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),
-            home: const LoginView(),
+            home: const LandingPage(),
           );
         }
       },
     );
   }
 }
+// multiple files from storage 
+// cart page should be connected with local storage and default docs
+// number of pages of pdf
+// (optional) take print info like black n white / colour , landscape / portrait , etc

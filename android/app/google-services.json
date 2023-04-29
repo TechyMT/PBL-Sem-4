@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "345714848225",
+    "firebase_url": "https://pbl-sem-4-default-rtdb.firebaseio.com",
+    "project_id": "pbl-sem-4",
+    "storage_bucket": "pbl-sem-4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:345714848225:android:8c242b2b0c707515f9a2a0",
+        "android_client_info": {
+          "package_name": "com.example.printez"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "345714848225-jfmfu0oco10a2ctdcoqgqr8f4v5kvcih.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuceLU5IV9NHSXpc44I-Id5iFgxmzKwJM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "345714848225-jfmfu0oco10a2ctdcoqgqr8f4v5kvcih.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

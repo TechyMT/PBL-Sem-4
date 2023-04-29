@@ -17,6 +17,8 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
+  final DefaultDocsController ddc = Get.put(DefaultDocsController());
+
   final Profile prof = Get.put(Profile());
   late final TextEditingController _email;
   late final TextEditingController _password;
@@ -106,8 +108,7 @@ class _LoginViewState extends State<LoginView> {
                           password: password,
                         );
                         // var roll = prof.rollnocontroller.value.text;
-                        Get.offAll(
-                            () => ( MyWidget()));
+                        Get.offAll(() => (MyWidget()));
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {
                           Get.snackbar('Hehe', e.code);

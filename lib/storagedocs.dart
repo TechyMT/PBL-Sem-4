@@ -9,18 +9,6 @@ import 'package:get/get.dart';
 
 import 'controller.dart';
 
-Future uploadfile(List<PlatformFile?> pickedfile) async {
-  final Profile prof = Get.find();
-  for (var file in pickedfile) {
-    final path = 'temp/${prof.rollno.value.toString()}/${file!.name}';
-    final ref = FirebaseStorage.instance.ref().child(path);
-    final uploadTask = ref.putFile(File(file.path!));
-    final snapshot = await uploadTask.whenComplete(() => {});
-    final url = await snapshot.ref.getDownloadURL();
-    print(url);
-  }
-}
-
 class StorageDocs extends StatefulWidget {
   const StorageDocs({super.key});
 
@@ -34,23 +22,6 @@ class _StorageDocsState extends State<StorageDocs> {
   final DefaultDocsController ddc = Get.find();
 
   //List<PlatformFile?> pickedfile = [];
-
-  UploadTask? uploadTask;
-
-  Future selectfile() async {
-    final result = await FilePicker.platform.pickFiles(allowMultiple: true);
-    if (result == null) {
-      return;
-    }
-    setState(() {
-      sfc.pickedfile.addAll(result.files);
-    });
-    for (var file in sfc.pickedfile) {
-      print(file!.name);
-      sfc.storagedoc.add(file.name);
-      ddc.cartdocs.add(file.name);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,17 +51,11 @@ class _StorageDocsState extends State<StorageDocs> {
             ),
             ElevatedButton(
               onPressed: () {
-                selectfile();
+                sfc.selectFiles();
               },
               child: sfc.storagedoc.isEmpty
                   ? Text('Select File')
                   : Text('Add More to Cart'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                //        uploadfile(pickedfile);
-              },
-              child: Text('Upload File'),
             ),
           ],
         ),

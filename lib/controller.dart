@@ -1,6 +1,14 @@
+// ignore_for_file: avoid_print
+
+import 'dart:io';
+import 'dart:typed_data';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:http/http.dart' as http;
 import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pdf_render/pdf_render.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Profile extends GetxController {
@@ -49,8 +57,102 @@ class DefaultDocsController extends GetxController {
 
 class StorageFilesController extends GetxController {
   final DefaultDocsController ddc = Get.put(DefaultDocsController());
-  List<PlatformFile?> pickedfile = [];
+  List<PlatformFile> pickedfile = [];
   var storagedoc = <String>[].obs;
   var storagelinks = <String>[].obs;
+  UploadTask? uploadTask;
+  RxDouble progress = 0.0.obs;
+  RxString? filename = ''.obs;
+  // RxInt? pageCount = 0.obs;
+  Map<dynamic, dynamic> defdocinfo = {}.obs;
+  Map<dynamic, dynamic> storagedocinfo = {}.obs;
+  Future<int> getpages(String url) async {
+    int pageCount;
+    http.Response response = await http.get(Uri.parse(url));
+    Uint8List filebytes = response.bodyBytes;
+    PdfDocument pdfDoc = await PdfDocument.openData(filebytes);
+    pageCount = pdfDoc.pageCount;
+    return pageCount;
+  }
 
+  Future<void> getdefaultdocinfo(
+      RxList<String> cartlinks, RxList<String> cartdocs) async {
+    int i = 0;
+    for (String link in cartlinks) {
+      int pagecount = await getpages(link);
+      String docn = cartdocs[i];
+      defdocinfo[docn] = pagecount;
+      i++;
+    }
+  }
+
+  Future<void> getstoragedocinfo(
+      RxList<String> storagedoc, List<PlatformFile> platformfile) async {
+    int i = 0;
+    for (PlatformFile filey in platformfile) {
+      File file = File(filey.path!);
+      Uint8List bytes = await file.readAsBytes();
+      PdfDocument document = await PdfDocument.openData(bytes);
+      int pageCount = document.pageCount;
+      String docn = storagedoc[i];
+      storagedocinfo[docn] = pageCount;
+      i++;
+    }
+  }
+
+  // @override
+  // void onInit() {
+  //   getdocinfo(ddc.cartlinks, ddc.cartdocs);
+  //   super.onInit();
+  // }
+
+  Future uploadfile(List<PlatformFile?> pickedfile) async {
+    final Profile prof = Get.find();
+
+    for (var file in pickedfile) {
+      final path = 'temp/${prof.rollno.value.toString()}/${file!.name}';
+      final ref = FirebaseStorage.instance.ref().child(path);
+      final uploadTask = ref.putFile(File(file.path!));
+      uploadTask.snapshotEvents.listen((event) {
+        double progressvalue =
+            (event.bytesTransferred.toDouble() / event.totalBytes.toDouble()) *
+                100;
+        progress.value = progressvalue;
+        filename?.value = file.name;
+        print('File: ${file.name}, Progress: ${progress.toStringAsFixed(2)}%');
+      });
+      final snapshot = await uploadTask.whenComplete(() => {});
+
+      final url = await snapshot.ref.getDownloadURL();
+      progress.value = 0.0;
+      print(url);
+    }
+  }
+
+  // Future<int?> getPageCount(PlatformFile platformfile) async {
+  //   File file = File(platformfile.path!);
+  //   final Uint8List bytes = await file.readAsBytes();
+  //   final PdfDocument document = await PdfDocument.openData(bytes);
+  //   final int pageCount = document.pageCount;
+  //   return pageCount;
+  // }
+
+  Future selectFiles() async {
+    final result = await FilePicker.platform.pickFiles(allowMultiple: true);
+    if (result == null) {
+      return;
+    }
+    pickedfile.addAll(result.files);
+    for (var file in pickedfile) {
+      print(file.name);
+      //   final int? pageCount = await getPageCount(file);
+
+      storagedoc.add(file.name);
+ //     ddc.cartdocs.add(file.name);
+    }
+  }
+
+  void deleteFile(int index) {
+    pickedfile.removeAt(index);
+  }
 }

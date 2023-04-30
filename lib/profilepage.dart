@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +44,6 @@ class _ProfilePageState extends State<ProfilePage> {
     String folderPath = 'temp/$folderName';
     Reference storageRef = FirebaseStorage.instance.ref();
       String storagePath = '$folderPath/$filename';
-   // String storagepPath = 'gs://printez.appspot.com/temp/123/abc';
     print(storagePath);
     }
 

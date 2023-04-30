@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -8,11 +10,10 @@ import 'package:printez/controller.dart';
 import 'package:printez/firebase_options.dart';
 import 'package:printez/landingpage.dart';
 import 'package:printez/new.dart';
-import 'package:printez/profilepage.dart';
+
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'loginview.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,14 +21,14 @@ Future<void> main() async {
     name: "PBL Sem-4",
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 String? finalEmail;
 String? finalrollno;
 
 class MyApp extends StatefulWidget {
-  MyApp({super.key});
+  const MyApp({super.key});
 
   @override
   State<MyApp> createState() => _MyAppState();

@@ -1,11 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:printez/loginview.dart';
 import 'package:printez/registerview.dart';
-
-import 'package:progress_indicators/progress_indicators.dart';
 import 'package:jumping_dot/jumping_dot.dart';
 import 'package:get/get.dart';
 

@@ -1,13 +1,15 @@
 .title{
 
-    color: aquamarine;
+    color: #3D2D80;
     text-align: center;
 }
-
+.color1{
+    color: #F96722 ;
+}
 .nav{
     border-style:solid;
-    border-radius: 20px;
+    border-radius: 10px;
 
-    border-color: azure;
+    border-color: rgb(31, 148, 148);
     margin-bottom: 20px;
   }

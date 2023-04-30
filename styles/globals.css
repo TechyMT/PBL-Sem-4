@@ -1,4 +1,16 @@
-body{
-
-    background-color: #252525;
+body {
+  background-color: #252525;
 }
+
+button {
+    display: flex;
+  padding: 1rem;
+  font-size: 1.5rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 3.2rem;
+  cursor: pointer;
+margin-left: auto;
+margin-right: auto;
+margin-bottom: 10px;}

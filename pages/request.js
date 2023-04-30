@@ -2,23 +2,37 @@ import homeStyles from "../styles/requestPage.module.css";
 import Card from "../components/card_1";
 import Head from "next/head";
 import Layout from "../components/layout";
-import { useState, useEffect } from "react";
-import { URL, posPrint } from "../configs/firebaseConfig";
+import { useState, useEffect, Fragment } from "react";
+import { URL, posPrint, isPrinted } from "../configs/firebaseConfig";
 import Image from "next/image";
-
+import ImgNotFound from "../components/notFound";
+import Link from "next/link";
+import styles from "../styles/accept.module.css"
 
 function Requests() {
   const [urls, setUrls] = useState([]);
-
+  const [resultArr, setResultArr] = useState([]);
+  let times = 0;
   useEffect(() => {
     async function fetchData() {
       const urlArray = await URL();
       if (urlArray.length > 0) {
-        setUrls(urlArray);
+        const updatedArr = [];
+        for(let i = 0; i<urlArray.length; i++){
+          const {id, link} = urlArray[i];
+          const printed = await isPrinted(id,link);
+          if(!printed){
+            
+            updatedArr.push(urlArray[i]);
+          }
+         
+        }
+        setResultArr(updatedArr);
+        setUrls(resultArr);
       } else setUrls([]);
     }
     fetchData();
-  }, []);
+  }, [resultArr]);
 
   async function handleClick(uid, purl, pname) {
     await posPrint(uid, purl, pname);
@@ -32,31 +46,26 @@ function Requests() {
           <title>Mustafa</title>
         </Head>
 
+        <div>
+          <button >
+          <Link href = "/accept">Accept</Link>
+          </button>
+          {urls.length > 0 ? (
+            <div className={homeStyles.flexBox}>
+              {urls.map((urlData) => (
+                <Fragment key = {urlData.id}>
+                
+          
+                <Card url={urlData} handleClick={handleClick} />
         
-          <div>
-            {urls.length > 0 ? (
-              <div className={homeStyles.flexBox}>
-                {urls.map((urlData) => (
-                  <Card
-                    key={urlData.id}
-                    url={urlData}
-                    handleClick={handleClick}
-                  />
-                ))}
-              </div>
-            ) : urls.length == 0 ? (
-              
-                <div
-                  style={{display: "block",marginLeft: "auto",marginRight:"auto", width: "35%"}}
-                >
-                  <Image src="/noresults.png" width={577} height={433} />
-                </div>
-            
-            ) : (
-              <p>Loading...</p>
-            )}
-          </div>
-        
+                
+              </ Fragment>
+              ))}
+            </div>
+          ):(
+            <ImgNotFound />
+          )}
+        </div>
       </Layout>
     </div>
   );

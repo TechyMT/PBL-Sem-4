@@ -2,49 +2,36 @@
 import styles from  "../styles/card.module.css";
 import PButton from "./button";
 import CardData from "./cardData";
-import {isPrinted } from "../configs/firebaseConfig";
-import { useState, useEffect } from "react";
+// import {useSpring, animated} from 'react-spring'
+// const props=useSpring({opacity:1,from:{opacity:0}})
 
-import ImgNotFound from "./notFound";
 
 function Card(props) {
-    const resultArr = [];
+  
     const { id, link, name } = props.url;
     function handleClick(){
       props.handleClick(id,link,name);
     }
-  //   const [printed, setPrinted] = useState(false);
-
-  // useEffect(() => {
-  //   isPrinted(id, link)
-  //     .then((result) => {
-  //       setPrinted(result);
-        
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }, [id, link]);
-
-  // if(printed){
-  //   resultArr.push(false);
-  //   return null;
-  // }
-  //   else{
-  //     resultArr.push(true);
-    return(
+    return (
       <div className={styles.card}>
-      <h2> ID: <br/ > {id}</h2>
-      <p>{name}</p>
-      {/* <a href={link}>{link}</a> */}
-      <PButton key = {id} link = {link} name = "Print!" handleClick = {handleClick} />
-    </div>
-    
-    )
-    
-    }
-
-
-  
+        <h2> ID: {id}</h2>
+        <p>{name}</p>
+        <p>______________________________</p>
+        {/* <a href={link}>{link}</a> */}
+        <PButton key = {id} link = {link} handleClick = {handleClick} />
+      </div>
+    );
+  }
   
   export default Card;
+/*destructuring-eg:
+props.url={
+  id:"21383",
+  link:"www.xyz.com",
+  name:"riya"
+} 
+const { id, link, name } = props.url;
+
+id:"21383",
+link:"www.xyz.com",
+name:"riya"*/

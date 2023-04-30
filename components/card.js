@@ -1,7 +1,7 @@
 
 import styles from  "../styles/card.module.css";
-import PButton from "./button";
 import CardData from "./cardData";
+import PButton from "./button";
 
 
 export default function Card (){

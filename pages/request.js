@@ -47,7 +47,7 @@ function Requests() {
         </Head>
 
         <div>
-          <button >
+          <button className={homeStyles.flexBox}>
           <Link href = "/accept">Accept</Link>
           </button>
           {urls.length > 0 ? (

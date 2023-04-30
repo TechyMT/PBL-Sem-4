@@ -1,15 +1,22 @@
-.title{
+.color_2{
 
-    color: #3D2D80;
+    color: #F26922;
     text-align: center;
 }
-.color1{
-    color: #F96722 ;
+.color_1{
+    color: #3D2B7F;
+    text-align: center;
 }
 .nav{
     border-style:solid;
-    border-radius: 10px;
+    border-radius: 12px;
 
-    border-color: rgb(31, 148, 148);
-    margin-bottom: 20px;
+    border-color: #3D2B7F;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  .footerColor{
+    color: azure;
+    font-size: 1.3rem;
+    font-family: 'Courier New', Courier, monospace;
   }

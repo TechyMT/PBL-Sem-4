@@ -1,7 +1,7 @@
 {
   "name": "web",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is the PBL project for sem-4",
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
@@ -32,5 +32,14 @@
     "tls": false,
     "net": false,
     "fs": false
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TechyMT/PBL-Sem-4.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TechyMT/PBL-Sem-4/issues"
+  },
+  "homepage": "https://github.com/TechyMT/PBL-Sem-4#readme"
 }

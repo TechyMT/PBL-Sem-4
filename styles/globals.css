@@ -1,16 +1,18 @@
-body {
-  background-color: #252525;
-}
+body{
 
-button {
-    display: flex;
-  padding: 1rem;
-  font-size: 1.5rem;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 3.2rem;
-  cursor: pointer;
-margin-left: auto;
-margin-right: auto;
-margin-bottom: 10px;}
+    background-color: #252525;
+}
+button{
+    background-color: #F26922;
+    border: none;
+    justify-content: center;
+    color: white;
+    padding: 20px 20px;
+    text-align: center;
+    text-decoration:none;
+    display: inline-block;
+    font-size: 1.2rem;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10%;
+}

@@ -1,6 +1,6 @@
 .card{
 
-    justify-items: center;
+    /* justify-items: center;
     width: 300px;
     height: 200px;
     background-color: bisque;
@@ -8,11 +8,23 @@
     flex-wrap: wrap;
     text-align: center ;
     
-    margin: 10px;
-    
-    
-    
-   
-    
-    
+    margin: 10px; */
+  width: 300px;
+  height: 200px;
+  margin: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: rgb(244, 232, 224);
+  border-radius: 30 px;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color:#010000;
+  text-align: center;
+  transition: all 0.2s ease-in-out; 
+  /*glassmorphic container*/  
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgb(157, 143, 164);
+  border-radius: 25px;
+  border: 1px solid rgba(12, 0, 0, 0.25);
 }

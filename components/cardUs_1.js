@@ -14,7 +14,7 @@ function CardUs(props) {
     <div className={styles.cardUs}>
       <Profile name={props.n}/>
 
-      <Data title={props.t} />
+      <Data title={props.t} desc={props.d}/>
       <CircleRow  g={props.lg} l={props.ll} i={props.li}/>
        </div>
   );

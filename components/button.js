@@ -18,7 +18,14 @@ export default function PButton(props){
 
     return(
         <div className= {styles.button}>
-        <Button variant = "default" href = {props.link}   onClick={handleClick}> Print! </ Button >
+        <Button variant = "default" href = {props.link}   onClick={handleClick}
+        sx={{
+            ":hover": {
+              bgcolor: "black",
+              color: "azure",
+              
+            }
+          }}> Print! </ Button >
         </div>
     )
 }

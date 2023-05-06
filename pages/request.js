@@ -37,7 +37,9 @@ function Requests() {
   async function handleClick(uid, purl, pname) {
     await posPrint(uid, purl, pname);
   }
-
+  const linkStyle={
+    textDecoration:"none"
+  }
   return (
     <div>
       <Layout>
@@ -48,7 +50,7 @@ function Requests() {
 
         <div>
           <button className={homeStyles.flexBox}>
-          <Link href = "/accept">Accept</Link>
+          <Link style={linkStyle} href = "/accept">Accept</Link>
           </button>
           {urls.length > 0 ? (
             <div className={homeStyles.flexBox}>

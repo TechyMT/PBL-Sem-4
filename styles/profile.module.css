@@ -1,0 +1,14 @@
+.imgWrapper{
+    overflow:hidden;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+  }
+.hoverZoom:hover {
+    overflow: hidden;
+    transform: scale(1.15);
+  }
+.hoverZoom{
+    overflow: hidden;
+    border-radius:50%;
+}

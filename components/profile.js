@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-
+import styles from '../styles/profile.module.css'
 // const Circle = ({size,color}) => {
 //     const circleStyle = {
 //         width: size,
@@ -23,10 +23,17 @@ function Profile (props){
     //     color: 'black' 
     // };
     const srcName = "/"+props.name+".png" ;
+    // const imgStyle={
+    //     borderRadius:'50%',
+        
+    // }
     return(
-    <div>
-        <Image style={{borderRadius:'50%'}}
+    <div className={styles.profile}>
+        <div className={styles.imgWrapper}>
+        <Image className={styles.hoverZoom}
         src={srcName} width={130} height={130}/>
+        </div>
+       
     </div>
     );
 }

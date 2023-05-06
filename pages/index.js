@@ -1,7 +1,6 @@
 import styles from "../styles/home.module.css";
 import Link from "next/link";
 import Image from "next/image";
-
 import Layout from "../components/layout";
 import CardUs from "../components/cardUs_1";
 export default function App() {
@@ -46,20 +45,20 @@ export default function App() {
           <div className={styles.center}>
             <section className={styles.center}>
               <CardUs
+               n="aunty" 
+               t="Mustafa Trunkwala"
+               d="Full Stack Web Developer"
+               lg="https://github.com/TechyMT"
+               ll="https://www.linkedin.com/in/mustafa-trunkwala-49249a22a/"
+               li="https://www.instagram.com/nothim_7856/"
+              />
+              <CardUs 
                 n="riya"
                 t="Riya Wani"
-                d="UI/UX designer,Frontend Developer"
+                d="Frontend Developer,UI/UX designer"
                 lg="https://github.com/Riyaa2610"
                 ll="https://www.linkedin.com/in/riya-wani-114672229/"
                 li="https://www.instagram.com/postcardsbyriya/"
-              />
-              <CardUs 
-                n="aunty" 
-                t="Mustafa Trunkwala"
-                d="Full Stack Web Developer"
-                lg="https://github.com/TechyMT"
-                ll="https://www.linkedin.com/in/mustafa-trunkwala-49249a22a/"
-                li="https://www.instagram.com/nothim_7856/"
               />
               <CardUs
                 n="rhea" 

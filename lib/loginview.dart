@@ -7,7 +7,7 @@ import 'package:printez/firebase_options.dart';
 import 'package:printez/profilepage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'controller.dart';
-import 'new.dart';
+import 'homescreen.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -58,7 +58,7 @@ class _LoginViewState extends State<LoginView> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Text('Login Karlo Fren'),
+                const Text('Login'),
                 const SizedBox(
                   height: 40,
                 ),
@@ -108,7 +108,7 @@ class _LoginViewState extends State<LoginView> {
                           password: password,
                         );
                         // var roll = prof.rollnocontroller.value.text;
-                        Get.offAll(() => (MyWidget()));
+                        Get.offAll(() => (HomeScreenView()));
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {
                           Get.snackbar('Hehe', e.code);

@@ -3,7 +3,7 @@
 // import 'package:printez/homepage.dart';
 // import 'package:printez/landingpage.dart';
 // import 'package:printez/loginview.dart';
-// import 'package:printez/new.dart';
+// import 'package:printez/homescreen.dart';
 
 // class AuthController extends GetxController {
 //   final FirebaseAuth auth = FirebaseAuth.instance;

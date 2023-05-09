@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:printez/controller.dart';
 import 'package:printez/firebase_options.dart';
 import 'package:printez/landingpage.dart';
-import 'package:printez/new.dart';
+import 'package:printez/homescreen.dart';
 
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -70,7 +70,7 @@ class _MyAppState extends State<MyApp> {
       if (finalEmail == null) {
         Get.offAll(() => LandingPage());
       } else {
-        Get.offAll(() => MyWidget());
+        Get.offAll(() => HomeScreenView());
       }
     });
     super.initState();

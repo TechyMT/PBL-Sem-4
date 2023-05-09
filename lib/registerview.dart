@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
-import 'package:printez/new.dart';
+import 'package:printez/homescreen.dart';
 import 'package:printez/profilepage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

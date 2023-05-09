@@ -5,7 +5,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:printez/controller.dart';
-import 'package:printez/new.dart';
+import 'package:printez/homescreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path/path.dart' as path;
 
@@ -49,6 +49,9 @@ class _ProfilePageState extends State<ProfilePage> {
 
   late final namecontroller = TextEditingController();
   late final rollnocontroller = TextEditingController();
+  late final emailcontroller = TextEditingController();
+  late final regnocontroller = TextEditingController();
+  late final classnamecontroller = TextEditingController();
   final Profile prof = Get.put(Profile());
 
   @override
@@ -63,6 +66,27 @@ class _ProfilePageState extends State<ProfilePage> {
               keyboardType: TextInputType.name,
               decoration: InputDecoration(
                 hintText: 'Enter Your Name',
+              ),
+            ),
+            TextField(
+              controller: regnocontroller,
+              keyboardType: TextInputType.name,
+              decoration: InputDecoration(
+                hintText: 'Enter Your Registration Number.',
+              ),
+            ),
+            TextField(
+              controller: classnamecontroller,
+              keyboardType: TextInputType.name,
+              decoration: InputDecoration(
+                hintText: 'Enter Your Class',
+              ),
+            ),
+            TextField(
+              controller: emailcontroller,
+              keyboardType: TextInputType.name,
+              decoration: InputDecoration(
+                hintText: 'Enter Your Email',
               ),
             ),
             TextField(
@@ -86,8 +110,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 if (rollnocontroller.text.isEmpty) {
                   Get.snackbar('Roll no Tak', 'Read above message');
                 } else {
-                  prof.updateRollNo(rollnocontroller.text);
-                  Get.offAll(() => MyWidget());
+                  prof.updateRollNo(rollnocontroller.text,namecontroller.text,regnocontroller.text,classnamecontroller.text,emailcontroller.text);
+                  Get.offAll(() => HomeScreenView());
                 }
               },
               child: Text('To the Home Screen'),

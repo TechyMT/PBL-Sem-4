@@ -14,18 +14,45 @@ import 'package:shared_preferences/shared_preferences.dart';
 class Profile extends GetxController {
   var namecontroller = TextEditingController().obs;
   var rollnocontroller = TextEditingController().obs;
+  var emailcontroller = TextEditingController().obs;
+  var regnocontroller = TextEditingController().obs;
+  var classnamecontroller = TextEditingController().obs;
   RxString rollno = RxString('');
-  void updateRollNo(String newVal) async {
-    rollno.value = newVal;
+  RxString username = RxString('');
+  RxString email = RxString('');
+  RxString regno = RxString('');
+  RxString classname = RxString('');
+  void updateRollNo(String roll, String username, String regid, String batch, String email ) async {
+    rollno.value = roll;
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    await sharedPreferences.setString('rollno', newVal);
+    await sharedPreferences.setString('rollno', roll);
+    await sharedPreferences.setString('username', username);
+    await sharedPreferences.setString('email', email);
+    await sharedPreferences.setString('regno', regid);
+    await sharedPreferences.setString('classname', batch);
   }
 
   Future<void> loadRollno() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String? savedrollno = sharedPreferences.getString('rollno');
+    String? saveusername = sharedPreferences.getString('username');
+    String? savedemail = sharedPreferences.getString('email');
+    String? savedregno = sharedPreferences.getString('regno');
+    String? savedclassname = sharedPreferences.getString('classname');
     if (savedrollno != null) {
       rollno.value = savedrollno;
+    }
+    if (savedrollno != null) {
+      username.value = saveusername!;
+    }
+    if (savedrollno != null) {
+      email.value = savedemail!;
+    }
+    if (savedrollno != null) {
+      regno.value = savedregno!;
+    }
+    if (savedrollno != null) {
+      classname.value = savedclassname!;
     }
   }
 }
@@ -41,13 +68,13 @@ class DefaultDocsController extends GetxController {
   void addtoCart(String url, String link) {
     cartdocs.add(url);
     cartlinks.add(link);
-    Get.snackbar('$url docs Added to the Cart', 'Same Thing');
+    Get.snackbar('$url docs Added to the Cart','');
   }
 
   void removefromCart(String url, String link) {
     cartdocs.remove(url);
     cartlinks.remove(link);
-    Get.snackbar('$url docsRemoved from the Cart', 'Same thing');
+    Get.snackbar('$url docs Removed from the Cart','');
   }
 
   bool isAddedtoCart(String url) {
@@ -146,13 +173,17 @@ class StorageFilesController extends GetxController {
     for (var file in pickedfile) {
       print(file.name);
       //   final int? pageCount = await getPageCount(file);
+      if(!storagedoc.contains(file.name))
+        {
+          storagedoc.add(file.name);
+        }
 
-      storagedoc.add(file.name);
  //     ddc.cartdocs.add(file.name);
     }
   }
 
   void deleteFile(int index) {
     pickedfile.removeAt(index);
+    storagedoc.removeAt(index);
   }
 }

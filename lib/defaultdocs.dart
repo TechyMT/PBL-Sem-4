@@ -6,7 +6,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:path/path.dart' as path;
+import 'package:printez/constants.dart';
 import 'package:printez/controller.dart';
+import 'package:printez/homescreenbase.dart';
 
 class DefaultDocs extends StatefulWidget {
   const DefaultDocs({super.key});
@@ -64,38 +66,57 @@ class _DefaultDocsState extends State<DefaultDocs> {
 
   @override
   Widget build(BuildContext context) {
+    print(downloadUrls);
     // print(ddc.cartdocs.value);
     // print(ddc.cartlinks.value);
+    var height2 = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Default Docs'),
+      body: HomeScreenBase(childUpper: Padding(
+        padding: EdgeInsets.all(height2*0.01),
+        child: Text('Default Docs',style: TextStyle(color: Colors.white,fontSize: height2*0.06),),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.height,
-              child: downloadUrls.isEmpty
-                  ? const Center(child: CircularProgressIndicator())
-                  : GridView.builder(
-                      itemCount: downloadUrls.length,
-                      padding: const EdgeInsets.all(20),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 10,
-                        crossAxisSpacing: 10,
-                      ),
-                      itemBuilder: (BuildContext context, int index) {
-                        String link =
-                            path.basenameWithoutExtension(downloadUrls[index]);
-                        String substring = link.substring(link.indexOf('%2F'));
-                        String docsName = substr(substring);
-                        return Container(
-                          color: Colors.red,
-                          child: Column(children: [
-                            Text(docsName),
-                            ElevatedButton(
+          childLower: SingleChildScrollView(
+            child: Column(
+              children: [
+                Container(
+                  height: height2,
+                  child: downloadUrls.isEmpty
+                      ? const Center(child: CircularProgressIndicator())
+                      : GridView.builder(
+                    physics: ScrollPhysics(),
+                    itemCount: downloadUrls.length,
+                    padding: const EdgeInsets.all(20),
+                    gridDelegate:
+                    const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 10,
+                      crossAxisSpacing: 10,
+                    ),
+                    itemBuilder: (BuildContext context, int index) {
+                      String link =
+                      path.basenameWithoutExtension(downloadUrls[index]);
+                      String substring = link.substring(link.indexOf('%2F'));
+                      String docsName = substr(substring);
+                      return Container(
+                        decoration: BoxDecoration(color: Color(0xFF686767),
+                            borderRadius: BorderRadius.circular(height2 * 0.01 )),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                          Padding(
+                            padding: EdgeInsets.only(top:height2*0.005,left:height2*0.005,right: height2*0.005),
+                            child: Text(docsName,style: TextStyle(fontSize: height2*0.03)),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(bottom:height2*0.001),
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.black,
+                                minimumSize: Size(height2 * 0.05, height2 * 0.03),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(height2 * 0.01),
+                                )
+                              ),
                               onPressed: () {
                                 if (ddc.isAddedtoCart(docsName)) {
                                   return;
@@ -108,13 +129,15 @@ class _DefaultDocsState extends State<DefaultDocs> {
                                   ? 'Added'
                                   : 'Add to Cart')),
                             ),
-                          ]),
-                        );
-                      },
-                    ),
+                          ),
+                        ]),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
       ),
     );
   }

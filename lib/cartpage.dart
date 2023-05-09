@@ -4,6 +4,7 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:pdf_render/pdf_render_widgets.dart';
+import 'package:printez/homescreenbase.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +52,7 @@ class CartPage extends StatelessWidget {
 
   Future<void> uploadFileStorage(RxList<String> cartlinks) async {
     FirebaseStorage storage = FirebaseStorage.instance;
-
+    print(ddc.cartlinks);
     for (String link in cartlinks) {
       try {
         http.Response response = await http.get(Uri.parse(link));
@@ -95,120 +96,146 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(ddc.cartlinks);
-    print(sfc.storagedoc);
+
+    var screenHeight = MediaQuery.of(context).size.height;
+    var screenWidth = MediaQuery.of(context).size.width;
     sfc.getstoragedocinfo(sfc.storagedoc, sfc.pickedfile);
     sfc.getdefaultdocinfo(ddc.cartlinks, ddc.cartdocs);
     print(sfc.defdocinfo);
     print(sfc.storagedocinfo);
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Cart Page'),
-      ),
-      body: Column(
-        children: [
-          Obx(() => SingleChildScrollView(
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.3,
-                  child: (sfc.storagedoc.length != sfc.storagedocinfo.length)
-                      ? const Center(child: CircularProgressIndicator())
-                      : ListView.builder(
-                          itemCount: sfc.storagedoc.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            // String? documentName =
-                            //     sfc.defdocinfo.keys.toList()[index];
-                            // int? pageCount = sfc.defdocinfo.values.toList()[index];
-                            String? documentName1 =
-                                sfc.storagedocinfo.keys.toList()[index];
-                            int? pageCount1 =
-                                sfc.storagedocinfo.values.toList()[index];
+    print(ddc.cartlinks);
+    print(sfc.storagedoc);
+    print(sfc.pickedfile);
+    return HomeScreenBase(
+        childUpper: Text('Cart Page',style: TextStyle(color: Colors.white,fontSize: screenHeight * 0.05),),
+        childLower: Column(
+          children: [
+            Text("Uploaded Docs"),
+            Obx(() => SingleChildScrollView(
+              child: Container(
+                height: MediaQuery.of(context).size.height * 0.3,
+                child: (sfc.storagedoc.length != sfc.storagedocinfo.length)
+                    ? const Center(child: CircularProgressIndicator())
+                    : ListView.builder(
+                  itemCount: sfc.storagedoc.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    // String? documentName =
+                    //     sfc.defdocinfo.keys.toList()[index];
+                    // int? pageCount = sfc.defdocinfo.values.toList()[index];
+                    String? documentName1 =
+                    sfc.storagedocinfo.keys.toList()[index];
+                    int? pageCount1 =
+                    sfc.storagedocinfo.values.toList()[index];
 
-                            return ListTile(
-                              title: Text(documentName1!),
-                              subtitle: Text('$pageCount1 pages'),
-                            );
-                          },
-                        ),
+                    return buildCartListTile(context,documentName: documentName1, pageCount: pageCount1);
+                  },
                 ),
-              )),
-          Obx(() => SingleChildScrollView(
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.3,
-                  child: (ddc.cartdocs.length != sfc.defdocinfo.length)
-                      ? const Center(child: CircularProgressIndicator())
-                      : ListView.builder(
-                          itemCount: ddc.cartdocs.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            String? documentName =
-                                sfc.defdocinfo.keys.toList()[index];
-                            int? pageCount =
-                                sfc.defdocinfo.values.toList()[index];
-                            // String? documentName1 =
-                            //     sfc.storagedocinfo.keys.toList()[index];
-                            // int? pageCount1 =
-                            //     sfc.storagedocinfo.values.toList()[index];
+              ),
+            )),
+            Text("Default Docs"),
+            Obx(() => SingleChildScrollView(
+              child: Container(
+                height: MediaQuery.of(context).size.height * 0.2,
+                child: (ddc.cartdocs.length != sfc.defdocinfo.length)
+                    ? const Center(child: CircularProgressIndicator())
+                    : ListView.builder(
+                  itemCount: ddc.cartdocs.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    String? documentName =
+                    sfc.defdocinfo.keys.toList()[index];
+                    int? pageCount =
+                    sfc.defdocinfo.values.toList()[index];
+                    // String? documentName1 =
+                    //     sfc.storagedocinfo.keys.toList()[index];
+                    // int? pageCount1 =
+                    //     sfc.storagedocinfo.values.toList()[index];
 
-                            return ListTile(
-                              title: Text(documentName!),
-                              subtitle: Text('$pageCount pages'),
-                            );
-                          },
-                        ),
+                    return buildCartListTile(context, documentName: documentName, pageCount: pageCount);
+                  },
                 ),
-              )),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Obx(() => Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(sfc.filename!.value.toString()),
-                      Obx(() => CircularStepProgressIndicator(
-                            totalSteps: 100,
-                            currentStep: sfc.progress.value.toInt(),
-                            padding: 0,
-                            stepSize: 10,
-                            height: 50,
-                            width: 50,
-                            unselectedColor: Colors.grey,
-                            selectedColor: Colors.green,
-                          )),
-                    ],
-                  )),
-              Obx(() => Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(filename.value.toString()),
-                      Obx(() => CircularStepProgressIndicator(
-                            totalSteps: 100,
-                            currentStep: progress.value.toInt(),
-                            padding: 0,
-                            stepSize: 10,
-                            height: 50,
-                            width: 50,
-                            unselectedColor: Colors.grey,
-                            selectedColor: Colors.green,
-                          )),
-                    ],
-                  )),
-            ],
+              ),
+            )),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Obx(() => Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     Text(sfc.filename!.value.toString()),
+                //     Obx(() => CircularStepProgressIndicator(
+                //       totalSteps: 100,
+                //       currentStep: sfc.progress.value.toInt(),
+                //       padding: 0,
+                //       stepSize: 10,
+                //       height: 50,
+                //       width: 50,
+                //       unselectedColor: Colors.grey,
+                //       selectedColor: Colors.green,
+                //     )),
+                //   ],
+                // )),
+                // Obx(() => Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     Text(filename.value.toString()),
+                //     Obx(() => CircularStepProgressIndicator(
+                //       totalSteps: 100,
+                //       currentStep: progress.value.toInt(),
+                //       padding: 0,
+                //       stepSize: 10,
+                //       height: 50,
+                //       width: 50,
+                //       unselectedColor: Colors.grey,
+                //       selectedColor: Colors.green,
+                //     )),
+                //   ],
+                // )),
+              ],
+            ),
+            // Container(
+            //   height: 50,
+            //   width: 100,
+            //   child: Obx(() =>
+            //       Text('FileName : ${sfc.progress.value.toStringAsFixed(2)}')),
+            // ),
+            ElevatedButton(
+              onPressed: () {
+                uploadFileStorage(ddc.cartlinks);
+                sfc.uploadfile(sfc.pickedfile);
+                //    sfc.pickedfile.clear();
+                //     ddc.cartlinks.clear();
+              },
+              child: Text('Uploads on Temp'),
+            ),
+          ],
+        ),
+    );
+
+  }
+
+  Widget buildCartListTile(BuildContext context, {String? documentName, int? pageCount}) {
+    var screenHeight = MediaQuery.of(context).size.height;
+    var screenWidth = MediaQuery.of(context).size.width;
+    return Padding(
+      padding: EdgeInsets.all(screenWidth* 0.01),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.grey,
+        ),
+        child: ListTile(
+
+        title: Text(documentName!),
+        trailing: IconButton(onPressed: (){
+          if(sfc.defdocinfo.keys.toList().contains(documentName)){
+            ddc.cartlinks.removeAt(sfc.defdocinfo.keys.toList().indexOf(documentName));
+          }
+          else if(sfc.storagedocinfo.keys.toList().contains(documentName)){
+           sfc.pickedfile.removeAt(sfc.storagedocinfo.keys.toList().indexOf(documentName));
+          }
+        }, icon: Icon(Icons.delete),),
+        subtitle: Text('$pageCount pages'),
           ),
-          // Container(
-          //   height: 50,
-          //   width: 100,
-          //   child: Obx(() =>
-          //       Text('FileName : ${sfc.progress.value.toStringAsFixed(2)}')),
-          // ),
-          ElevatedButton(
-            onPressed: () {
-              uploadFileStorage(ddc.cartlinks);
-              sfc.uploadfile(sfc.pickedfile);
-              //    sfc.pickedfile.clear();
-              //     ddc.cartlinks.clear();
-            },
-            child: Text('Uploads on Temp'),
-          ),
-        ],
       ),
     );
   }

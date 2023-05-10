@@ -111,50 +111,56 @@ class CartPage extends StatelessWidget {
         childLower: Column(
           children: [
             Text("Uploaded Docs"),
-            Obx(() => SingleChildScrollView(
-              child: Container(
-                height: MediaQuery.of(context).size.height * 0.3,
-                child: (sfc.storagedoc.length != sfc.storagedocinfo.length)
-                    ? const Center(child: CircularProgressIndicator())
-                    : ListView.builder(
-                  itemCount: sfc.storagedoc.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    // String? documentName =
-                    //     sfc.defdocinfo.keys.toList()[index];
-                    // int? pageCount = sfc.defdocinfo.values.toList()[index];
-                    String? documentName1 =
-                    sfc.storagedocinfo.keys.toList()[index];
-                    int? pageCount1 =
-                    sfc.storagedocinfo.values.toList()[index];
+            Expanded(
+              flex:1,
+              child: Obx(() => SingleChildScrollView(
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.3,
+                  child: (sfc.storagedoc.length != sfc.storagedocinfo.length)
+                      ? const Center(child: CircularProgressIndicator())
+                      : ListView.builder(
+                    itemCount: sfc.storagedoc.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      // String? documentName =
+                      //     sfc.defdocinfo.keys.toList()[index];
+                      // int? pageCount = sfc.defdocinfo.values.toList()[index];
+                      String? documentName1 =
+                      sfc.storagedocinfo.keys.toList()[index];
+                      int? pageCount1 =
+                      sfc.storagedocinfo.values.toList()[index];
 
-                    return buildCartListTile(context,documentName: documentName1, pageCount: pageCount1);
-                  },
+                      return buildCartListTile(context,documentName: documentName1, pageCount: pageCount1);
+                    },
+                  ),
                 ),
-              ),
-            )),
+              )),
+            ),
             Text("Default Docs"),
-            Obx(() => SingleChildScrollView(
-              child: Container(
-                height: MediaQuery.of(context).size.height * 0.2,
-                child: (ddc.cartdocs.length != sfc.defdocinfo.length)
-                    ? const Center(child: CircularProgressIndicator())
-                    : ListView.builder(
-                  itemCount: ddc.cartdocs.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    String? documentName =
-                    sfc.defdocinfo.keys.toList()[index];
-                    int? pageCount =
-                    sfc.defdocinfo.values.toList()[index];
-                    // String? documentName1 =
-                    //     sfc.storagedocinfo.keys.toList()[index];
-                    // int? pageCount1 =
-                    //     sfc.storagedocinfo.values.toList()[index];
+            Expanded(
+              flex:1,
+              child: Obx(() => SingleChildScrollView(
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.2,
+                  child: (ddc.cartdocs.length != sfc.defdocinfo.length)
+                      ? const Center(child: CircularProgressIndicator())
+                      : ListView.builder(
+                    itemCount: ddc.cartdocs.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      String? documentName =
+                      sfc.defdocinfo.keys.toList()[index];
+                      int? pageCount =
+                      sfc.defdocinfo.values.toList()[index];
+                      // String? documentName1 =
+                      //     sfc.storagedocinfo.keys.toList()[index];
+                      // int? pageCount1 =
+                      //     sfc.storagedocinfo.values.toList()[index];
 
-                    return buildCartListTile(context, documentName: documentName, pageCount: pageCount);
-                  },
+                      return buildCartListTile(context, documentName: documentName, pageCount: pageCount);
+                    },
+                  ),
                 ),
-              ),
-            )),
+              )),
+            ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

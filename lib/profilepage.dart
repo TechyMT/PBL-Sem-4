@@ -108,7 +108,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 // sharedPreferences.setString('rollno', rollnocontroller.text);
 
                 if (rollnocontroller.text.isEmpty) {
-                  Get.snackbar('Roll no Tak', 'Read above message');
+                  Get.snackbar('Enter Roll Number', '');
                 } else {
                   prof.updateRollNo(rollnocontroller.text,namecontroller.text,regnocontroller.text,classnamecontroller.text,emailcontroller.text);
                   Get.offAll(() => HomeScreenView());

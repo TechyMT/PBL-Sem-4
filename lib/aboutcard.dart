@@ -1,31 +1,40 @@
 import "package:flutter/material.dart";
 
 class AboutCard extends StatelessWidget {
-  AboutCard({super.key, required this.name, required this.size});
+  AboutCard({super.key,required this.title,required this.image, required this.name, required this.size});
 
   final size;
   final String name;
+  final String image;
+  final String title;
   @override
   Widget build(BuildContext context) {
     var screenHeight = size;
     return Container(
-      decoration: BoxDecoration(),
       height: size,
       width: size,
       child: Card(
-        color: Colors.grey.shade400,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(40.0),
+        ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
           children: [
             SizedBox(
-              height: screenHeight * 0.58,
+              height: screenHeight * 0.48,
               child: CircleAvatar(
-                child: Icon(Icons.person),
+                child: SizedBox(height: 30.0, width: 30.0),
                   radius: screenHeight * 0.25,
-                  backgroundImage: AssetImage("images/openingimage.png")),
+                  backgroundImage: AssetImage(image)),
             ),
             SizedBox(
               child: Text(name),
               height: screenHeight * 0.1,
+            ),
+            SizedBox(
+              height: screenHeight * 0.1,
+              child: Text(title,textAlign: TextAlign.center,),
             ),
             SizedBox(
               child: Row(

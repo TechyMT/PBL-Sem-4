@@ -36,15 +36,17 @@ class ViewProfilePage extends StatelessWidget {
       ),
     ),
     ],),
-        childLower: ListView(
-          children: [
-          ProfileFieldCard(fieldName: 'Username',data: ''),
-          ProfileFieldCard(fieldName: 'Roll number',data: prof.rollno.value),
-          ProfileFieldCard(fieldName: "Email",data:''),
-          ProfileFieldCard(fieldName: "Registration Number",data:''),
-          ProfileFieldCard(fieldName: 'Class',data:''),
-        ],
+        childLower: Obx(()=>
+          ListView(
+            children: [
+            ProfileFieldCard(fieldName: 'Username',data: prof.username.value),
+            ProfileFieldCard(fieldName: 'Roll number',data: prof.rollno.value),
+            ProfileFieldCard(fieldName: "Email",data:prof.email.value),
+            ProfileFieldCard(fieldName: "Registration Number",data:prof.regno.value),
+            ProfileFieldCard(fieldName: 'Class',data:prof.classname.value),
+          ],
       ),
+        ),
     );
   }
 }

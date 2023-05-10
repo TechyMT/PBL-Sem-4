@@ -21,15 +21,10 @@ class _LandingPageState extends State<LandingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
-        onPageChanged: (index) {
-          setState(() {
-            activeIndex = index;
-          });
-        },
         children: [
           firstScreen(),
           secondScreen(),
-          welcomeThirdScreen(activeIndex: activeIndex),
+          welcomeThirdScreen(),
         ],
       ),
     );
@@ -62,8 +57,9 @@ class firstScreen extends StatelessWidget {
               height: screenHeight * 0.2,
             ),
             Container(
-              alignment: Alignment.topLeft,
+       //       alignment: Alignment.topLeft,
               child: Text("What are we",
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 50.0,
                     fontWeight: FontWeight.bold,
@@ -73,11 +69,8 @@ class firstScreen extends StatelessWidget {
               height: screenHeight * 0.1,
             ),
             Container(
-              child: Text("""lejsvaslkjflkjvkdasjvfkjs
-a;vnalskjdvnfnds;kn
-dsfvkljsfdnvkjdnflkjvn
-dskjvfkljnvkldsjnvfkljnvsdlk""",
-                  textAlign: TextAlign.left,
+              child: Text("""In today's digital age, there are various applications that allow users to store and manage their documents online. However, there are times when a physical copy of a document is required. So this app helps to upload or scan documents or images and then print them according to the user’s specifications.""",
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20.0,
                   )),
@@ -95,7 +88,7 @@ class secondScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height ;
-    var cardHeight = screenHeight * 0.2;
+    var cardHeight = screenHeight * 0.22;
     return Container(
       decoration: welcomeDecor,
       child: Column(
@@ -105,14 +98,10 @@ class secondScreen extends StatelessWidget {
             height: screenHeight * 0.03,
           ),
           Container(
-            alignment: Alignment.centerLeft,
-            child: Text(
-              "DKFNLSKNDLKVNS",
-              style: TextStyle(
-                fontSize: 40.0,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            alignment: Alignment.center,
+              padding: const EdgeInsets.all(15),
+            child: Column(mainAxisAlignment: MainAxisAlignment.center,
+              children: [printEZLogo(fontSize: 50),SizedBox(height: 10,),const Text('Team',style: TextStyle(fontSize: 30),)],)
           ),
           SizedBox(
             height: screenHeight * 0.03,
@@ -124,19 +113,19 @@ class secondScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    AboutCard(name: "1",size: cardHeight),
-                    AboutCard(name: "1",size: cardHeight),
+                    AboutCard(name: "Amogh Thakurdesai",title:'App Developer',size: cardHeight,image:"images/amogh.png", ),
+                    AboutCard(name: "Rhea Shah",size: cardHeight,image:"images/rhea1.png", title: 'UI/UX Designer',),
                   ],),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    AboutCard(name: "1",size: cardHeight),
-                    AboutCard(name: "1",size: cardHeight),
+                    AboutCard(name: "Ameya Surana",size: cardHeight,image:"images/surana1.png", title: 'App Developer',),
+                    AboutCard(name: "Riya Wani",size: cardHeight,image:"images/riya.png", title: 'Frontend Developer',),
                   ],),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    AboutCard(name: "1",size: cardHeight),
+                    AboutCard(name: "Mustafa Trunkwala",size: cardHeight,image:"images/aunty.png", title: 'Web Developer',),
                   ],),
                 SizedBox(
                   height: screenHeight * 0.03,
@@ -152,10 +141,7 @@ class secondScreen extends StatelessWidget {
 class welcomeThirdScreen extends StatelessWidget {
   const welcomeThirdScreen({
     super.key,
-    required this.activeIndex,
   });
-
-  final int activeIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -184,13 +170,6 @@ class welcomeThirdScreen extends StatelessWidget {
                 children: [
                   const SizedBox(
                     height: 30,
-                  ),
-                  AnimatedSmoothIndicator(
-                    activeIndex: activeIndex,
-                    count: 3,
-                    effect: WormEffect(
-                      dotColor: Colors.white,
-                    ),
                   ),
                   SizedBox(
                     height: screenHeight * 0.45 - 50,

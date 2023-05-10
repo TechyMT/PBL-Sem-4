@@ -52,7 +52,7 @@ class _RegisterViewState extends State<RegisterView> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Text('Register Karlo Fren'),
+                const Text('Register'),
                 const SizedBox(
                   height: 40,
                 ),
@@ -103,10 +103,10 @@ class _RegisterViewState extends State<RegisterView> {
                         );
 
                         Get.offAll(() => ProfilePage());
-                        Get.snackbar('Registeration Zhala', 'Euuu');
+                        Get.snackbar('Registeration Done', '');
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {
-                          Get.snackbar('Hehe', e.code);
+                          Get.snackbar('No user found', "Error Code ${e.code}");
                         } else {
                           print(e.message);
                         }

@@ -111,13 +111,13 @@ class _LoginViewState extends State<LoginView> {
                         Get.offAll(() => (HomeScreenView()));
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {
-                          Get.snackbar('Hehe', e.code);
+                          Get.snackbar('User not found', e.code);
                         } else {
                           print(e.message);
                         }
                       }
                     },
-                    child: const Text('Login Now!!'))
+                    child: const Text('Login'))
               ],
             ),
           );

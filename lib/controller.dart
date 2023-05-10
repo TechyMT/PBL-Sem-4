@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 import 'package:pdf_render/pdf_render.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+RxInt bottomNavBarSelectedIndex = RxInt(0);
 class Profile extends GetxController {
   var namecontroller = TextEditingController().obs;
   var rollnocontroller = TextEditingController().obs;
@@ -35,23 +36,23 @@ class Profile extends GetxController {
   Future<void> loadRollno() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String? savedrollno = sharedPreferences.getString('rollno');
-    String? saveusername = sharedPreferences.getString('username');
+    String? savedusername = sharedPreferences.getString('username');
     String? savedemail = sharedPreferences.getString('email');
     String? savedregno = sharedPreferences.getString('regno');
     String? savedclassname = sharedPreferences.getString('classname');
     if (savedrollno != null) {
       rollno.value = savedrollno;
     }
-    if (savedrollno != null) {
-      username.value = saveusername!;
+    if (savedusername != null) {
+      username.value = savedusername!;
     }
-    if (savedrollno != null) {
+    if (savedemail != null) {
       email.value = savedemail!;
     }
-    if (savedrollno != null) {
+    if (savedregno != null) {
       regno.value = savedregno!;
     }
-    if (savedrollno != null) {
+    if (savedclassname != null) {
       classname.value = savedclassname!;
     }
   }

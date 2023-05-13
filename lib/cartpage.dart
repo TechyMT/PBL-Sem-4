@@ -106,6 +106,8 @@ class CartPage extends StatelessWidget {
     print(ddc.cartlinks);
     print(sfc.storagedoc);
     print(sfc.pickedfile);
+    RxInt totalPages = 0.obs;
+
     return HomeScreenBase(
         childUpper: Text('Cart Page',style: TextStyle(color: Colors.white,fontSize: screenHeight * 0.05),),
         childLower: Column(
@@ -204,14 +206,19 @@ class CartPage extends StatelessWidget {
             //   child: Obx(() =>
             //       Text('FileName : ${sfc.progress.value.toStringAsFixed(2)}')),
             // ),
-            ElevatedButton(
-              onPressed: () {
-                uploadFileStorage(ddc.cartlinks);
-                sfc.uploadfile(sfc.pickedfile);
-                //    sfc.pickedfile.clear();
-                //     ddc.cartlinks.clear();
-              },
-              child: Text('Uploads on Temp'),
+            Column(
+              children: [
+                Obx(()=> Text("${(sfc.totalPagesDefDoc() + sfc.totalPagesStorageDoc()).toString()} Pages")),
+                ElevatedButton(
+                  onPressed: () {
+                    uploadFileStorage(ddc.cartlinks);
+                    sfc.uploadfile(sfc.pickedfile);
+                    //    sfc.pickedfile.clear();
+                    //     ddc.cartlinks.clear();
+                  },
+                  child: Text('Uploads on Temp'),
+                ),
+              ],
             ),
           ],
         ),

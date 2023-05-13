@@ -81,6 +81,8 @@ class DefaultDocsController extends GetxController {
   bool isAddedtoCart(String url) {
     return cartdocs.contains(url);
   }
+
+
 }
 
 class StorageFilesController extends GetxController {
@@ -101,6 +103,22 @@ class StorageFilesController extends GetxController {
     PdfDocument pdfDoc = await PdfDocument.openData(filebytes);
     pageCount = pdfDoc.pageCount;
     return pageCount;
+  }
+
+  num totalPagesDefDoc() {
+    num out = 0;
+    for (String link in defdocinfo.keys.toList()) {
+      out += defdocinfo[link].toInt()!;
+    }
+    return out;
+  }
+
+  num totalPagesStorageDoc() {
+    num out = 0;
+    for (String link in storagedocinfo.keys.toList()) {
+      out += storagedocinfo[link].toInt()!;
+    }
+    return out;
   }
 
   Future<void> getdefaultdocinfo(
@@ -127,6 +145,8 @@ class StorageFilesController extends GetxController {
       i++;
     }
   }
+
+
 
   // @override
   // void onInit() {

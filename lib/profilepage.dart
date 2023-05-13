@@ -82,13 +82,13 @@ class _ProfilePageState extends State<ProfilePage> {
                 hintText: 'Enter Your Class',
               ),
             ),
-            TextField(
-              controller: emailcontroller,
-              keyboardType: TextInputType.name,
-              decoration: InputDecoration(
-                hintText: 'Enter Your Email',
-              ),
-            ),
+            // TextField(
+            //   controller: emailcontroller,
+            //   keyboardType: TextInputType.name,
+            //   decoration: InputDecoration(
+            //     hintText: 'Enter Your Email',
+            //   ),
+            // ),
             TextField(
               controller: rollnocontroller,
               keyboardType: TextInputType.name,

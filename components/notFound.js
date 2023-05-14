@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function ImgNotFound(props) {
+export default function ImgNotFound() {
     
   return (
     <div
@@ -11,7 +11,7 @@ export default function ImgNotFound(props) {
         width: "35%",
       }}
     >
-      <Image src="/noresults.png" width={577} height={433}/>
+      <Image src="/noresults.png" width={577} height={433}  alt="imagenotfound"/>
     </div>
   );
 }

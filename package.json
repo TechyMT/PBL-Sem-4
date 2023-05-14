@@ -17,8 +17,10 @@
     "@emotion/styled": "^11.10.6",
     "@google-cloud/storage": "^6.9.5",
     "@mui/material": "^5.12.0",
+    "child_process": "^1.0.2",
     "firebase": "^9.19.1",
     "firebase-admin": "^11.6.0",
+    "isomorphic-unfetch": "^4.0.2",
     "next": "^13.3.0",
     "node-cache": "^5.1.2",
     "react": "^18.2.0",
@@ -26,6 +28,7 @@
     "react-icons": "^4.8.0",
     "react-router-dom": "^6.10.0",
     "sass": "^1.62.0",
+    "shelljs": "^0.8.5",
     "styled-components": "^5.3.9"
   },
   "browser": {
@@ -33,7 +36,6 @@
     "net": false,
     "fs": false
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TechyMT/PBL-Sem-4.git"

@@ -1,5 +1,6 @@
 // Import the functions you need from the SDKs you need
 const { initializeApp } = require("firebase/app");
+const fetch  = require ("isomorphic-unfetch");
 const {
   getStorage,
   ref,
@@ -21,11 +22,6 @@ const {
 const NodeCache = require("node-cache");
 const cache = new NodeCache({ stdTTL: 300, checkperiod: 320 });
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 // test
 // const firebaseConfig = {
 //   apiKey: "AIzaSyBri3HfJ4EtW7kLOYcBA7wDkXJ9RQBcPsk",
@@ -50,21 +46,6 @@ const firebaseConfig = {
   measurementId: "G-Z7HXXVYV0F"
 };
 
-// Import the functions you need from the SDKs you need
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-//surana
-// const firebaseConfig = {
-//   apiKey: "AIzaSyBC017Ki9r8imjeWVM9rkh-_DNNXdjwM7Y",
-//   authDomain: "printez.firebaseapp.com",
-//   projectId: "printez",
-//   storageBucket: "printez.appspot.com",
-//   messagingSenderId: "596061893090",
-//   appId: "1:596061893090:web:3230536798ea747e7289bb"
-// };
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
@@ -81,48 +62,21 @@ const printFolder = [];
 // <------------------------------ STORAGE ---------------------------------------->
 
 const rootFolderRef = ref(storage, "temp");
+const printRef = collection(db,"print");
+
 async function URL() {
+  
   try {
-    const res = await listAll(rootFolderRef);
-    // Filter the results to include only subfolders
-    const subfolders = res.prefixes;
-    const tempFolder = [];
-    // Log the subfolder names to the console
-    subfolders.map((subfolder) => {
-      if (!tempFolder.includes(subfolder.name)) {
-        tempFolder.push(subfolder.name);
-      }
-    });
-
-    if (tempFolder.length !== 0) {
-      const promises = tempFolder.map(async (idName) => {
-        const folderRef = ref(storage, "temp/" + idName);
-        const res = await listAll(folderRef);
-        // Get the download URL for each file
-        const promises2 = res.items.map(async (itemRef) => {
-          const pathArr = itemRef.fullPath.split("/");
-          if(pathArr[2] !== "abc"){
-          const downloadURL = await getDownloadURL(itemRef);
-          return {
-            link: downloadURL,
-            id: pathArr[1],
-            name: pathArr[2],
-          };
-      }});
-        const urls = await Promise.all(promises2);
-        // Do something with the download URLs
-
-        return urls;
-      });
-      // Wait for all the promises to resolve
-      const allUrls = await Promise.all(promises);
-      // Flatten the array of arrays into a single array of all download URLs
-      const urls = allUrls.flat();
-      return urls;
-    } else {
-      console.log("no folder exist");
-      return -1;
-    }
+console.log("contacted");
+    const queryPrintFiles = query(printRef,where("isPrinted","==",false));
+    const querySnapshot = await getDocs(queryPrintFiles);
+  const docArray = querySnapshot.docs;
+  const urlArr = [];
+  docArray.forEach((doc)=>{
+    urlArr.push({docId:doc.id,data:doc.data()});
+  })
+  
+return urlArr;   
   } catch (error) {
     console.error("Error listing subfolders:", error);
     return -1;
@@ -133,177 +87,104 @@ async function URL() {
 
 
 //<=====================================POST PRINT ========================================>
-const userRef = collection(db, "print-on-demand");
-async function posPrint(uid, purl, pname) {
-  
-  await addDoc(userRef, {
-    id: uid,
-    isGiven: false,
-    urlArr: {
-      name: pname,
-      url: purl,
-      isPrinted: true,
-      
-    },
-  });
+let pages = 0;
 
-  //   const url = purl;
-  //   const storageRef = ref(storage, "printed");
-  //   // const folderName = uid;
-  //   const folderRef = ref(storage, "printed/"+uid);
-  //   // const fileName = pname;
+// Function to reset the variable to zero at the start of the day
+function resetVariable() {
+  const now = new Date();
+  const tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+  const timeUntilTomorrow = tomorrow - now;
 
-  //   await fetch(url)
-  //   .then((res) => {
-  //     return res.blob()
-  //   })
-  //   .then(blob => {
-
-  //     const fileRef = ref(storage, "printed/file.pdf");
-
-  //     uploadBytes(fileRef, blob)
-  //     .then(snapshot => {
-
-  //       console.log('Uploaded file successfully!');
-  //     })
-  //     .catch(error => {
-  //       console.error('Error uploading file:', error);
-  //     });
-  // })
-  // .catch(error => {
-  //   console.error('Error retrieving file contents:', error);
-  // });
+  setTimeout(() => {
+    pages = 0;
+    console.log('Variable reset to zero');
+    resetVariable(); // Schedule the next reset for the following day
+  }, timeUntilTomorrow);
 }
+
+// Start the reset process
+resetVariable();
+
+async function posPrint(id, urlArray,page) {
+  pages+= page;
+  const docRef = doc(collection(db, 'print'), id);
+  const { urlArr } = urlArray;
+
+  const linkArr = urlArr.map((url) => url.link);
+
+  try {
+    await updateDoc(docRef, {
+      isPrinted: true
+    });
+
+    const url = '/api/executeBat';
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(linkArr), // Replace with your actual data object
+    });
+
+    if (response.ok) {
+      // Request was successful
+      const data = await response.json();
+      console.log('Response:', data);
+    } else {
+      // Request failed
+      console.error('Error:', response.status);
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+
+
 //<=====================================CHECK PRINT ========================================>
 
 
-const tempRef = collection(db,"print-on-demand");
-async function isPrinted(id, url) {
-  const queryFiles = query(tempRef,where("urlArr.url", "==", url));
 
-  const querySnapshot = await getDocs(queryFiles);
-  const docArray = querySnapshot.docs;
- 
-  
-  for (let i = 0; i < docArray.length; i++) {
-    // const doc = docArray[i];
-  //   if (doc.data().urlArr.url === url && doc.data().id === id) {
-      
-  //     return true;
-  //   }
-  // }
-  // return false;
-  return true;
-  }}
-// async function isPrinted(id, url) {
-//   const cacheKey = `isPrinted_${id}_${url}`;
-//   const cachedResult = cache.get(cacheKey);
-//   if (cachedResult) {
-//     return cachedResult;
-//   }
-
-//   const querySnapshot = await getDocs(tempRef);
-//   const docArray = querySnapshot.docs;
-
-//   for (let i = 0; i < docArray.length; i++) {
-//     const doc = docArray[i];
-//     if (doc.data().urlArr.url === url && doc.data().id === id) {
-//       cache.set(cacheKey, true);
-//       return true;
-//     }
-//   }
-
-//   cache.set(cacheKey, false);
-//   return false;
-// }
 //<=====================================HANDLE ACCEPT ========================================>
-
+const tempRef = collection(db, "print");
 async function handleAccept(id){
-  const queryFiles = query(tempRef,where("id","==",id),where("isGiven","==",false));
+  const queryFiles = query(tempRef,where("id","==",id),where("isPrinted","==",true),where("isGiven","==",false));
   const querySnapshot = await getDocs(queryFiles);
   const docArray = querySnapshot.docs; 
   const nameArr = []
-  // for (let i = 0; i < docArray.length; i++) {
-  //   const docc = docArray[i];
-    
-  //     const docRef = doc(db,"print-on-demand",docc.id);     
-  //    nameArr.push(docc.data().urlArr.url);
-  //    const res = updateDoc(docRef,{
-  //     isGiven: true
-  //    }) 
-      
-  // }
-  // return nameArr; 
+ const urlData = [];
   await runTransaction(db,async (transaction) => {
+    
     for (let i = 0; i < docArray.length; i++) {
       const docc = docArray[i];
-      const docRef = doc(db, "print-on-demand", docc.id);     
-      nameArr.push(docc.data().urlArr.url);
+      urlData.push(docc.data());
+      const docRef = doc(db, "print", docc.id);     
+      // nameArr.push(docc.data().urlArr.url);
       transaction.update(docRef, { isGiven: true });
     }
+    console.log(urlData);
+    urlData.forEach((urlObj)=>{
+      const {urlArr} = urlObj;
+      // console.log(urlArr);
+      urlArr.forEach((url)=>{
+        console.log(url.link);
+      })
+      urlArr.forEach((url) =>{
+        const {link} = url;
+        nameArr.push(link);
+      })
+    })
   });
+
   
   return nameArr;
 }
-// async function handleAccept(id){
-//   const cacheKey = `handleAccept_${id}`;
-//   const cachedResult = cache.get(cacheKey);
-//   if (cachedResult) {
-//     return cachedResult;
-//   }
 
-//   const querySnapshot = await getDocs(tempRef);
-//   const docArray = querySnapshot.docs;
-
-//   const nameArr = [];
-//   for (let i = 0; i < docArray.length; i++) {
-//     const docc = docArray[i];
-
-//     if (docc.data().id === id && !docc.data().isGiven) {
-//       const docRef = doc(db,"print-on-demand",docc.id);
-
-//       nameArr.push(docc.data().urlArr.url);
-
-//       const res = await updateDoc(docRef,{
-//         isGiven: true
-//       });
-//     }
-//   }
-
-//   cache.set(cacheKey, nameArr);
-//   return nameArr;
-// }
 
 module.exports = {
   posPrint,
   URL,
-  isPrinted,
+
   handleAccept,
 };
-
-// // console.log(printFolder);
-// if (printFolder.length !== 0) {
-//   listAll(folderRef)
-//     .then((res) => {
-//       // Get the download URL for each file
-//       const promises = res.items.map((itemRef) => getDownloadURL(itemRef));
-
-//       // Wait for all the promises to resolve
-//       Promise.all(promises)
-//         .then((urls) => {
-//           // Do something with the download URLs
-
-//           console.log(urls);
-//         })
-//         .catch((error) => {
-//           // Handle errors
-//           console.error(error);
-//         });
-//     })
-//     .catch((error) => {
-//       // Handle errors
-//       console.error(error);
-//     });
-// } else {
-//   console.log("no folder exist");
-// }

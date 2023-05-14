@@ -8,17 +8,19 @@ import CardData from "./cardData";
 
 function Card(props) {
   
-    const { id, link, name } = props.url;
+    const { docId, data } = props.url;
+    const {id,urlArr,Pages} = data;
     function handleClick(){
-      props.handleClick(id,link,name);
+      props.handleClick(docId,urlArr,Pages);
     }
     return (
       <div className={styles.card}>
         <h2> ID: {id}</h2>
-        <p>{name}</p>
+        
         <p>______________________________</p>
         {/* <a href={link}>{link}</a> */}
-        <PButton key = {id} link = {link} handleClick = {handleClick} />
+        <p>Pages: {Pages}</p>
+        <PButton key = {id} handleClick = {handleClick} />
       </div>
     );
   }

@@ -3,43 +3,44 @@ import Card from "../components/card_1";
 import Head from "next/head";
 import Layout from "../components/layout";
 import { useState, useEffect, Fragment } from "react";
-import { URL, posPrint, isPrinted } from "../configs/firebaseConfig";
-import Image from "next/image";
+import { URL, posPrint } from "../configs/firebaseConfig";
+
 import ImgNotFound from "../components/notFound";
 import Link from "next/link";
-import styles from "../styles/accept.module.css"
+import styles from "../styles/accept.module.css";
 
 function Requests() {
   const [urls, setUrls] = useState([]);
-  const [resultArr, setResultArr] = useState([]);
-  let times = 0;
+
   useEffect(() => {
     async function fetchData() {
       const urlArray = await URL();
-      if (urlArray.length > 0) {
-        const updatedArr = [];
-        for(let i = 0; i<urlArray.length; i++){
-          const {id, link} = urlArray[i];
-          const printed = await isPrinted(id,link);
-          if(!printed){
-            
-            updatedArr.push(urlArray[i]);
-          }
-         
-        }
-        setResultArr(updatedArr);
-        setUrls(resultArr);
-      } else setUrls([]);
-    }
-    fetchData();
-  }, [resultArr]);
 
-  async function handleClick(uid, purl, pname) {
-    await posPrint(uid, purl, pname);
-  }
-  const linkStyle={
-    textDecoration:"none"
-  }
+      const filteredArray = urlArray.filter((urlData) => !urlData.data.isPrinted);
+
+      setUrls([...filteredArray]);
+    }
+
+    fetchData();
+  }, []);
+
+  const handleClick = async (docId, urlArr,pages) => {
+    try {
+
+      await posPrint(docId, urlArr,pages);
+      console.log("api-executed");
+      setUrls((prevUrls) => [...prevUrls.filter((urlData) => urlData.docId !== docId)]);
+      console.log("seturl executed");
+
+    } catch (error) {
+      console.error("Printing error:", error);
+    }
+  };
+
+  const linkStyle = {
+    textDecoration: "none",
+  };
+
   return (
     <div>
       <Layout>
@@ -50,21 +51,23 @@ function Requests() {
 
         <div>
           <button className={homeStyles.flexBox}>
-          <Link style={linkStyle} href = "/accept">Accept</Link>
+            <Link style={linkStyle} href="/accept">
+              Accept
+            </Link>
           </button>
           {urls.length > 0 ? (
             <div className={homeStyles.flexBox}>
               {urls.map((urlData) => (
-                <Fragment key = {urlData.id}>
-                
-          
-                <Card url={urlData} handleClick={handleClick} />
-        
-                
-              </ Fragment>
+                <Fragment key={urlData.docId}>
+                  <Card
+                    key={urlData.docId} // Add a unique key prop
+                    url={urlData}
+                    handleClick={() => handleClick(urlData.docId, urlData.data)}
+                  />
+                </Fragment>
               ))}
             </div>
-          ):(
+          ) : (
             <ImgNotFound />
           )}
         </div>
@@ -72,4 +75,5 @@ function Requests() {
     </div>
   );
 }
+
 export default Requests;

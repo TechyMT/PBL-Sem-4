@@ -8,7 +8,7 @@ export default function App() {
     <Layout>
       <div>
         <div className={styles.center}>
-          <Image src="/logo.png" width={537} height={238} />
+          <Image src="/logo.png" width={537} height={238} alt="logo"/>
         </div>
         <div className={styles.center}>
           <div className={styles.div1}></div>

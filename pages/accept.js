@@ -83,7 +83,7 @@ export default function App() {
   return (
     <Layout>
     <div>
-      <SectionHeading title="PRINT YOUR SHEETS"/>
+      <SectionHeading title="COLLECT YOUR SHEETS"/>
      
       <div className={styles.body}>
         <form className={styles.form} onSubmit={handleClick}>

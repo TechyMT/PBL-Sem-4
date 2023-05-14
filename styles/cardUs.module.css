@@ -20,3 +20,43 @@
     border-radius: 25px;
     border: 1px solid rgba(255, 255, 255, 0.25);
 }
+.aHover{
+    margin:10px;
+    color:black;
+    transition: all 0.2s ease-in-out;
+
+}
+.cardUs:hover{
+    background-color: rgb(0, 4, 4);
+    color: azure;
+    box-shadow: 0 0 5px rgb(76, 5, 112), 0 0 10px rgb(157, 143, 164),0 0 20px rgb(76, 5, 112);}
+.cardUs:hover .child .aHover{
+
+    /* transform: scale(1.5); */
+    color: #c629d1;
+    
+}
+.aHover:hover{
+    transform: scale(1.25px);
+    /* margin: 1rem; */
+}
+
+        /* animation: shake 2s;
+        animation-iteration-count: infinite; */
+        
+    
+    /* .imgWrapper{
+        overflow:hidden;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    
+      }
+    .hoverZoom:hover {
+        overflow: hidden;
+        transform: scale(1.15);
+      }
+    .hoverZoom{
+        overflow: hidden;
+        border-radius:50%;
+    }   */
+

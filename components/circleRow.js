@@ -11,9 +11,9 @@ function CircleRow(props)
         alignItems:'center',
         flexDirection:'row'
     }
-    const iconStyle ={
-        margin:'10px'
-    }
+    // const iconStyle ={
+    //     margin:'10px'
+    // }
     return(
         <div style={rowStyle}>
             {/* <SocialCircle  link={props.g}/>
@@ -22,10 +22,10 @@ function CircleRow(props)
             {/* <SocialIcon url={props.g}/>
             <SocialIcon url={props.l}/>
             <SocialIcon url={props.i}/> */}
-            <div className={styles.shakeHover}>
-            <a className={styles.aHover} href={props.i}><FaInstagram style={iconStyle} size="2rem" color="black"/></a>
-            <a className={styles.aHover} href={props.g}><FaGithub style={iconStyle} size="2rem" color="black"/></a>
-            <a className={styles.aHover} href={props.l}><FaLinkedin style={iconStyle} size="2rem" color="black"/></a>
+            <div>
+            <a  href={props.i}><FaInstagram className={props.styles} id="insta" size="1.5rem" /></a>
+            <a  href={props.g}><FaGithub className={props.styles} id="git" size="1.5rem" /></a>
+            <a  href={props.l}><FaLinkedin className={props.styles} id="linkedIn" size="1.5rem" /></a>
             </div>
         </div>
     );

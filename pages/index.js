@@ -33,10 +33,10 @@ export default function App() {
         </div>
         <div className={styles.center}>
           <Link href="/request">
-            <button className={styles.request}> To request </button>
+            <button className={styles.request}> Print docs </button>
           </Link>
           <Link href="/accept">
-            <button className={styles.accept}> To accept </button>
+            <button className={styles.accept}>Collect</button>
           </Link>
           <br></br>
         </div>
@@ -61,15 +61,15 @@ export default function App() {
                 li="https://www.instagram.com/postcardsbyriya/"
               />
               <CardUs
-                n="rhea" 
+                n="rhea1" 
                 t="Rhea Shah" 
                 d="UI/UX designer"
                 lg="https://github.com/Rheaa21"
-                ll=""
+                ll="https://www.linkedin.com/in/rhea-shah-1b7a95253/"
                 li="https://www.instagram.com/rheashah21/"
                 />
               <CardUs 
-                n="ameya" 
+                n="surana1" 
                 t="Ameya Surana"
                 d="App Developer"
                 lg="https://github.com/FireFeast7"

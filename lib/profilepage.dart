@@ -1,5 +1,5 @@
 // ignore_for_file: avoid_print
-
+import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -29,23 +29,32 @@ class _ProfilePageState extends State<ProfilePage> {
     //   print(e.toString());
     // }
     Reference storageRef = FirebaseStorage.instance.ref();
-    String storagepath = path.join(fullPath, 'abc');
+    String storagepath = path.join(fullPath, 'abc.txt');
     print(storagepath);
-    await storageRef
-        .child(storagepath)
-        .putString('', format: PutStringFormat.raw);
+    ByteData data = await rootBundle.load('images/abc.txt');
+    List<int> bytes =
+        data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+    Uint8List filecontent = Uint8List.fromList(bytes);
+
+    try {
+      await storageRef
+          .child(storagepath)
+          .putData(filecontent, SettableMetadata(contentType: 'text/plain'));
+    } catch (e) {
+      print(e.toString());
+    }
   }
 
   Future<void> deleteabsolutefile() async {
-     String subfolderpath = 'temp';
+    String subfolderpath = 'temp';
     String folderName = rollnocontroller.text;
-      String fullPath = '$subfolderpath/$folderName/';
+    String fullPath = '$subfolderpath/$folderName/';
     String filename = 'abc';
     String folderPath = 'temp/$folderName';
     Reference storageRef = FirebaseStorage.instance.ref();
-      String storagePath = '$folderPath/$filename';
+    String storagePath = '$folderPath/$filename';
     print(storagePath);
-    }
+  }
 
   late final namecontroller = TextEditingController();
   late final rollnocontroller = TextEditingController();
@@ -110,7 +119,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 if (rollnocontroller.text.isEmpty) {
                   Get.snackbar('Roll no Tak', 'Read above message');
                 } else {
-                  prof.updateRollNo(rollnocontroller.text,namecontroller.text,regnocontroller.text,classnamecontroller.text,emailcontroller.text);
+                  prof.updateRollNo(
+                      rollnocontroller.text,
+                      namecontroller.text,
+                      regnocontroller.text,
+                      classnamecontroller.text,
+                      emailcontroller.text);
                   Get.offAll(() => HomeScreenView());
                 }
               },

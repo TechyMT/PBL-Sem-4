@@ -11,10 +11,6 @@ import "package:shared_preferences/shared_preferences.dart";
 import "package:firebase_auth/firebase_auth.dart";
 import "package:printez/landingpage.dart";
 
-
-
-
-
 class HomeScreenView extends StatefulWidget {
   HomeScreenView({super.key});
 
@@ -52,20 +48,17 @@ class _HomeScreenViewState extends State<HomeScreenView> {
 
   @override
   Widget build(BuildContext context) {
-    var screenHeight = MediaQuery
-        .of(context)
-        .size
-        .height;
-    var screenWidth = MediaQuery
-        .of(context)
-        .size
-        .width;
+    var screenHeight = MediaQuery.of(context).size.height;
+    var screenWidth = MediaQuery.of(context).size.width;
     return Obx(
-        () => HomeScreenBase(
-        childUpper: Text("Home ${prof.rollno.value.toString()}", style: TextStyle(fontSize: 30.0,fontWeight: FontWeight.bold,color: Colors.white),),
+      () => HomeScreenBase(
+        childUpper: Text(
+          "Home ${prof.rollno.value.toString()}",
+          style: TextStyle(
+              fontSize: 30.0, fontWeight: FontWeight.bold, color: Colors.white),
+        ),
         childLower: Column(
-          children:
-          [
+          children: [
             Row(
               children: [
                 Padding(
@@ -106,16 +99,18 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                       onPressed: () async {
                         try {
                           final SharedPreferences sharedPreferences =
-                          await SharedPreferences.getInstance();
+                              await SharedPreferences.getInstance();
                           final userCredential =
-                          await FirebaseAuth.instance.signOut();
+                              await FirebaseAuth.instance.signOut();
                           sharedPreferences.clear();
                           Get.off(() => const LandingPage());
                         } catch (e) {
                           print(e.toString());
                         }
                       },
-                      child: Text('Log Out',),
+                      child: Text(
+                        'Log Out',
+                      ),
                       style: buildButtonStyle(screenWidth * 1, screenHeight)),
                 ),
               ],

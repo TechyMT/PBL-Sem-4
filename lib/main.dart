@@ -11,9 +11,7 @@ import 'package:printez/firebase_options.dart';
 import 'package:printez/landingpage.dart';
 import 'package:printez/homescreen.dart';
 
-
 import 'package:shared_preferences/shared_preferences.dart';
-
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,6 +36,7 @@ class _MyAppState extends State<MyApp> {
   final DefaultDocsController ddc = Get.put(DefaultDocsController());
   final StorageFilesController sfc = Get.put(StorageFilesController());
   final Profile prof = Get.put(Profile());
+  final FireStoreDatabase fsd = Get.put(FireStoreDatabase());
   var auth = FirebaseAuth.instance;
 
   // Future<bool> checkifLogin() async {
@@ -60,14 +59,12 @@ class _MyAppState extends State<MyApp> {
       finalEmail = obtainedEmail;
       finalrollno = obtainedrollno;
     });
-    print(finalEmail);
-    print(finalrollno);
   }
 
   @override
   void initState() {
     getValidationData().whenComplete(() async {
-      if (finalEmail == null) {
+      if (finalrollno==null) {
         Get.offAll(() => LandingPage());
       } else {
         Get.offAll(() => HomeScreenView());

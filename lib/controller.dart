@@ -11,7 +11,6 @@ import 'package:get/get.dart';
 import 'package:pdf_render/pdf_render.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-RxInt bottomNavBarSelectedIndex = RxInt(0);
 class Profile extends GetxController {
   var namecontroller = TextEditingController().obs;
   var rollnocontroller = TextEditingController().obs;
@@ -23,7 +22,8 @@ class Profile extends GetxController {
   RxString email = RxString('');
   RxString regno = RxString('');
   RxString classname = RxString('');
-  void updateRollNo(String roll, String username, String regid, String batch, String email ) async {
+  void updateRollNo(String roll, String username, String regid, String batch,
+      String email) async {
     rollno.value = roll;
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.setString('rollno', roll);
@@ -36,23 +36,23 @@ class Profile extends GetxController {
   Future<void> loadRollno() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String? savedrollno = sharedPreferences.getString('rollno');
-    String? savedusername = sharedPreferences.getString('username');
+    String? saveusername = sharedPreferences.getString('username');
     String? savedemail = sharedPreferences.getString('email');
     String? savedregno = sharedPreferences.getString('regno');
     String? savedclassname = sharedPreferences.getString('classname');
     if (savedrollno != null) {
       rollno.value = savedrollno;
     }
-    if (savedusername != null) {
-      username.value = savedusername!;
+    if (savedrollno != null) {
+      username.value = saveusername!;
     }
-    if (savedemail != null) {
+    if (savedrollno != null) {
       email.value = savedemail!;
     }
-    if (savedregno != null) {
+    if (savedrollno != null) {
       regno.value = savedregno!;
     }
-    if (savedclassname != null) {
+    if (savedrollno != null) {
       classname.value = savedclassname!;
     }
   }
@@ -69,24 +69,29 @@ class DefaultDocsController extends GetxController {
   void addtoCart(String url, String link) {
     cartdocs.add(url);
     cartlinks.add(link);
-    Get.snackbar('$url docs Added to the Cart','');
+    Get.snackbar('$url docs Added to the Cart', '');
   }
 
   void removefromCart(String url, String link) {
     cartdocs.remove(url);
     cartlinks.remove(link);
-    Get.snackbar('$url docs Removed from the Cart','');
+    Get.snackbar('$url docs Removed from the Cart', '');
   }
 
   bool isAddedtoCart(String url) {
     return cartdocs.contains(url);
   }
-
-
 }
 
 class StorageFilesController extends GetxController {
   final DefaultDocsController ddc = Get.put(DefaultDocsController());
+  @override
+  // void onInit() async {
+  //   await getstoragedocinfo(storagedoc, pickedfile);
+  //   await getdefaultdocinfo(ddc.cartlinks, ddc.cartdocs);
+  //   super.onInit();
+  // }
+
   List<PlatformFile> pickedfile = [];
   var storagedoc = <String>[].obs;
   var storagelinks = <String>[].obs;
@@ -103,22 +108,6 @@ class StorageFilesController extends GetxController {
     PdfDocument pdfDoc = await PdfDocument.openData(filebytes);
     pageCount = pdfDoc.pageCount;
     return pageCount;
-  }
-
-  num totalPagesDefDoc() {
-    num out = 0;
-    for (String link in defdocinfo.keys.toList()) {
-      out += defdocinfo[link].toInt()!;
-    }
-    return out;
-  }
-
-  num totalPagesStorageDoc() {
-    num out = 0;
-    for (String link in storagedocinfo.keys.toList()) {
-      out += storagedocinfo[link].toInt()!;
-    }
-    return out;
   }
 
   Future<void> getdefaultdocinfo(
@@ -146,7 +135,21 @@ class StorageFilesController extends GetxController {
     }
   }
 
+  num totalPagesDefDoc() {
+    num out = 0;
+    for (String link in defdocinfo.keys.toList()) {
+      out += defdocinfo[link].toInt()!;
+    }
+    return out;
+  }
 
+  num totalPagesStorageDoc() {
+    num out = 0;
+    for (String link in storagedocinfo.keys.toList()) {
+      out += storagedocinfo[link].toInt()!;
+    }
+    return out;
+  }
 
   // @override
   // void onInit() {
@@ -194,17 +197,42 @@ class StorageFilesController extends GetxController {
     for (var file in pickedfile) {
       print(file.name);
       //   final int? pageCount = await getPageCount(file);
-      if(!storagedoc.contains(file.name))
-        {
-          storagedoc.add(file.name);
-        }
+      if (!storagedoc.contains(file.name)) {
+        storagedoc.add(file.name);
+      }
 
- //     ddc.cartdocs.add(file.name);
+      //     ddc.cartdocs.add(file.name);
     }
   }
 
   void deleteFile(int index) {
     pickedfile.removeAt(index);
     storagedoc.removeAt(index);
+  }
+}
+
+class FireStoreDatabase extends GetxController {
+  final StorageFilesController sfc = Get.find();
+  final DefaultDocsController ddc = Get.find();
+  num page = 0;
+  RxDouble totalamount = 0.0.obs;
+  var urls = [].obs;
+  var names = [].obs;
+  num totalpages() {
+    num pages = 0;
+    sfc.storagedocinfo.values.forEach((pagecount) {
+      pages += pagecount;
+    });
+    sfc.defdocinfo.values.forEach((pagecount) {
+      pages += pagecount;
+    });
+    page = pages;
+    return pages;
+  }
+
+  int totalAmount() {
+    int amount = 0;
+    amount = page.toInt() * 1;
+    return amount;
   }
 }

@@ -19,24 +19,21 @@ class AboutCard extends StatelessWidget {
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
           children: [
-            SizedBox(
-              height: screenHeight * 0.48,
+            Expanded(
+              flex: 3,
               child: CircleAvatar(
-                child: SizedBox(height: 30.0, width: 30.0),
-                  radius: screenHeight * 0.25,
+                  radius: size * 0.2,
                   backgroundImage: AssetImage(image)),
             ),
-            SizedBox(
+            Expanded(
               child: Text(name),
-              height: screenHeight * 0.1,
             ),
-            SizedBox(
-              height: screenHeight * 0.1,
+            Expanded(
               child: Text(title,textAlign: TextAlign.center,),
             ),
-            SizedBox(
+            Expanded(
+              flex: 2,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -63,9 +60,6 @@ class AboutCard extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
-            SizedBox(
-              height: screenHeight * 0.01,
             ),
           ],
         ),

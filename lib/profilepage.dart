@@ -57,29 +57,69 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextField(
-              controller: namecontroller,
-              keyboardType: TextInputType.name,
-              decoration: InputDecoration(
-                hintText: 'Enter Your Name',
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                controller: namecontroller,
+                keyboardType: TextInputType.name,
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
+                  hintText: 'Enter Your Name',
+                  hintStyle: TextStyle(color: Colors.grey.shade800),
+
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(30.0),
+                    ),
+                  ),
+
+                ),
               ),
             ),
-            TextField(
-              controller: regnocontroller,
-              keyboardType: TextInputType.name,
-              decoration: InputDecoration(
-                hintText: 'Enter Your Registration Number.',
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                controller: regnocontroller,
+                keyboardType: TextInputType.name,
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
+                  hintText: 'Enter Your Registration Number',
+                  hintStyle: TextStyle(color: Colors.grey.shade800),
+
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(30.0),
+                    ),
+                  ),
+
+                ),
               ),
             ),
-            TextField(
-              controller: classnamecontroller,
-              keyboardType: TextInputType.name,
-              decoration: InputDecoration(
-                hintText: 'Enter Your Class',
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                controller: classnamecontroller,
+                keyboardType: TextInputType.name,
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
+                  hintText: 'Enter Your Class',
+                  hintStyle: TextStyle(color: Colors.grey.shade800),
+
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(30.0),
+                    ),
+                  ),
+
+                ),
               ),
             ),
             // TextField(
@@ -89,11 +129,24 @@ class _ProfilePageState extends State<ProfilePage> {
             //     hintText: 'Enter Your Email',
             //   ),
             // ),
-            TextField(
-              controller: rollnocontroller,
-              keyboardType: TextInputType.name,
-              decoration: InputDecoration(
-                hintText: 'Enter Your Roll No.',
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                controller: rollnocontroller,
+                keyboardType: TextInputType.name,
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
+                  hintText: 'Enter Your Roll Number',
+                  hintStyle: TextStyle(color: Colors.grey.shade800),
+
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(30.0),
+                    ),
+                  ),
+
+                ),
               ),
             ),
             ElevatedButton(
@@ -114,7 +167,11 @@ class _ProfilePageState extends State<ProfilePage> {
                   Get.offAll(() => HomeScreenView());
                 }
               },
-              child: Text('To the Home Screen'),
+              style: TextButton.styleFrom(backgroundColor: Colors.orange) ,
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: const Text('PROCEED TO HOME SCREEN', style: TextStyle(fontSize: 15.0),),
+              ),
             ),
           ],
         ),

@@ -15,39 +15,73 @@ class HomeScreenBase extends StatefulWidget {
 }
 
 class _HomeScreenBaseState extends State<HomeScreenBase> {
-  int _selectedindex = 0;
-  List<Widget> pages = [ViewProfilePage(),HomeScreenView(),ViewProfilePage()];
-
-  Widget onicontapped(int index) {
-    print(_selectedindex);
-    setState(() {
-      _selectedindex = index;
-    });
-    return pages[_selectedindex];
-  }
+  // List<Widget> pages = [ViewProfilePage(),HomeScreenView(),ViewProfilePage()];
+  // int _selectedindex = 0;
+  // Widget onicontapped(int index) {
+  //   print(_selectedindex);
+  //   setState(() {
+  //     _selectedindex = index;
+  //   });
+  //   print(pages[_selectedindex]);
+  //   return pages[_selectedindex];
+  // }
 
   @override
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
+        // bottomNavigationBar: BottomNavigationBar(
+        //   items: const <BottomNavigationBarItem>[
+        //     BottomNavigationBarItem(
+        //       icon: Icon(Icons.home),
+        //       label: 'Home',
+        //     ),
+        //     BottomNavigationBarItem(
+        //       icon: Icon(Icons.business),
+        //       label: 'Business',
+        //     ),
+        //     BottomNavigationBarItem(
+        //       icon: Icon(Icons.school),
+        //       label: 'School',
+        //     ),
+        //   ],
+        //   currentIndex: _selectedindex,
+        //   onTap: onicontapped,
+        // ),
+        bottomNavigationBar: Container(
+          color: Color(0xFFD3C9F6),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: IconButton(
+                      icon: Icon(Icons.person,size: 40.0),
+                      onPressed: () {
+                        Get.to(ViewProfilePage());
+                      }
+                    )
+                  ),
+                  Expanded(
+                    child: IconButton(
+                        icon: Icon(Icons.home, size: 40.0),
+                        onPressed: () {
+                          Get.to(HomeScreenView());
+                        }
+                    )
+                  ),
+                  Expanded(
+                    child:IconButton(
+                        icon: Icon(Icons.history,size: 40.0),
+                        onPressed: () {
+
+                        }
+                  ),
+                  ),
+                ],
+              ),
             ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.business),
-              label: 'Business',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.school),
-              label: 'School',
-            ),
-          ],
-          currentIndex: _selectedindex,
-          onTap: onicontapped,
         ),
         backgroundColor: Colors.black,
         body: Column(

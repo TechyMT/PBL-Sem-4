@@ -19,13 +19,16 @@ class _LandingPageState extends State<LandingPage> {
   int activeIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: PageView(
-        children: [
-          firstScreen(),
-          secondScreen(),
-          welcomeThirdScreen(),
-        ],
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.black,
+        body: PageView(
+          children: [
+            firstScreen(),
+            secondScreen(),
+            welcomeThirdScreen(),
+          ],
+        ),
       ),
     );
   }
@@ -39,44 +42,49 @@ class firstScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
-    return Container(
-        decoration: welcomeDecor,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: screenHeight * 0.1,
-            ),
-            Container(
-                alignment: Alignment.topRight,
-                child: printEZLogo(
-                  fontSize: screenHeight * 0.05,
-                )),
-            SizedBox(
-              height: screenHeight * 0.2,
-            ),
-            Container(
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Container(
+          color: Colors.transparent,
+            alignment: Alignment.topRight,
+            child: printEZLogo(
+              fontSize: screenHeight * 0.05,
+            )),
+
+        Container(
+          color: Colors.transparent,
+          child: Image.asset(
+            "images/appdesigncropped.png",
+            fit: BoxFit.cover,
+          ),
+        ),
+        Container(
        //       alignment: Alignment.topLeft,
-              child: Text("What are we",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 50.0,
-                    fontWeight: FontWeight.bold,
-                  )),
-            ),
-            SizedBox(
-              height: screenHeight * 0.1,
-            ),
-            Container(
-              child: Text("""In today's digital age, there are various applications that allow users to store and manage their documents online. However, there are times when a physical copy of a document is required. So this app helps to upload or scan documents or images and then print them according to the user’s specifications.""",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 20.0,
-                  )),
-            )
-          ],
-        ));
+          child: Text("What are we",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 50.0,
+                fontWeight: FontWeight.bold,
+              )),
+        ),
+        SizedBox(
+          height: screenHeight * 0.1,
+        ),
+        Expanded(
+          child: Container(
+            child: Text("""In today's digital age, there are various applications that allow users to store and manage their documents online. However, there are times when a physical copy of a document is required. So this app helps to upload or scan documents or images and then print them according to the user’s specifications.""",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 20.0,
+                  color: Colors.white,
+                )),
+          ),
+        )
+      ],
+    );
   }
 }
 
@@ -89,51 +97,75 @@ class secondScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height ;
     var cardHeight = screenHeight * 0.22;
-    return Container(
-      decoration: welcomeDecor,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(
-            height: screenHeight * 0.03,
-          ),
-          Container(
-            alignment: Alignment.center,
-              padding: const EdgeInsets.all(15),
-            child: Column(mainAxisAlignment: MainAxisAlignment.center,
-              children: [printEZLogo(fontSize: 50),SizedBox(height: 10,),const Text('Team',style: TextStyle(fontSize: 30),)],)
-          ),
-          SizedBox(
-            height: screenHeight * 0.03,
-          ),
-          Expanded(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    AboutCard(name: "Amogh Thakurdesai",title:'App Developer',size: cardHeight,image:"images/amogh.png", ),
-                    AboutCard(name: "Rhea Shah",size: cardHeight,image:"images/rhea1.png", title: 'UI/UX Designer',),
-                  ],),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    AboutCard(name: "Ameya Surana",size: cardHeight,image:"images/surana1.png", title: 'App Developer',),
-                    AboutCard(name: "Riya Wani",size: cardHeight,image:"images/riya.png", title: 'Frontend Developer',),
-                  ],),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    AboutCard(name: "Mustafa Trunkwala",size: cardHeight,image:"images/aunty.png", title: 'Web Developer',),
-                  ],),
-                SizedBox(
-                  height: screenHeight * 0.03,
-                )
-              ],),
-          )
-        ],
-      ),
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        Column(
+          children:[
+
+            SizedBox(
+              height: screenHeight * 0.08,
+            ),
+            Container(
+              color: Colors.transparent,
+              child: Image.asset(
+                "images/appdesigncropped.png",
+                fit: BoxFit.cover,
+              ),
+            ),
+          ],
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: screenHeight * 0.03,
+            ),
+            Container(
+              alignment: Alignment.center,
+                padding: const EdgeInsets.all(15),
+              child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                children: [printEZLogo(fontSize: 50),SizedBox(height: 10,),const Text('Team',style: TextStyle(fontSize: 30, color: Colors.white),)],)
+            ),
+            SizedBox(
+              height: screenHeight * 0.03,
+            ),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        AboutCard(name: "Amogh Thakurdesai",title:'App Developer',size: cardHeight,image:"images/amogh.png", ),
+                        AboutCard(name: "Rhea Shah",size: cardHeight,image:"images/rhea1.png", title: 'UI/UX Designer',),
+                      ],),
+                  ),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        AboutCard(name: "Ameya Surana",size: cardHeight,image:"images/surana1.png", title: 'App Developer',),
+                        AboutCard(name: "Riya Wani",size: cardHeight,image:"images/riya.png", title: 'Frontend Developer',),
+                      ],),
+                  ),
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        AboutCard(name: "Mustafa Trunkwala",size: cardHeight,image:"images/aunty.png", title: 'Web Developer',),
+                      ],),
+                  ),
+                  SizedBox(
+                    height: screenHeight * 0.03,
+                  )
+                ],),
+            )
+          ],
+        ),
+      ],
     );
   }
 }
@@ -147,25 +179,40 @@ class welcomeThirdScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
-    return Column(
+    return Stack(
       children: [
-        SizedBox(
-          height: screenHeight * 0.55,
-        ),
-        Container(
-          alignment: Alignment.center,
-          height: screenHeight * 0.45,
-          width: screenWidth,
-          decoration: const BoxDecoration(
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(30),
-              topRight: Radius.circular(30),
+        Column(
+          children: [
+            SizedBox(
+              height: screenHeight * 0.05,
             ),
-            color: Colors.grey,
-          ),
-          child: PageView(
-            children: [
-              Column(
+            Container(
+              color: Colors.transparent,
+              child: Image.asset(
+                "images/appdesigncropped.png",
+                fit: BoxFit.cover,
+              ),
+            )
+          ],
+        ),
+        Column(
+          children: [
+            SizedBox(
+              height: screenHeight * 0.3,
+            ),
+            Container(
+              alignment: Alignment.center,
+              width: screenWidth,
+              height: screenHeight * 0.45,
+              color: Colors.black,
+              // decoration: const BoxDecoration(
+              //   borderRadius: BorderRadius.only(
+              //     topLeft: Radius.circular(30),
+              //     topRight: Radius.circular(30),
+              //   ),
+
+              //),
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const SizedBox(
@@ -189,10 +236,11 @@ class welcomeThirdScreen extends StatelessWidget {
                                 const Text(
                                   "Welcome To ",
                                   style: TextStyle(
-                                    fontSize: 23,
+                                    fontSize: 30,
+                                    color: Colors.white,
                                   ),
                                 ),
-                                printEZLogo(fontSize: 23.0),
+                                printEZLogo(fontSize: 30.0,),
                               ],
                             ),
                             const SizedBox(
@@ -200,19 +248,23 @@ class welcomeThirdScreen extends StatelessWidget {
                             ),
                             const Text(
                               'Print At Your Ease',
-                              style: TextStyle(fontSize: 18),
+                              style: TextStyle(fontSize: 25,color: Colors.white,),
                             ),
                             SizedBox(
                               height: screenHeight * 0.09,
                             ),
-                            SizedBox(
+                            Container(
+                              color: Colors.orange,
                               height: 50,
                               width: 250,
                               child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.orange,
+                                ),
                                 onPressed: () {
                                   Get.to(() => const RegisterView());
                                 },
-                                child: const Text('Get Started'),
+                                child: const Text('GET STARTED',style:TextStyle(fontSize: 20.0,)),
                               ),
                             ),
                             const SizedBox(height: 10),
@@ -220,15 +272,15 @@ class welcomeThirdScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 const Text(
-                                  'Already Have An Account ?  ',
-                                  style: TextStyle(fontSize: 15),
+                                  'ALREADY HAVE AN ACCOUNT?  ',
+                                  style: TextStyle(fontSize: 15, color: Colors.white),
                                 ),
                                 RichText(
                                   text: TextSpan(
-                                    text: 'Log In',
+                                    text: 'LOG IN',
                                     style: const TextStyle(
                                       fontSize: 15,
-                                      color: Colors.black,
+                                      color: Colors.teal,
                                       decoration: TextDecoration.underline,
                                     ),
                                     recognizer: TapGestureRecognizer()
@@ -246,8 +298,8 @@ class welcomeThirdScreen extends StatelessWidget {
                   ),
                 ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ],
     );

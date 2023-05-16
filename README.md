@@ -1,23 +1,78 @@
-### Installation
-- Clone the repo "https://github.com/TechyMT/PBL-Sem-4.git"
-- Change the current directory to the template `cd web`
-#### Development Environment
-- To get started with development first build the dev containers using the following command `docker-compose -f docker-compose.dev.yml build`
-- The env file being used for development is called `.env.dev`
-- Run the containers using the command `docker-compose -f docker-compose.dev.yml up`
-#### Production Environment
-- To get started with development first build the dev containers using the following command `docker-compose -f docker-compose.prod.yml build`
-- The env file being used for production is called `.env` which can be created using the command `cp ./.env.dev ./.env`
-- Run the containers using the command `docker-compose -f docker-compose.prod.yml up -d`
-#### Installing new npm packages
-- New packages can be installed through your preferred terminal using the normal `npm i` command following which the containers need to be rebuild for the app to start working again.
+# PrintEZ - Print Request Portal
 
+PrintEZ is a web and app-based portal designed for users to easily send print requests for their documents. The portal includes a default document feature, providing users with a collection of necessary documents available at the college stationary. Users can upload their own documents or select from the available default documents. After payment, the print requests are managed through a web portal accessible by the stationary personnel.
+
+## Technologies Used
+
+- Next.js
+- React
+- Firestore Authentication
+- Firebase Storage
+- Flutter (for the app)
+- Firebase features (for the app)
+
+## Features
+
+1. User Authentication: Users can create accounts or sign in to access the print request portal.
+2. Print Requests: Users can submit print requests by uploading their documents or selecting from the default documents available.
+3. Payment Integration: Users can make payments for their print requests.
+4. Web Portal: The stationary personnel can view and manage print requests through a dedicated web portal.
+5. Verification and Collection: Users can verify and collect their printed documents using the accept page.
+6. Print History: The stationary owner can view the history of prints done in a day, including the amount earned and pages printed.
+7. Unique Print ID: The stationary personnel can verify the printed documents by entering a unique 5-digit ID.
+
+## Installation
+
+1. Clone the repository:
+
+   ```shell
+   git clone https://github.com/your-username/PrintEZ.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```shell
+   cd PrintEZ
+   ```
+
+3. Install the dependencies for the web portal:
+
+   ```shell
+   cd web-portal
+   npm install
+   ```
+
+4. Install the dependencies for the app:
+
+   ```shell
+   cd app
+   flutter pub get
+   ```
+
+5. Set up Firebase:
+
+   - Create a Firebase project and enable Firestore Authentication and Firebase Storage.
+   - Obtain the Firebase configuration details (API key, project ID, etc.) for both the web and app projects.
+   - Update the configuration files in the web portal (`web-portal/firebase.js`) and the app (`app/lib/firebase.dart`) with your Firebase credentials.
+
+6. Start the web portal development server:
+
+   ```shell
+   npm run dev
+   ```
+
+7. Build and run the app on an emulator or physical device:
+
+   ```shell
+   flutter run
+   ```
 
 ## Contributing
-Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are *greatly appreciated*.
 
-1.  Clone the Project
-2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3.  Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4.  Push to the Branch (`git push origin feature/AmazingFeature`)
-5.  Open a Pull Request
+Contributions to the PrintEZ project are welcome! If you find any issues or have suggestions for improvement, please feel free to open an issue or submit a pull request.
+
+Please ensure that your contributions align with the project's coding style and guidelines.
+
+## License
+
+The PrintEZ project is licensed under the [MIT License](LICENSE). Feel free to use, modify, and distribute the code as per the terms of the license.

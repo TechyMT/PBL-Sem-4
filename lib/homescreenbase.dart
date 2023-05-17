@@ -4,6 +4,8 @@ import "package:printez/profilepage.dart";
 import "package:printez/homescreen.dart";
 import "package:printez/viewprofilepage.dart";
 
+import "historypage.dart";
+
 class HomeScreenBase extends StatefulWidget {
   HomeScreenBase({required this.childUpper, required this.childLower});
 
@@ -51,37 +53,32 @@ class _HomeScreenBaseState extends State<HomeScreenBase> {
         // ),
         bottomNavigationBar: Container(
           color: Color(0xFFD3C9F6),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Expanded(
                     child: IconButton(
-                      icon: Icon(Icons.person,size: 40.0),
-                      onPressed: () {
-                        Get.to(ViewProfilePage());
-                      }
-                    )
-                  ),
-                  Expanded(
+                        icon: Icon(Icons.person, size: 40.0),
+                        onPressed: () {
+                          Get.to(ViewProfilePage());
+                        })),
+                Expanded(
                     child: IconButton(
                         icon: Icon(Icons.home, size: 40.0),
                         onPressed: () {
                           Get.to(HomeScreenView());
-                        }
-                    )
-                  ),
-                  Expanded(
-                    child:IconButton(
-                        icon: Icon(Icons.history,size: 40.0),
-                        onPressed: () {
-
-                        }
-                  ),
-                  ),
-                ],
-              ),
+                        })),
+                Expanded(
+                  child: IconButton(
+                      icon: Icon(Icons.history, size: 40.0),
+                      onPressed: () {
+                        Get.to(HistoryPage());
+                      }),
+                ),
+              ],
             ),
+          ),
         ),
         backgroundColor: Colors.black,
         body: Column(
@@ -100,9 +97,10 @@ class _HomeScreenBaseState extends State<HomeScreenBase> {
               ),
             ),
             Expanded(
-              child:
-                  Container(color: Color(0xFFD0CFCF), child: widget.childLower,
-            ),
+              child: Container(
+                color: Color(0xFFD0CFCF),
+                child: widget.childLower,
+              ),
             ),
           ],
         ),

@@ -36,7 +36,7 @@ class _HistoryPageState extends State<HistoryPage> {
           Expanded(
             child: SingleChildScrollView(
               child: Container(
-                height: height2 * 0.5,
+                height: height2 * 0.6,
                 child:  Container(
                   child: ListView.builder(
                     itemCount: 5,
@@ -49,13 +49,32 @@ class _HistoryPageState extends State<HistoryPage> {
                             color: Colors.grey,
                           ),
                           height: height2 * 0.1,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Text(
-                                "File Name",
-                                style: TextStyle(color: Colors.black, fontSize: height2 * 0.02),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Text(
+                                    "File Name",
+                                    style: TextStyle(color: Colors.black, fontSize: height2 * 0.02),
+                                  ),
+                                ],
                               ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text("Pages: 1",
+                                      style: TextStyle(color: Colors.black,
+                                          fontSize: height2 * 0.02),
+                                    ),
+                                    Text("Date: 12/12/2022",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: height2 * 0.02),
+                                    ),
+                                  ],
+                                ),
                             ],
                           ),
                         ),

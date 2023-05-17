@@ -16,6 +16,7 @@ class printEZLogo extends StatelessWidget {
           fontSize: fontSize,
           color: Colors.purple,
           fontWeight: FontWeight.bold,
+          fontStyle: FontStyle.normal,
         ),
       ),
       Text(

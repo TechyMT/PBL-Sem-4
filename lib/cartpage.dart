@@ -223,6 +223,8 @@ class CartPage extends StatelessWidget {
                   ddc.cartlinks.clear();
                   ddc.cartdocs.clear();
                   sfc.storagedoc.clear();
+                  sfc.defdocinfo.clear();
+                  sfc.storagedocinfo.clear();
                 },
                 child: Text('Uploads on Temp'),
               ),

@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import "package:get/get.dart";
+import "package:printez/developerspage.dart";
 import 'package:printez/homescreenbase.dart';
 import "package:printez/controller.dart";
 import "package:printez/defaultdocs.dart";
@@ -106,7 +107,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                           final userCredential =
                           await FirebaseAuth.instance.signOut();
                           sharedPreferences.clear();
-                          Get.off(() => const LandingPage());
+                          Get.offAll(() => const LandingPage());
                         } catch (e) {
                           print(e.toString());
                         }
@@ -115,6 +116,15 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                       style: buildButtonStyle(screenWidth * 1, screenHeight)),
                 ),
               ],
+            ),
+            Padding(
+              padding: EdgeInsets.all(screenHeight * 0.01),
+              child: TextButton(
+                  onPressed: () {
+                    Get.to(() => developersScreen());
+                  },
+                  child: Text('Developers',style: TextStyle(fontSize: 20.0,)),
+                  style: buildButtonStyle(screenWidth * 1, screenHeight)),
             ),
           ],
         ),

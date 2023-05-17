@@ -1,19 +1,14 @@
 import 'dart:async';
-
 import 'dart:typed_data';
-
 import 'package:printez/fetchdatabase.dart';
+import 'package:printez/history.dart';
 import 'package:printez/homescreenbase.dart';
-
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:printez/controller.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as path;
-//import 'package:pdf/pdf.dart';
-//import 'package:pdf_render/pdf_render_widgets.dart';
-//import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class CartPage extends StatelessWidget {
   final Profile prof = Get.put(Profile());
@@ -95,7 +90,6 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     var screenHeight = MediaQuery.of(context).size.height;
     var screenWidth = MediaQuery.of(context).size.width;
     sfc.getstoragedocinfo(sfc.storagedoc, sfc.pickedfile);
@@ -113,59 +107,53 @@ class CartPage extends StatelessWidget {
       childLower: Column(
         children: [
           Text("Uploaded Docs"),
-          Obx(() => SingleChildScrollView(
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.25,
-                  child: (sfc.storagedoc.length != sfc.storagedocinfo.length)
-                      ? const Center(
-                          child: Text('No Default Docs Added Yet'),
-                        )
-                      : ListView.builder(
-                          itemCount: sfc.storagedoc.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            // String? documentName =
-                            //     sfc.defdocinfo.keys.toList()[index];
-                            // int? pageCount = sfc.defdocinfo.values.toList()[index];
-                            String? documentName1 =
-                                sfc.storagedocinfo.keys.toList()[index];
-                            int? pageCount1 =
-                                sfc.storagedocinfo.values.toList()[index];
+          Obx(
+            () => SingleChildScrollView(
+              child: Container(
+                height: MediaQuery.of(context).size.height * 0.25,
+                child: (sfc.storagedoc.length != sfc.storagedocinfo.length)
+                    ? const Center(
+                        child: Text('No Default Docs Added Yet'),
+                      )
+                    : ListView.builder(
+                        itemCount: sfc.storagedoc.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          String? documentName1 =
+                              sfc.storagedocinfo.keys.toList()[index];
+                          int? pageCount1 =
+                              sfc.storagedocinfo.values.toList()[index];
 
-                            return buildCartListTile(context,
-                                documentName: documentName1,
-                                pageCount: pageCount1);
-                          },
-                        ),
-                ),
-              )),
+                          return buildCartListTile(context,
+                              documentName: documentName1,
+                              pageCount: pageCount1);
+                        },
+                      ),
+              ),
+            ),
+          ),
           Text("Default Docs"),
-          Obx(() => SingleChildScrollView(
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.25,
-                  child: (ddc.cartdocs.length != sfc.defdocinfo.length)
-                      ? const Center(
-                          child: Text('No Default Docs Added Yet'),
-                        )
-                      : ListView.builder(
-                          itemCount: ddc.cartdocs.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            String? documentName =
-                                sfc.defdocinfo.keys.toList()[index];
-                            int? pageCount =
-                                sfc.defdocinfo.values.toList()[index];
-
-                            // String? documentName1 =
-                            //     sfc.storagedocinfo.keys.toList()[index];
-                            // int? pageCount1 =
-                            //     sfc.storagedocinfo.values.toList()[index];
-
-                            return buildCartListTile(context,
-                                documentName: documentName,
-                                pageCount: pageCount);
-                          },
-                        ),
-                ),
-              )),
+          Obx(
+            () => SingleChildScrollView(
+              child: Container(
+                height: MediaQuery.of(context).size.height * 0.25,
+                child: (ddc.cartdocs.length != sfc.defdocinfo.length)
+                    ? const Center(
+                        child: Text('No Default Docs Added Yet'),
+                      )
+                    : ListView.builder(
+                        itemCount: ddc.cartdocs.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          String? documentName =
+                              sfc.defdocinfo.keys.toList()[index];
+                          int? pageCount =
+                              sfc.defdocinfo.values.toList()[index];
+                          return buildCartListTile(context,
+                              documentName: documentName, pageCount: pageCount);
+                        },
+                      ),
+              ),
+            ),
+          ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -225,6 +213,7 @@ class CartPage extends StatelessWidget {
                   sfc.storagedoc.clear();
                   sfc.defdocinfo.clear();
                   sfc.storagedocinfo.clear();
+                  getDocumentsByRollNo(prof.rollno.value);
                 },
                 child: Text('Uploads on Temp'),
               ),

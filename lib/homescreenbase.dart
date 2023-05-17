@@ -1,12 +1,15 @@
 import "package:flutter/material.dart";
 import "package:get/get.dart";
+import "package:printez/history.dart";
 import "package:printez/profilepage.dart";
 import "package:printez/homescreen.dart";
 import "package:printez/viewprofilepage.dart";
 
-import "historypage.dart";
+import "controller.dart";
 
 class HomeScreenBase extends StatefulWidget {
+  final Profile prof = Get.put(Profile());
+
   HomeScreenBase({required this.childUpper, required this.childLower});
 
   final Widget childUpper;
@@ -73,7 +76,7 @@ class _HomeScreenBaseState extends State<HomeScreenBase> {
                   child: IconButton(
                       icon: Icon(Icons.history, size: 40.0),
                       onPressed: () {
-                        Get.to(HistoryPage());
+                        Get.to(DocumentList(rollNo: widget.prof.rollno.value,));
                       }),
                 ),
               ],

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-Future<List<Map<String, dynamic>>> getDocumentsByRollNo(String rollNo) async {
+Future<List<Map<String, dynamic>>> getDocumentsByRollNo(String rollNo ) async {
   final QuerySnapshot<Map<String, dynamic>> snapshot =
       await FirebaseFirestore.instance.collection('print').get();
 

@@ -214,6 +214,7 @@ class StorageFilesController extends GetxController {
 class FireStoreDatabase extends GetxController {
   final StorageFilesController sfc = Get.find();
   final DefaultDocsController ddc = Get.find();
+  RxBool uploaded = false.obs;
   num page = 0;
   RxDouble totalamount = 0.0.obs;
   var urls = [].obs;

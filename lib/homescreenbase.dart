@@ -1,10 +1,15 @@
 import "package:flutter/material.dart";
 import "package:get/get.dart";
+import "package:printez/history.dart";
 import "package:printez/profilepage.dart";
 import "package:printez/homescreen.dart";
 import "package:printez/viewprofilepage.dart";
 
+import "controller.dart";
+
 class HomeScreenBase extends StatelessWidget {
+  final Profile prof = Get.put(Profile());
+
   HomeScreenBase({required this.childUpper, required this.childLower});
 
   final Widget childUpper;
@@ -33,7 +38,7 @@ class HomeScreenBase extends StatelessWidget {
                       color: Colors.grey, size: screenHeight * 0.1)),
               TextButton(
                   onPressed: () {
-                    Get.to(() => HomeScreenView());
+                    Get.to(() => DocumentList(rollNo: prof.rollno.value));
                   },
                   child: Icon(Icons.person,
                       color: Colors.grey, size: screenHeight * 0.1)),

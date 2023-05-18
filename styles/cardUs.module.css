@@ -32,8 +32,11 @@
     box-shadow: 0 0 5px rgb(76, 5, 112), 0 0 10px rgb(157, 143, 164),0 0 20px rgb(76, 5, 112);}
 .cardUs:hover .child .aHover{
 
-    /* transform: scale(1.5); */
+    transform: scale(1.25);
+    transition: 0.5s;
     color: #c629d1;
+    margin: 1rem;
+    margin-bottom: 1.5rem;
     
 }
 .aHover:hover{
@@ -43,20 +46,20 @@
 
         /* animation: shake 2s;
         animation-iteration-count: infinite; */
-        
-    
-    /* .imgWrapper{
+       
+    .imgWrapper{
         overflow:hidden;
         padding-top: 20px;
         padding-bottom: 20px;
     
       }
-    .hoverZoom:hover {
+    .cardUs:hover .hoverZoom {
         overflow: hidden;
+        transition: 0.5s;
         transform: scale(1.15);
       }
     .hoverZoom{
         overflow: hidden;
         border-radius:50%;
-    }   */
-
+    }
+    

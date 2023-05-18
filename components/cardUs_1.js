@@ -10,7 +10,7 @@ import CircleRow from "./circleRow";
 function CardUs(props) {
   return (
     <div className={styles.cardUs}>
-      <Profile name={props.n} />
+      <Profile styles={styles.hoverZoom} name={props.n} />
 
       <Data className={styles.title} title={props.t} desc={props.d} />
       <div className={styles.child}>

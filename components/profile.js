@@ -31,7 +31,7 @@ function Profile(props) {
     <div className={styles.profile}>
       <div className={styles.imgWrapper}>
         <Image
-          className={styles.hoverZoom}
+          className={props.styles}
           alt={props.name}
           src={srcName}
           width={130}

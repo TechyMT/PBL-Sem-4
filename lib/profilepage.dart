@@ -70,39 +70,91 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextField(
-              controller: namecontroller,
-              keyboardType: TextInputType.name,
-              decoration: InputDecoration(
-                hintText: 'Enter Your Name',
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                controller: namecontroller,
+                keyboardType: TextInputType.name,
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
+                  hintText: 'Enter Your Name',
+                  hintStyle: TextStyle(color: Colors.grey.shade800),
+
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(30.0),
+                    ),
+                  ),
+
+                ),
               ),
             ),
-            TextField(
-              controller: regnocontroller,
-              keyboardType: TextInputType.name,
-              decoration: InputDecoration(
-                hintText: 'Enter Your Registration Number.',
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                controller: regnocontroller,
+                keyboardType: TextInputType.name,
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
+                  hintText: 'Enter Your Registration Number',
+                  hintStyle: TextStyle(color: Colors.grey.shade800),
+
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(30.0),
+                    ),
+                  ),
+
+                ),
               ),
             ),
-            TextField(
-              controller: classnamecontroller,
-              keyboardType: TextInputType.name,
-              decoration: InputDecoration(
-                hintText: 'Enter Your Class',
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                controller: classnamecontroller,
+                keyboardType: TextInputType.name,
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
+                  hintText: 'Enter Your Class',
+                  hintStyle: TextStyle(color: Colors.grey.shade800),
+
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(30.0),
+                    ),
+                  ),
+
+                ),
               ),
             ),
-            TextField(
-              controller: emailcontroller,
-              keyboardType: TextInputType.name,
-              decoration: InputDecoration(
-                hintText: 'Enter Your Email',
-              ),
-            ),
-            TextField(
-              controller: rollnocontroller,
-              keyboardType: TextInputType.name,
-              decoration: InputDecoration(
-                hintText: 'Enter Your Roll No.',
+            // TextField(
+            //   controller: emailcontroller,
+            //   keyboardType: TextInputType.name,
+            //   decoration: InputDecoration(
+            //     hintText: 'Enter Your Email',
+            //   ),
+            // ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                controller: rollnocontroller,
+                keyboardType: TextInputType.name,
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
+                  hintText: 'Enter Your Roll Number',
+                  hintStyle: TextStyle(color: Colors.grey.shade800),
+
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(30.0),
+                    ),
+                  ),
+
+                ),
               ),
             ),
             ElevatedButton(
@@ -117,18 +169,17 @@ class _ProfilePageState extends State<ProfilePage> {
                 // sharedPreferences.setString('rollno', rollnocontroller.text);
 
                 if (rollnocontroller.text.isEmpty) {
-                  Get.snackbar('Roll no Tak', 'Read above message');
+                  Get.snackbar('Enter Roll Number', '');
                 } else {
-                  prof.updateRollNo(
-                      rollnocontroller.text,
-                      namecontroller.text,
-                      regnocontroller.text,
-                      classnamecontroller.text,
-                      emailcontroller.text);
+                  prof.updateRollNo(rollnocontroller.text,namecontroller.text,regnocontroller.text,classnamecontroller.text,emailcontroller.text);
                   Get.offAll(() => HomeScreenView());
                 }
               },
-              child: Text('To the Home Screen'),
+              style: TextButton.styleFrom(backgroundColor: Colors.orange) ,
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: const Text('PROCEED TO HOME SCREEN', style: TextStyle(fontSize: 15.0),),
+              ),
             ),
           ],
         ),

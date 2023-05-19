@@ -40,11 +40,10 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       extendBodyBehindAppBar: false,
       appBar: AppBar(
-        title: const Text('Login View'),
-        centerTitle: true,
-        foregroundColor: Colors.black,
+        foregroundColor: Colors.white,
         elevation: 0,
         backgroundColor: Colors.transparent,
       ),
@@ -58,7 +57,7 @@ class _LoginViewState extends State<LoginView> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const Text('Login'),
+                Text("LOG IN", style: TextStyle(color: Colors.white,fontSize: 30)),
                 const SizedBox(
                   height: 40,
                 ),
@@ -72,8 +71,16 @@ class _LoginViewState extends State<LoginView> {
                     autofocus: false,
                     enableSuggestions: false,
                     cursorHeight: 25,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.purple,
                       hintText: 'Enter Your Email',
+                      hintStyle: TextStyle(color: Colors.grey.shade800),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(30.0),
+                        )
+                      ),
                     ),
                   ),
                 ),
@@ -86,18 +93,35 @@ class _LoginViewState extends State<LoginView> {
                     enableSuggestions: false,
                     cursorHeight: 30,
                     obscureText: true,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.purple,
                       hintText: 'Enter Your Password',
+                      hintStyle: TextStyle(color: Colors.grey.shade800),
+
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(30.0),
+                          ),
+                      ),
+
                     ),
                   ),
                 ),
                 const SizedBox(
                   height: 30,
                 ),
-                TextButton(
+                Container(
+                  color: Colors.orange,
+                  height: 50,
+                  width: 250,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.orange,
+                    ),
                     onPressed: () async {
                       final SharedPreferences sharedPreferences =
-                          await SharedPreferences.getInstance();
+                      await SharedPreferences.getInstance();
                       sharedPreferences.setString('email', _email.text);
                       final email = _email.text;
                       final password = _password.text;
@@ -111,13 +135,15 @@ class _LoginViewState extends State<LoginView> {
                         Get.offAll(() => (HomeScreenView()));
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {
-                          Get.snackbar('Hehe', e.code);
+                          Get.snackbar('User not found', e.code);
                         } else {
                           print(e.message);
                         }
                       }
                     },
-                    child: const Text('Login Now!!'))
+                    child: const Text('LOG IN',style:TextStyle(fontSize: 20.0,)),
+                  ),
+                ),
               ],
             ),
           );

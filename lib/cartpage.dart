@@ -9,6 +9,9 @@ import 'package:get/get.dart';
 import 'package:printez/controller.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as path;
+//import 'package:pdf/pdf.dart';
+//import 'package:pdf_render/pdf_render_widgets.dart';
+//import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class CartPage extends StatelessWidget {
   final Profile prof = Get.put(Profile());

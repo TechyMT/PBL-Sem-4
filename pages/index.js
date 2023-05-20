@@ -38,6 +38,9 @@ export default function App() {
           <Link href="/accept">
             <button className={styles.accept}>Collect</button>
           </Link>
+          <Link href="/history">
+            <button className={styles.accept}>History</button>
+          </Link>
           <br></br>
         </div>
         <div className={styles.sectionStyle}>

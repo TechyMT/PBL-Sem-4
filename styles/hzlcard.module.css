@@ -1,0 +1,33 @@
+/* .row{
+    box-sizing: border-box;
+} */
+
+.column{
+    width:35%;
+    height: 100px;
+    padding:0 ;
+    float:left;
+}
+
+.row{
+    margin:0 -5px;
+   
+}
+
+.card{
+    height:50px;
+    text-align: center;
+    background-color: rgb(220, 208, 225);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    border-radius: 10px;
+    margin:5px 0;
+}
+
+.content{
+    
+    flex: 1 0 13%;
+    justify-content: center;
+    margin:auto;
+}

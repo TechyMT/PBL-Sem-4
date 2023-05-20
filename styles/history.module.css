@@ -1,0 +1,52 @@
+.heading{
+    margin:0;
+    position: fixed;
+    text-align: center;
+    width:100%;
+}
+
+.h1{
+    /* position:fixed; */
+    background-color: #252525;
+    color: beige;
+    width:100%;
+    justify-content: center;
+    margin:0;
+}
+.h1 h1{
+    margin:0;
+    padding:10px;
+}
+.row{
+    box-sizing: border-box;
+}
+
+.column{
+    width:35%;
+    height: 100px;
+    padding:0 0px;
+    float:left;
+}
+
+.row{
+    margin:0 -5px;
+   
+}
+
+.card{
+    position: fixed;
+    width:100%;
+    height:50px;
+    text-align: center;
+    background-color: rgb(222, 101, 26);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.content{
+    flex: 1 0 16%;
+    justify-content: center;
+    margin:auto;
+}

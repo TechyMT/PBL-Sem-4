@@ -9,9 +9,9 @@ import CardData from "./cardData";
 function Card(props) {
   
     const { docId, data } = props.url;
-    const {id,urlArr,Pages} = data;
+    const {id,urlArr,pages} = data;
     function handleClick(){
-      props.handleClick(docId,urlArr,Pages);
+      props.handleClick(docId,urlArr);
     }
     return (
       <div className={styles.card}>
@@ -19,7 +19,7 @@ function Card(props) {
         
         <p>______________________________</p>
         {/* <a href={link}>{link}</a> */}
-        <p>Pages: {Pages}</p>
+        <p>Pages: {pages}</p>
         <PButton key = {id} handleClick = {handleClick} />
       </div>
     );

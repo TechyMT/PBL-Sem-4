@@ -24,10 +24,10 @@ function Requests() {
     fetchData();
   }, []);
 
-  const handleClick = async (docId, urlArr,pages) => {
+  const handleClick = async (docId, urlArr) => {
     try {
-
-      await posPrint(docId, urlArr,pages);
+      const {pages, Amount} = urlArr;
+      await posPrint(docId, urlArr);
       console.log("api-executed");
       setUrls((prevUrls) => [...prevUrls.filter((urlData) => urlData.docId !== docId)]);
       console.log("seturl executed");

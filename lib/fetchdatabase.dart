@@ -11,6 +11,7 @@ import 'controller.dart';
 
 List<String> durls = [];
 List<String> title = [];
+List<String> printedurls = [];
 
 String substr(String link) {
   final Profile prof = Get.put(Profile());
@@ -25,23 +26,23 @@ Future<List<String>> getDownloadUrls() async {
   final Profile prof = Get.put(Profile());
   final FireStoreDatabase fsd = Get.put(FireStoreDatabase());
   String foldername = prof.rollno.value;
-  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   final Reference storageref =
       FirebaseStorage.instance.ref().child('/temp/$foldername');
   final ListResult result = await storageref.listAll();
   final downloadUrlsFutures =
       result.items.map((ref) => ref.getDownloadURL()).toList();
   final urls = await Future.wait(downloadUrlsFutures);
-  await sharedPreferences.setStringList('printed', urls);
+  printedurls.addAll(urls);
+  final SharedPreferences sharedPreferences =
+      await SharedPreferences.getInstance();
+  sharedPreferences.setStringList('printed', printedurls);
+  
   return urls;
 }
 
 Future<void> fetchDocs() async {
   List<String> databasenamelist = [];
   final List<String> urls = await getDownloadUrls();
-  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  var printedurls = await sharedPreferences.getStringList('printed');
-  print(printedurls);
   bool isthere = false;
   String name = '';
   String dname = '';

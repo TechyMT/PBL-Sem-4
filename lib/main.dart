@@ -64,7 +64,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     getValidationData().whenComplete(() async {
-      if (finalrollno==null) {
+      if (finalrollno == null) {
         Get.offAll(() => LandingPage());
       } else {
         Get.offAll(() => HomeScreenView());
@@ -82,6 +82,7 @@ class _MyAppState extends State<MyApp> {
         } else {
           //       var isLogin = snapshot.data ?? false;
           return GetMaterialApp(
+            debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
             theme: ThemeData(
               primarySwatch: Colors.blue,

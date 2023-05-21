@@ -162,6 +162,7 @@ async function getHistory() {
       
       
       historyArr.push({
+        date: docc.data().date,
         id:docc.data().id,
         status: printStatus,
         pages: docc.data().pages,
@@ -173,7 +174,6 @@ async function getHistory() {
 
       })
     });
-    console.log(historyArr);
     return historyArr;
   } catch (err) {
     console.log(err);

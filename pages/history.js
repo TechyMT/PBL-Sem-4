@@ -37,6 +37,7 @@ export default function History() {
                 status={history.status}
                 pages = {history.pages}
                 amount={history.amount}
+                urlArr = {history.nameArr}
               />
             </Fragment>
           ))}

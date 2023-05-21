@@ -44,8 +44,8 @@
     cursor: pointer;
 }
 .history{
-    position:relative;
-    left: 50%;
+    position: relative;
+    left:50%;
     background-color: #F26922;
     border: none;
     color: white;
@@ -57,11 +57,10 @@
     font-family:'Times New Roman', Times, serif;
     margin: 4px 2px;
     cursor: pointer;
-    
 }
 .accept{
     position: relative;
-    left:25%;
+    /* left:25%; */
     background-color: #F26922;
     border: none;
     color: white;

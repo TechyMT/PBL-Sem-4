@@ -23,28 +23,28 @@ const NodeCache = require("node-cache");
 const cache = new NodeCache({ stdTTL: 300, checkperiod: 320 });
 
 // test
-const firebaseConfig = {
-  apiKey: "AIzaSyBri3HfJ4EtW7kLOYcBA7wDkXJ9RQBcPsk",
-  authDomain: "fir-test-d90e2.firebaseapp.com",
-  databaseURL: "https://fir-test-d90e2-default-rtdb.firebaseio.com",
-  projectId: "fir-test-d90e2",
-  storageBucket: "fir-test-d90e2.appspot.com",
-  messagingSenderId: "102923422659",
-  appId: "1:102923422659:web:bc4f35a0db29548d6b0b76",
-  measurementId: "G-MD5CFQE16C",
-};
+// const firebaseConfig = {
+//   apiKey: "AIzaSyBri3HfJ4EtW7kLOYcBA7wDkXJ9RQBcPsk",
+//   authDomain: "fir-test-d90e2.firebaseapp.com",
+//   databaseURL: "https://fir-test-d90e2-default-rtdb.firebaseio.com",
+//   projectId: "fir-test-d90e2",
+//   storageBucket: "fir-test-d90e2.appspot.com",
+//   messagingSenderId: "102923422659",
+//   appId: "1:102923422659:web:bc4f35a0db29548d6b0b76",
+//   measurementId: "G-MD5CFQE16C",
+// };
 //pbl
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyBVPeHcLwRpUN4eVGEZwUIQKX_E6SYXX80",
-//   authDomain: "pbl-sem-4.firebaseapp.com",
-//   databaseURL: "https://pbl-sem-4-default-rtdb.firebaseio.com",
-//   projectId: "pbl-sem-4",
-//   storageBucket: "pbl-sem-4.appspot.com",
-//   messagingSenderId: "345714848225",
-//   appId: "1:345714848225:web:70a01a24e1a35b81f9a2a0",
-//   measurementId: "G-Z7HXXVYV0F"
-// };
+const firebaseConfig = {
+  apiKey: "AIzaSyBVPeHcLwRpUN4eVGEZwUIQKX_E6SYXX80",
+  authDomain: "pbl-sem-4.firebaseapp.com",
+  databaseURL: "https://pbl-sem-4-default-rtdb.firebaseio.com",
+  projectId: "pbl-sem-4",
+  storageBucket: "pbl-sem-4.appspot.com",
+  messagingSenderId: "345714848225",
+  appId: "1:345714848225:web:70a01a24e1a35b81f9a2a0",
+  measurementId: "G-Z7HXXVYV0F"
+};
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -147,18 +147,38 @@ async function posPrint(id, urlArray) {
 async function getHistory() {
   try {
     const historyArr = [];
+    
     const querySnapshot = await getDocs(printRef);
     const docArray = querySnapshot.docs;
     docArray.forEach((docc) => {
-      historyArr.push(docc.data());
+      let printStatus = "Given";
+      if(!docc.data().isGiven && docc.data().isPrinted){
+        console.log("printed");
+        printStatus = "Printed";
+      }
+      else if(!docc.data().isPrinted){
+        printStatus = "Pending";
+      }
+      
+      
+      historyArr.push({
+        id:docc.data().id,
+        status: printStatus,
+        pages: docc.data().pages,
+        amount: docc.data().Amount,
+        nameArr: docc.data().urlArr,
+        
+
+
+
+      })
     });
-    
+    console.log(historyArr);
     return historyArr;
   } catch (err) {
     console.log(err);
   }
 }
-
 
 //<=====================================HANDLE ACCEPT ========================================>
 const tempRef = collection(db, "print");

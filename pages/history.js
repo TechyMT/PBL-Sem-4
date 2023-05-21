@@ -1,52 +1,45 @@
 import styles from "../styles/history.module.css";
 import HzlCard from "../components/hzlcard";
+import Layout from "../components/layout";
+import { getHistory } from "../configs/firebaseConfig";
+import { useEffect, useState, Fragment } from "react";
+
 export default function History() {
+  const [hist, setHist] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      const history = await getHistory();
+      setHist(history);
+    }
+    fetchData();
+  }, []);
+
   return (
-    <div>
-      <div className={styles.heading}>
-        <div  className={styles.h1}><h1>History</h1></div>     
-      <div className={styles.row}>
-        <div className={styles.coloumn}>
+    <Layout>
+      <div className={styles.table}>
+        <div className={styles.tableFixedHead}>
           <div className={styles.card}>
-            <div className={styles.content}>
-              <h3>id</h3>
-            </div>
-            <div className={styles.content}>
-              <h3>payment</h3>
-            </div>
-            <div className={styles.content}>
-              <h3>status</h3>
-            </div>
-            <div className={styles.content}>
-              <h3>amount</h3>
-            </div>
+            <p className={styles.column}>ID</p>
+            <p className={styles.column}>Status</p>
+            <p className={styles.column}> Pages</p>
+            <p className={styles.column}>Amount</p>
           </div>
         </div>
+        <div className={styles.cardList}>
+          {hist.map((history) => (
+            <Fragment key = {history.id} >
+              <HzlCard
+                key={history.id}
+                roll={history.id}
+                payment={history.amount}
+                status={history.status}
+                pages = {history.pages}
+                amount={history.amount}
+              />
+            </Fragment>
+          ))}
+        </div>
       </div>
-      </div>
-      <HzlCard id="21383" payment="paid" status="printed" amount="69" />
-      <HzlCard id="21383" payment="paid" status="printed" amount="69" />
-      <HzlCard id="21383" payment="paid" status="printed" amount="69" />
-      <HzlCard id="21383" payment="paid" status="printed" amount="69" />
-      <HzlCard id="21383" payment="paid" status="printed" amount="69" />
-      <HzlCard id="21383" payment="paid" status="printed" amount="69" />
-      <HzlCard id="21383" payment="paid" status="printed" amount="69" />
-      <HzlCard id="21383" payment="paid" status="printed" amount="69" />
-      <HzlCard id="21383" payment="paid" status="printed" amount="69" />
-      <HzlCard id="21383" payment="paid" status="printed" amount="69" />
-      <HzlCard id="21383" payment="paid" status="printed" amount="69" />
-      <HzlCard id="21383" payment="paid" status="printed" amount="69" />
-      <HzlCard id="21383" payment="paid" status="printed" amount="69" />
-      <HzlCard id="21383" payment="paid" status="printed" amount="69" />
-      <HzlCard id="21383" payment="paid" status="printed" amount="69" />
-      <HzlCard id="21383" payment="paid" status="printed" amount="69" />
-      <HzlCard id="21383" payment="paid" status="printed" amount="69" />
-      <HzlCard id="21383" payment="paid" status="printed" amount="69" />
-      <HzlCard id="21383" payment="paid" status="printed" amount="69" />
-      <HzlCard id="21383" payment="paid" status="printed" amount="69" />
-      <HzlCard id="21383" payment="paid" status="printed" amount="69" />
-      <HzlCard id="21383" payment="paid" status="printed" amount="69" />
-      <HzlCard id="21383" payment="paid" status="printed" amount="69" />
-    </div>
+    </Layout>
   );
 }

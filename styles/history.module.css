@@ -1,52 +1,68 @@
-.heading{
-    margin:0;
+.heading {
     position: fixed;
+    width: 100%;
+    z-index: 9999;
+  }
+  
+  .tableFixedHead {
+    position: sticky;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    z-index: 1;
+  }
+  
+  .h1 {
     text-align: center;
-    width:100%;
-}
-
-.h1{
-    /* position:fixed; */
-    background-color: #252525;
     color: beige;
-    width:100%;
-    justify-content: center;
-    margin:0;
-}
-.h1 h1{
-    margin:0;
-    padding:10px;
-}
-.row{
-    box-sizing: border-box;
-}
-
-.column{
-    width:35%;
+    padding: 1%;
+    background-color: #252525;
+    margin: 0;
+  }
+  
+  .column {
+    width: 33.33%; /* Adjust the width based on the number of columns */
     height: 100px;
-    padding:0 0px;
-    float:left;
-}
-
-.row{
-    margin:0 -5px;
-   
-}
-
-.card{
-    position: fixed;
-    width:100%;
-    height:50px;
     text-align: center;
+  }
+  
+  .card {
+    width: 100%;
+    height: 50px;
+    box-sizing: border-box;
     background-color: rgb(222, 101, 26);
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    border-radius: 10px;
-}
+    border-radius: 13px;
+  }
+  
+  .cardList {
+    position: relative;
+    height: calc(100vh - 200px); /* Adjust the height based on your layout */
+    overflow: auto;
 
-.content{
+  }
+  .cardList::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
+  }
+  
+  .content {
     flex: 1 0 16%;
     justify-content: center;
-    margin:auto;
-}
+    margin: auto;
+  }
+  
+  .table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .th,
+  .td {
+    padding: 8px 15px;
+    border: 2px solid #529432;
+  }
+  
+  .th {
+    background: #abdd93;
+  }
+  

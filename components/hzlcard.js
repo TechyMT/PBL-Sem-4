@@ -13,10 +13,10 @@ function hzlcard(props) {
     <Accordion
       expanded={expanded === "panel1"}
       onChange={handleChange("panel1")}
-      sx={{ backgroundColor: "blue" }}
+      sx={{ backgroundColor: "#5F4BA5" }}
     >
         <AccordionSummary
-          expandIcon={<button>+</button>}
+          expandIcon={<button style={{borderRadius:"30px", backgroundColor:""}}>+</button>}
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
@@ -42,9 +42,8 @@ function hzlcard(props) {
       
         </AccordionSummary>
         <AccordionDetails>
-        
             {nameArr.map((url) =>(
-                <li>{url.name}</li>
+                <li styles={{fontSize:"2rem",color:"white"}}>{url.name}</li>
             ))}
         </AccordionDetails>
       

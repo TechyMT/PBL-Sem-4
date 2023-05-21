@@ -19,6 +19,7 @@ export default function History() {
       <div className={styles.table}>
         <div className={styles.tableFixedHead}>
           <div className={styles.card}>
+            <p className={styles.column}>Date</p>
             <p className={styles.column}>ID</p>
             <p className={styles.column}>Status</p>
             <p className={styles.column}> Pages</p>
@@ -30,6 +31,7 @@ export default function History() {
             <Fragment key = {history.id} >
               <HzlCard
                 key={history.id}
+                date = "23rd May 2023"
                 roll={history.id}
                 payment={history.amount}
                 status={history.status}

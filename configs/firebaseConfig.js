@@ -151,7 +151,7 @@ async function getHistory() {
     const querySnapshot = await getDocs(printRef);
     const docArray = querySnapshot.docs;
     docArray.forEach((docc) => {
-      let printStatus = "Given";
+      let printStatus = "isGiven";
       if(!docc.data().isGiven && docc.data().isPrinted){
         console.log("printed");
         printStatus = "Printed";

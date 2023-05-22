@@ -20,6 +20,7 @@ class HomeScreenBase extends StatefulWidget {
 }
 
 class _HomeScreenBaseState extends State<HomeScreenBase> {
+  final Profile prof = Get.put(Profile());
   // List<Widget> pages = [ViewProfilePage(),HomeScreenView(),ViewProfilePage()];
   // int _selectedindex = 0;
   // Widget onicontapped(int index) {
@@ -64,13 +65,13 @@ class _HomeScreenBaseState extends State<HomeScreenBase> {
                     child: IconButton(
                         icon: Icon(Icons.person, size: 40.0),
                         onPressed: () {
-                          Get.to(ViewProfilePage());
+                          Get.to(() => ViewProfilePage());
                         })),
                 Expanded(
                     child: IconButton(
                         icon: Icon(Icons.home, size: 40.0),
                         onPressed: () {
-                          Get.to(HomeScreenView());
+                          Get.to(() => HomeScreenView());
                         })),
                 Expanded(
                   child: IconButton(

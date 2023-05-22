@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:typed_data';
 import 'package:printez/fetchdatabase.dart';
 import 'package:printez/history.dart';
+import 'package:printez/homescreen.dart';
 import 'package:printez/homescreenbase.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -202,20 +203,36 @@ class CartPage extends StatelessWidget {
             children: [
               Obx(() => Text('Total Pages : ${fsd.totalpages()}')),
               Obx(() => Text('Total Amount : ${fsd.totalpages().toInt() * 1}')),
-              ElevatedButton(
-                onPressed: () async {
-                  await uploadFileStorage(ddc.cartlinks);
-                  await sfc.uploadfile(sfc.pickedfile);
-                  await fetchDocs();
-                  sfc.pickedfile.clear();
-                  ddc.cartlinks.clear();
-                  ddc.cartdocs.clear();
-                  sfc.storagedoc.clear();
-                  sfc.defdocinfo.clear();
-                  sfc.storagedocinfo.clear();
-                  getDocumentsByRollNo(prof.rollno.value);
-                },
-                child: Text('Uploads on Temp'),
+              Obx(
+                () => ElevatedButton(
+                  onPressed: fsd.totalpages().toInt() != 0
+                      ? () async {
+                          sfc.processing.value = true;
+                          await uploadFileStorage(ddc.cartlinks);
+                          await sfc.uploadfile(sfc.pickedfile);
+                          //         await datetime();
+                          await fetchDocs();
+                          sfc.pickedfile.clear();
+                          ddc.cartlinks.clear();
+                          ddc.cartdocs.clear();
+                          sfc.storagedoc.clear();
+                          sfc.defdocinfo.clear();
+                          sfc.storagedocinfo.clear();
+                          await getDocumentsByRollNo(prof.rollno.value);
+                          sfc.processing.value = false;
+                          Get.snackbar(
+                              'Your documents were uploaded ', 'Successfull');
+                          Get.offAll(() => HomeScreenView());
+                        }
+                      : null,
+                  child: fsd.totalpages().toInt() != 0
+                      ? sfc.processing.value
+                          ? const CircularProgressIndicator(
+                              color: Colors.black,
+                            )
+                          : const Text('Uploads on Temp')
+                      : const Text('Add to Cart First'),
+                ),
               ),
             ],
           ),
@@ -237,20 +254,16 @@ class CartPage extends StatelessWidget {
         ),
         child: ListTile(
           title: Text(documentName!),
-          trailing: IconButton(
-            onPressed: () {
-              if (sfc.defdocinfo.keys.toList().contains(documentName)) {
-                ddc.cartlinks.removeAt(
-                    sfc.defdocinfo.keys.toList().indexOf(documentName));
-              } else if (sfc.storagedocinfo.keys
-                  .toList()
-                  .contains(documentName)) {
-                sfc.pickedfile.removeAt(
-                    sfc.storagedocinfo.keys.toList().indexOf(documentName));
-              }
-            },
-            icon: Icon(Icons.delete),
-          ),
+          // trailing: IconButton(
+          //   onPressed: () {
+          //     if (sfc.defdocinfo.keys.contains(documentName)) {
+          //       ddc.cartdocs.remove(documentName);
+          //     } else if (sfc.storagedocinfo.keys.contains(documentName)) {
+          //       sfc.storagedoc.remove(documentName);
+          //     }
+          //   },
+          //   icon: Icon(Icons.delete),
+          // ),
           subtitle: Text('$pageCount pages'),
         ),
       ),

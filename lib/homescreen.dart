@@ -49,20 +49,17 @@ class _HomeScreenViewState extends State<HomeScreenView> {
 
   @override
   Widget build(BuildContext context) {
-    var screenHeight = MediaQuery
-        .of(context)
-        .size
-        .height;
-    var screenWidth = MediaQuery
-        .of(context)
-        .size
-        .width;
+    var screenHeight = MediaQuery.of(context).size.height;
+    var screenWidth = MediaQuery.of(context).size.width;
     return Obx(
-        () => HomeScreenBase(
-        childUpper: Text("Home for ${prof.rollno.value.toString()}", style: TextStyle(fontSize: 30.0,fontWeight: FontWeight.bold,color: Colors.white),),
+      () => HomeScreenBase(
+        childUpper: Text(
+          "Home for ${prof.rollno.value.toString()}",
+          style: TextStyle(
+              fontSize: 30.0, fontWeight: FontWeight.bold, color: Colors.white),
+        ),
         childLower: Column(
-          children:
-          [
+          children: [
             Row(
               children: [
                 Padding(
@@ -71,7 +68,10 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                     onPressed: () {
                       Get.to(() => const DefaultDocs());
                     },
-                    child: Text('Default Docs',style: TextStyle(fontSize: 20.0,)),
+                    child: Text('Default Docs',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                        )),
                     style: buildButtonStyle(screenWidth, screenHeight),
                   ),
                 ),
@@ -81,7 +81,10 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                       onPressed: () {
                         Get.to(() => const StorageDocs());
                       },
-                      child: Text('Storage Document',style: TextStyle(fontSize: 20.0,)),
+                      child: Text('Storage Document',
+                          style: TextStyle(
+                            fontSize: 19.0,
+                          )),
                       style: buildButtonStyle(screenWidth, screenHeight)),
                 ),
               ],
@@ -94,8 +97,11 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                       onPressed: () {
                         Get.to(() => CartPage());
                       },
-                      child: Text('Cart Page',style: TextStyle(fontSize: 20.0,)),
-                ),
+                      child: Text('Cart Page',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                          )),
+                      style: buildButtonStyle(screenWidth * 1, screenHeight)),
                 ),
                 Padding(
                   padding: EdgeInsets.all(screenHeight * 0.01),
@@ -103,16 +109,19 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                       onPressed: () async {
                         try {
                           final SharedPreferences sharedPreferences =
-                          await SharedPreferences.getInstance();
+                              await SharedPreferences.getInstance();
                           final userCredential =
-                          await FirebaseAuth.instance.signOut();
+                              await FirebaseAuth.instance.signOut();
                           sharedPreferences.clear();
                           Get.offAll(() => const LandingPage());
                         } catch (e) {
                           print(e.toString());
                         }
                       },
-                      child: Text('Log Out',style: TextStyle(fontSize: 20.0,)),
+                      child: Text('Log Out',
+                          style: TextStyle(
+                            fontSize: 20.0,
+                          )),
                       style: buildButtonStyle(screenWidth * 1, screenHeight)),
                 ),
               ],

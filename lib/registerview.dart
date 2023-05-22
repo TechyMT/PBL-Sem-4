@@ -45,16 +45,14 @@ class _RegisterViewState extends State<RegisterView> {
         backgroundColor: Colors.transparent,
       ),
       body: FutureBuilder(
-        future: Firebase.initializeApp(
-          options: DefaultFirebaseOptions.currentPlatform,
-        ),
         builder: (context, snapshot) {
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text("Register", style: TextStyle(color: Colors.white,fontSize: 30)),
+                Text("Register",
+                    style: TextStyle(color: Colors.white, fontSize: 30)),
                 const SizedBox(
                   height: 40,
                 ),
@@ -75,9 +73,8 @@ class _RegisterViewState extends State<RegisterView> {
                       hintStyle: TextStyle(color: Colors.grey.shade800),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.all(
-                            Radius.circular(30.0),
-                          )
-                      ),
+                        Radius.circular(30.0),
+                      )),
                     ),
                   ),
                 ),
@@ -95,13 +92,11 @@ class _RegisterViewState extends State<RegisterView> {
                       fillColor: Colors.purple,
                       hintText: 'Enter Your Password',
                       hintStyle: TextStyle(color: Colors.grey.shade800),
-
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(30.0),
                         ),
                       ),
-
                     ),
                   ),
                 ),
@@ -121,7 +116,7 @@ class _RegisterViewState extends State<RegisterView> {
                       final password = _password.text;
                       try {
                         final SharedPreferences sharedPreferences =
-                        await SharedPreferences.getInstance();
+                            await SharedPreferences.getInstance();
                         sharedPreferences.setString('email', _email.text);
                         final userCredential = await FirebaseAuth.instance
                             .createUserWithEmailAndPassword(
@@ -135,11 +130,14 @@ class _RegisterViewState extends State<RegisterView> {
                         if (e.code == 'user-not-found') {
                           Get.snackbar('No user found', "Error Code ${e.code}");
                         } else {
-                          print(e.message);
+                          Get.snackbar('Error Occured', e.toString());
                         }
                       }
                     },
-                    child: const Text('REGISTER NOW',style:TextStyle(fontSize: 20.0,)),
+                    child: const Text('REGISTER NOW',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                        )),
                   ),
                 ),
               ],

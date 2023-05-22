@@ -28,7 +28,6 @@ class Profile extends GetxController {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.setString('rollno', roll);
     await sharedPreferences.setString('username', username);
-    // await sharedPreferences.setString('email', email);
     await sharedPreferences.setString('regno', regid);
     await sharedPreferences.setString('classname', batch);
   }
@@ -44,16 +43,16 @@ class Profile extends GetxController {
       rollno.value = savedrollno;
     }
     if (saveusername != null) {
-      username.value = saveusername!;
+      username.value = saveusername;
     }
     if (savedemail != null) {
-      email.value = savedemail!;
-    }
-    if (savedregno != null) {
-      regno.value = savedregno!;
+      email.value = savedemail;
     }
     if (savedclassname != null) {
-      classname.value = savedclassname!;
+      classname.value = savedclassname;
+    }
+    if (savedregno != null) {
+      regno.value = savedregno;
     }
   }
 }
@@ -85,7 +84,7 @@ class DefaultDocsController extends GetxController {
 
 class StorageFilesController extends GetxController {
   final DefaultDocsController ddc = Get.put(DefaultDocsController());
-  @override
+  // @override
   // void onInit() async {
   //   await getstoragedocinfo(storagedoc, pickedfile);
   //   await getdefaultdocinfo(ddc.cartlinks, ddc.cartdocs);
@@ -101,6 +100,7 @@ class StorageFilesController extends GetxController {
   // RxInt? pageCount = 0.obs;
   Map<dynamic, dynamic> defdocinfo = {}.obs;
   Map<dynamic, dynamic> storagedocinfo = {}.obs;
+  RxBool processing = false.obs;
   Future<int> getpages(String url) async {
     int pageCount;
     http.Response response = await http.get(Uri.parse(url));

@@ -213,6 +213,7 @@ class CartPage extends StatelessWidget {
                           sfc.processing.value = true;
                           await uploadFileStorage(ddc.cartlinks);
                           await sfc.uploadfile(sfc.pickedfile);
+                          //         await datetime();
                           await fetchDocs();
                           sfc.pickedfile.clear();
                           ddc.cartlinks.clear();
@@ -222,6 +223,8 @@ class CartPage extends StatelessWidget {
                           sfc.storagedocinfo.clear();
                           await getDocumentsByRollNo(prof.rollno.value);
                           sfc.processing.value = false;
+                          Get.snackbar(
+                              'Your documents were uploaded ', 'Successfull');
                           Get.offAll(() => HomeScreenView());
                         }
                       : null,

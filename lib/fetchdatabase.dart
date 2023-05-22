@@ -3,6 +3,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:intl/intl.dart';
+
 import 'package:get/get.dart';
 import 'package:path/path.dart' as path;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -36,7 +38,7 @@ Future<List<String>> getDownloadUrls() async {
   final SharedPreferences sharedPreferences =
       await SharedPreferences.getInstance();
   sharedPreferences.setStringList('printed', printedurls);
-  
+
   return urls;
 }
 
@@ -70,6 +72,12 @@ Future<void> fetchDocs() async {
   await addDoc();
 }
 
+Future<String> datetime() async {
+  String datetime =
+      ("${DateFormat.yMMMd().format(DateTime.now())} ${DateFormat.jm().format(DateTime.now())}");
+  return datetime;
+}
+
 Future<void> addDoc() async {
   final Profile prof = Get.put(Profile());
   final FireStoreDatabase fsd = Get.put(FireStoreDatabase());
@@ -78,9 +86,6 @@ Future<void> addDoc() async {
   for (int i = 0; i < title.length; i++) {
     urlArr.add({'link': durls[i], 'name': title[i]});
   }
-  print(urlArr);
-  print(prof.rollno.value.toString());
-  print(fsd.totalpages().toInt() + fsd.totalpages().toInt() * 1);
   try {
     await FirebaseFirestore.instance.collection('print').add({
       'id': prof.rollno.value.toString(),
@@ -88,10 +93,10 @@ Future<void> addDoc() async {
       'isPrinted': false,
       'pages': fsd.totalpages().toInt(),
       'Amount': fsd.totalpages().toInt() * 1,
+      'date&time': await datetime(),
       'urlArr': urlArr
     });
-    print("Data Added Successfully");
   } catch (e) {
-    print(e.toString());
+    Get.snackbar('Error Occured', e.toString());
   }
 }

@@ -33,10 +33,14 @@ class DocumentList extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final document = snapshot.data![index];
                   final urlArr = document['urlArr'] as List<dynamic>;
+                  final datetime = document['date&time'] as String;
+                  List<String> date = datetime.split('2023');
                   return ListTile(
                     title: Text(document['id']),
                     subtitle: Text(
-                        'Total Pages : ${document['pages']} | Total Amount : ${document['Amount']}'),
+                      'Pages : ${document['pages']} | Amount : ${document['Amount']} | Date : ${date[0]}2023 | Time :${date[1]}',
+                      style: const TextStyle(fontSize: 12),
+                    ),
                     trailing: const Icon(Icons.arrow_forward_ios),
                     onTap: () {
                       showDialog(

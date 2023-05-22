@@ -28,10 +28,11 @@ export default function History() {
         </div>
         <div className={styles.cardList}>
           {hist.map((history) => (
+            
             <Fragment key = {history.id} >
               <HzlCard
                 key={history.id}
-                date = "23rd May 2023"
+                date = {history.date}
                 roll={history.id}
                 payment={history.amount}
                 status={history.status}

@@ -9,7 +9,9 @@ import CardData from "./cardData";
 function Card(props) {
   
     const { docId, data } = props.url;
-    const {id,urlArr,pages} = data;
+    const {id,urlArr,pages,date_time} = data;
+    const dateortime = date_time.split("2023");
+
     function handleClick(){
       props.handleClick(docId,urlArr);
     }
@@ -20,6 +22,8 @@ function Card(props) {
         <p>______________________________</p>
         {/* <a href={link}>{link}</a> */}
         <p>Pages: {pages}</p>
+        <p>Date: {dateortime[0]} 2023</p>
+        <p>Time: {dateortime[1]}</p>
         <PButton key = {id} handleClick = {handleClick} />
       </div>
     );

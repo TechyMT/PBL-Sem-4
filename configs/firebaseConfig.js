@@ -23,29 +23,29 @@ const NodeCache = require("node-cache");
 const cache = new NodeCache({ stdTTL: 300, checkperiod: 320 });
 
 // test
-const firebaseConfig = {
-  apiKey: "AIzaSyBri3HfJ4EtW7kLOYcBA7wDkXJ9RQBcPsk",
-  authDomain: "fir-test-d90e2.firebaseapp.com",
-  databaseURL: "https://fir-test-d90e2-default-rtdb.firebaseio.com",
-  projectId: "fir-test-d90e2",
-  storageBucket: "fir-test-d90e2.appspot.com",
-  messagingSenderId: "102923422659",
-  appId: "1:102923422659:web:bc4f35a0db29548d6b0b76",
-  measurementId: "G-MD5CFQE16C",
-};
+// const firebaseConfig = {
+//   apiKey: "AIzaSyBri3HfJ4EtW7kLOYcBA7wDkXJ9RQBcPsk",
+//   authDomain: "fir-test-d90e2.firebaseapp.com",
+//   databaseURL: "https://fir-test-d90e2-default-rtdb.firebaseio.com",
+//   projectId: "fir-test-d90e2",
+//   storageBucket: "fir-test-d90e2.appspot.com",
+//   messagingSenderId: "102923422659",
+//   appId: "1:102923422659:web:bc4f35a0db29548d6b0b76",
+//   measurementId: "G-MD5CFQE16C",
+// };
 
 //pbl
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyBVPeHcLwRpUN4eVGEZwUIQKX_E6SYXX80",
-//   authDomain: "pbl-sem-4.firebaseapp.com",
-//   databaseURL: "https://pbl-sem-4-default-rtdb.firebaseio.com",
-//   projectId: "pbl-sem-4",
-//   storageBucket: "pbl-sem-4.appspot.com",
-//   messagingSenderId: "345714848225",
-//   appId: "1:345714848225:web:70a01a24e1a35b81f9a2a0",
-//   measurementId: "G-Z7HXXVYV0F"
-// };
+const firebaseConfig = {
+  apiKey: "AIzaSyBVPeHcLwRpUN4eVGEZwUIQKX_E6SYXX80",
+  authDomain: "pbl-sem-4.firebaseapp.com",
+  databaseURL: "https://pbl-sem-4-default-rtdb.firebaseio.com",
+  projectId: "pbl-sem-4",
+  storageBucket: "pbl-sem-4.appspot.com",
+  messagingSenderId: "345714848225",
+  appId: "1:345714848225:web:70a01a24e1a35b81f9a2a0",
+  measurementId: "G-Z7HXXVYV0F"
+};
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -161,9 +161,10 @@ async function getHistory() {
         printStatus = "Pending";
       }
       
-      
+      let datee = docc.data().date_time.split("2023");
+
       historyArr.push({
-        date: docc.data().date,
+        date: datee[0]+" 2023",
         id:docc.data().id,
         status: printStatus,
         pages: docc.data().pages,

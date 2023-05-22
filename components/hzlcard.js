@@ -16,7 +16,7 @@ function hzlcard(props) {
       sx={{ backgroundColor: "#5F4BA5" }}
     >
         <AccordionSummary
-          expandIcon={<button style={{height: "50px",borderRadius:"50%",marginLeft:"-20px", backgroundColor:""}}>+</button>}
+          expandIcon={<button style={{height: "50px",borderRadius:"50%",marginLeft:"-20px", backgroundColor:""}}>↓</button>}
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >

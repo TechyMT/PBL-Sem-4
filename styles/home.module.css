@@ -31,6 +31,7 @@
 }
 .request{
     position: relative;
+    right:30%;
     background-color: #F26922;
     border: none;
     color: white;
@@ -45,7 +46,7 @@
 }
 .history{
     position: relative;
-    left:50%;
+    left: 30%;
     background-color: #F26922;
     border: none;
     color: white;

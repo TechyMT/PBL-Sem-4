@@ -22,9 +22,10 @@
   
   .column {
     width: 33.33%; /* Adjust the width based on the number of columns */
-    height: 100px;
     text-align: center;
     color: rgb(217, 223, 223);
+    font-weight: bold;
+    font-size: large;
   }
   
   .card {

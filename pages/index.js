@@ -39,7 +39,7 @@ export default function App() {
             <button className={styles.accept}>Collect</button>
           </Link>
           <Link href="/history">
-            <button className={styles.accept}>History</button>
+            <button className={styles.history}>History</button>
           </Link>
           <br></br>
         </div>

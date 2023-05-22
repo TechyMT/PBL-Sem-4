@@ -95,7 +95,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
                         Get.to(() => CartPage());
                       },
                       child: Text('Cart Page',style: TextStyle(fontSize: 20.0,)),
-                      style: buildButtonStyle(screenWidth * 1, screenHeight)),
+                ),
                 ),
                 Padding(
                   padding: EdgeInsets.all(screenHeight * 0.01),

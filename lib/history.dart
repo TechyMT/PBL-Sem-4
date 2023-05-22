@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import 'homescreenbase.dart';
+
 Future<List<Map<String, dynamic>>> getDocumentsByRollNo(String rollNo ) async {
   final QuerySnapshot<Map<String, dynamic>> snapshot =
       await FirebaseFirestore.instance.collection('print').get();
@@ -26,39 +28,48 @@ class DocumentList extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasData && snapshot.data!.isNotEmpty) {
-            return ListView.builder(
-              itemCount: snapshot.data!.length,
-              itemBuilder: (context, index) {
-                final document = snapshot.data![index];
-                final urlArr = document['urlArr'] as List<dynamic>;
-                print(urlArr);
-                return Material(
-                  child: ListTile(
-                    title: Text(document['id']),
-                    subtitle: Text('${document['pages']} pages'),
-                    trailing: Icon(Icons.arrow_forward_ios),
-                    onTap: () {
-                      //                      showDialog(
-                      //   context: context,
-                      //   builder: (_) {
-                      //     return AlertDialog(
-                      //       title: Text('Document Details'),
-                      //       content: Column(
-                      //         mainAxisSize: MainAxisSize.min,
-                      //         crossAxisAlignment: CrossAxisAlignment.start,
-                      //         children: [
-                      //           if (document != null && document['urlArr'] != null)
-                      //             for (var doc in document['urlArr'])
-                      //               Text('${doc['name']}: ${doc['isGiven'] ? 'Given' : 'Not given'}${doc['isPrinted'] ? ', Printed' : ''}'),
-                      //         ],
-                      //       ),
-                      //     );
-                      //   },
-                      // );
-                    },
-                  ),
-                );
-              },
+            return HomeScreenBase(
+              childUpper: Container(
+                child: Text(
+                  "History Page",
+                  style: TextStyle(
+                      color: Colors.white, fontSize: 30.0, fontWeight: FontWeight.bold),
+                ),
+              ),
+              childLower: ListView.builder(
+                itemCount: snapshot.data!.length,
+                itemBuilder: (context, index) {
+                  final document = snapshot.data![index];
+                  final urlArr = document['urlArr'] as List<dynamic>;
+                  print(urlArr);
+                  return Material(
+                    child: ListTile(
+                      title: Text(document['id']),
+                      subtitle: Text('${document['pages']} pages'),
+                      trailing: Icon(Icons.arrow_forward_ios),
+                      onTap: () {
+                        //                      showDialog(
+                        //   context: context,
+                        //   builder: (_) {
+                        //     return AlertDialog(
+                        //       title: Text('Document Details'),
+                        //       content: Column(
+                        //         mainAxisSize: MainAxisSize.min,
+                        //         crossAxisAlignment: CrossAxisAlignment.start,
+                        //         children: [
+                        //           if (document != null && document['urlArr'] != null)
+                        //             for (var doc in document['urlArr'])
+                        //               Text('${doc['name']}: ${doc['isGiven'] ? 'Given' : 'Not given'}${doc['isPrinted'] ? ', Printed' : ''}'),
+                        //         ],
+                        //       ),
+                        //     );
+                        //   },
+                        // );
+                      },
+                    ),
+                  );
+                },
+              ),
             );
           } else {
             return Center(

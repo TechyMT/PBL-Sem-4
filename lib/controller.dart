@@ -28,7 +28,7 @@ class Profile extends GetxController {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.setString('rollno', roll);
     await sharedPreferences.setString('username', username);
-    await sharedPreferences.setString('email', email);
+    // await sharedPreferences.setString('email', email);
     await sharedPreferences.setString('regno', regid);
     await sharedPreferences.setString('classname', batch);
   }
@@ -43,16 +43,16 @@ class Profile extends GetxController {
     if (savedrollno != null) {
       rollno.value = savedrollno;
     }
-    if (savedrollno != null) {
+    if (saveusername != null) {
       username.value = saveusername!;
     }
-    if (savedrollno != null) {
+    if (savedemail != null) {
       email.value = savedemail!;
     }
-    if (savedrollno != null) {
+    if (savedregno != null) {
       regno.value = savedregno!;
     }
-    if (savedrollno != null) {
+    if (savedclassname != null) {
       classname.value = savedclassname!;
     }
   }

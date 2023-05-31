@@ -1,6 +1,6 @@
 .center,
 .centerButtons,
-.centerCards,
+
 .centerMiddle {
     display: flex;
     justify-content: center;
@@ -11,7 +11,17 @@
     margin-top: 9.5%;
     margin-bottom: 9.5%;
 }
+.centerCards{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    color: blueviolet;   
+    font-size: 1.25rem;
+    margin-top: 9.5%;
+    margin-bottom: 9.5%;
 
+}
 .sectionStyle{
     display: flex;
     flex-direction: column;

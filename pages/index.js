@@ -10,7 +10,7 @@ export default function App() {
         <div className={styles.center}>
           <Image src="/logo.png" width={537} height={238} alt="logo"/>
         </div>
-        <div className={styles.center}>
+        <div className={styles.centerMiddle}>
           <div className={styles.div1}>
           <div className={styles.div2}>
           <h1 className={styles.h1}> " What is PrintEZ? "</h1>
@@ -35,7 +35,7 @@ export default function App() {
           
             
         </div>
-        <div className={styles.center}>
+        <div className={styles.centerButtons}>
           <Link href="/request">
             <button className={styles.request}> Print docs </button>
           </Link>
@@ -49,8 +49,8 @@ export default function App() {
         </div>
         <div className={styles.sectionStyle}>
           <h1>ABOUT US</h1>
-          <div className={styles.center}>
-            <section className={styles.center}>
+          <div className={styles.centerCards}>
+            <section className={styles.centerCards}>
               <CardUs
                n="aunty" 
                t="Mustafa Trunkwala"

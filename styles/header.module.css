@@ -1,5 +1,4 @@
 .color_2{
-
     color: #F26922;
     text-align: center;
 }
@@ -10,7 +9,7 @@
 .nav{
     border-style:solid;
     border-radius: 12px;
-
+    width:100%;
     border-color: #a396d2;
     margin-bottom: 10px;
     text-align: center;
@@ -43,4 +42,3 @@
   
   
   /* For demonstration purposes only: */
- 

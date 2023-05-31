@@ -11,9 +11,9 @@ export default function App() {
           <Image src="/logo.png" width={537} height={238} alt="logo"/>
         </div>
         <div className={styles.center}>
-          <div className={styles.div1}></div>
+          <div className={styles.div1}>
           <div className={styles.div2}>
-            <h1> " What is PrintEZ? "</h1>
+          <h1 className={styles.h1}> " What is PrintEZ? "</h1>
             <h2>
               <i>Print at your Ease</i>
             </h2>
@@ -30,6 +30,10 @@ export default function App() {
               print them according to the user’s specifications.{" "}
             </p>
           </div>
+          </div>
+
+          
+            
         </div>
         <div className={styles.center}>
           <Link href="/request">

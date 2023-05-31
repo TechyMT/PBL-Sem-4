@@ -48,6 +48,7 @@ export default function App() {
           <br></br>
         </div>
         <div className={styles.sectionStyle}>
+          
           <h1>ABOUT US</h1>
           <div className={styles.centerCards}>
             <section className={styles.centerCards}>

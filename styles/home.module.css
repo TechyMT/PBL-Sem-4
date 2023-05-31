@@ -1,6 +1,6 @@
 .center,
 .centerButtons,
-
+.sectionStyle,
 .centerMiddle {
     display: flex;
     justify-content: center;
@@ -27,7 +27,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 50vh;
+    height: 80vh;
     color: blueviolet;   
     font-size: 1.25rem;
     margin-top: 2.5%;

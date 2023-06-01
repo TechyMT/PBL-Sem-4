@@ -92,7 +92,7 @@ export default function App() {
                 n="amogh"   
                 t="Amogh Thakurdesai"
                 d="App Developer"
-                lg="https://github.com/crazygolden"
+                lg="https://github.com/AmoghThakurdesai"
                 ll="https://www.linkedin.com/in/amogh-thakurdesai-5a3456149/"
                 li="https://www.instagram.com/amoghptd/"
               />

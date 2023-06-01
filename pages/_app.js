@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import LoadingScreen from '../components/LoadingScreen';
+import LoadingScreen from '../components/loadingScreen';
 import "../styles/globals.css"
 import Head from "next/head"
 

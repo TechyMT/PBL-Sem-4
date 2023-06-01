@@ -56,7 +56,17 @@
   color:white;
   padding: 0.5rem;
   font-size: large;
+  
 
+}
+.anchor{
+  
+    text-decoration:none;
+    color:white;
+ 
+}
+.anchor:hover{
+  color:#E86A33 ;
 }
 .button:hover{
   background-color:cornflowerblue;

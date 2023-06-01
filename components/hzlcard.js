@@ -8,7 +8,7 @@ function hzlcard(props) {
     setExpanded(isExpanded ? panel : false);
   };
   const nameArr = props.urlArr;
-  console.log(nameArr);
+  
   return (
     <Accordion
       expanded={expanded === "panel1"}
@@ -45,7 +45,7 @@ function hzlcard(props) {
           <ul>
             {nameArr.map((url) =>(
              
-                <li className={styles.paralist}>{url.name}</li>
+                <li className={styles.paralist}><a  className= {styles.anchor} href={url.link} >{url.name}</a></li>
                
             ))}
             </ul>

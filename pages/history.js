@@ -3,6 +3,7 @@ import HzlCard from "../components/hzlcard";
 import Layout from "../components/layout";
 import { getHistory } from "../configs/firebaseConfig";
 import { useEffect, useState, Fragment } from "react";
+import Head from "next/head";
 
 export default function History() {
   const [hist, setHist] = useState([]);
@@ -16,6 +17,10 @@ export default function History() {
 
   return (
     <Layout>
+      <Head>
+          <meta name="viewport" content="initial-scale=1, width=device-width" />
+          <title>History</title>
+        </Head>
       <div className={styles.table}>
         <div className={styles.tableFixedHead}>
           <div className={styles.card}>

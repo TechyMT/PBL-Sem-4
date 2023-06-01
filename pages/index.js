@@ -3,9 +3,15 @@ import Link from "next/link";
 import Image from "next/image";
 import Layout from "../components/layout";
 import CardUs from "../components/cardUs_1";
+import Head from "next/head";
 export default function App() {
   return (
     <Layout>
+      <Head>
+          <meta name="viewport" content="initial-scale=1, width=device-width" />
+          <title>Home</title>
+
+        </Head>
       <div>
         <div className={styles.center}>
           <Image className={styles.image} src="/logo.png" width={0} height={0} sizes="100vw"   alt="logo"/>

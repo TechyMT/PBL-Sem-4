@@ -46,7 +46,7 @@ function Requests() {
       <Layout>
         <Head>
           <meta name="viewport" content="initial-scale=1, width=device-width" />
-          <title>Mustafa</title>
+          <title>Print</title>
         </Head>
 
         <div>

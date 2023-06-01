@@ -6,6 +6,7 @@ import Preview from "../components/pdfPreview";
 import ImgNotFound from "../components/notFound";
 import Layout from "../components/layout";
 import SectionHeading from "../components/sectionHeading";
+import Head from "next/head";
 
 export default function App() {
   const [inputValue, setInputValue] = useState("");
@@ -85,6 +86,10 @@ export default function App() {
 
   return (
     <Layout>
+      <Head>
+          <meta name="viewport" content="initial-scale=1, width=device-width" />
+          <title>Collect</title>
+        </Head>
       <div>
         <h1 className={styles.heading} style={{ color: "azure", textAlign: "center", marginTop: "5rem" }}>
           COLLECT YOUR PRINTS

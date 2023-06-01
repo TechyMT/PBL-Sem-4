@@ -31,7 +31,7 @@ export default function App() {
             </p>
           </div>
         </div>
-        <div className={styles.centerButtons}>
+        <div className={styles.center}>
           <Link href="/request">
             <button className={styles.request}> Print docs </button>
           </Link>
@@ -44,10 +44,9 @@ export default function App() {
           <br></br>
         </div>
         <div className={styles.sectionStyle}>
-          
           <h1>ABOUT US</h1>
-          <div className={styles.centerCards}>
-            <section className={styles.centerCards}>
+          <div className={styles.center}>
+            <section className={styles.center}>
               <CardUs
                n="aunty" 
                t="Mustafa Trunkwala"
@@ -55,7 +54,7 @@ export default function App() {
                lg="https://github.com/TechyMT"
                ll="https://www.linkedin.com/in/mustafa-trunkwala-49249a22a/"
                li="https://www.instagram.com/nothim_7856/"
-              />
+               />
               <CardUs 
                 n="riya"
                 t="Riya Wani"

@@ -1,7 +1,6 @@
 body{
 
     background-color: #252525;
-    display:flexbox;
 }
 button{
     background-color: #F26922;
@@ -20,4 +19,3 @@ button{
 h3{
     margin:0;
 }
-

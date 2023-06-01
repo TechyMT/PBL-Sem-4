@@ -94,17 +94,19 @@
 
 @media (max-width:540px){
   .logo{
-    padding-left: 2%;
+    padding-left: 4%;
    
   }
   .logo h1{
     font-size: 1.5rem;
   }
   .linksContainer p{
-    font-size: 1rem;
+    font-size: .9rem;
   }
   .footer p{
     font-size:1.1rem;
-    
+  }
+  .linksContainer{
+    gap:15px;
   }
 }

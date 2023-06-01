@@ -14,7 +14,7 @@
 
 .card {
   height: 50px;
-  white-space: nowrap; /* Prevent content from wrapping */
+  white-space: nowrap; 
   overflow: hidden; /* Hide any overflowing content */
   background-color: rgb(220, 208, 225);
   display: flex;
@@ -44,10 +44,36 @@
 .content5 {
   position: relative;
   margin: auto 127px;
-}
+} 
+/* .content1,
+  .content2,
+  .content3,
+  .content4,
+  .content5{
+    flex:1;
+  } */
 .paralist{
   color:white;
   padding: 0.5rem;
   font-size: large;
 
+}
+
+@media (max-width:540px){
+  .column{
+    width:100%;
+  }
+  .content1,
+  
+  .content4,
+  .content5{
+   display: none;
+   
+  }
+  .content2,
+  .content3{
+    margin:auto;
+    font-size: .8rem;
+  }
+  
 }

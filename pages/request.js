@@ -50,11 +50,11 @@ function Requests() {
         </Head>
 
         <div>
-          <button className={homeStyles.flexBox}>
+          {/* <button className={homeStyles.flexBox}>
             <Link style={linkStyle} href="/accept">
               Accept
             </Link>
-          </button>
+          </button> */}
           {urls.length > 0 ? (
             <div className={homeStyles.flexBox}>
               {urls.map((urlData) => (

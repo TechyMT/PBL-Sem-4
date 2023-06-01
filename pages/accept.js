@@ -7,7 +7,6 @@ import ImgNotFound from "../components/notFound";
 import Layout from "../components/layout";
 import SectionHeading from "../components/sectionHeading";
 
-
 export default function App() {
   const [inputValue, setInputValue] = useState("");
   const [result, setResult] = useState([]);
@@ -78,86 +77,93 @@ export default function App() {
     } else {
       setResult([]);
     }
+    const resultContainer = document.getElementById("result");
+    if (resultContainer) {
+      resultContainer.scrollIntoView({ behavior: "smooth" });
+    }
   }
 
   return (
     <Layout>
-    <div>
-      <SectionHeading title="COLLECT YOUR SHEETS"/>
-     
-      <div className={styles.body}>
-        <form className={styles.form} onSubmit={handleClick}>
-          <div className={styles.inputContainer}>
-            <input
-              className={styles.input}
-              type="text"
-              id="input1"
-              name="input1"
-              maxLength="1"
-              ref={inputRefs[0]}
-            />
+      <div>
+        <h1 className={styles.heading} style={{ color: "azure", textAlign: "center", marginTop: "5rem" }}>
+          COLLECT YOUR PRINTS
+        </h1>
+        {/* <SectionHeading title="COLLECT YOUR PRINTS"/> */}
 
-            <input
-              className={styles.input}
-              type="text"
-              id="input2"
-              name="input2"
-              maxLength="1"
-              ref={inputRefs[1]}
-            />
+        <div className={styles.body}>
+          <form className={styles.form} onSubmit={handleClick}>
+            <div className={styles.inputContainer}>
+              <input
+                className={styles.input}
+                type="text"
+                id="input1"
+                name="input1"
+                maxLength="1"
+                ref={inputRefs[0]}
+              />
 
-            <input
-              className={styles.input}
-              type="text"
-              id="input3"
-              name="input3"
-              maxLength="1"
-              ref={inputRefs[2]}
-            />
+              <input
+                className={styles.input}
+                type="text"
+                id="input2"
+                name="input2"
+                maxLength="1"
+                ref={inputRefs[1]}
+              />
 
-            <input
-              className={styles.input}
-              type="text"
-              id="input4"
-              name="input4"
-              maxLength="1"
-              ref={inputRefs[3]}
-            />
+              <input
+                className={styles.input}
+                type="text"
+                id="input3"
+                name="input3"
+                maxLength="1"
+                ref={inputRefs[2]}
+              />
 
-            <input
-              className={styles.input}
-              type="text"
-              id="input5"
-              name="input5"
-              maxLength="1"
-              ref={inputRefs[4]}
-            />
-          </div>
-          <div className={styles.buttonContainer}>
-            <button type="submit">Verify</button>
-          </div>
-        </form>
-        <p>{inputValue}</p>
-      </div>
-      <div className={styles.inputContainer}>
-        {" "}
-        <ul>
-          {result.length > 0 ? (
-            <div>
-              {result.map((file, index) => (
-                <Preview url={file} />
-              ))}
+              <input
+                className={styles.input}
+                type="text"
+                id="input4"
+                name="input4"
+                maxLength="1"
+                ref={inputRefs[3]}
+              />
+
+              <input
+                className={styles.input}
+                type="text"
+                id="input5"
+                name="input5"
+                maxLength="1"
+                ref={inputRefs[4]}
+              />
             </div>
-          ) : isClicked ? (
-            <div className={styles.imgContainer}>
-              <ImgNotFound />
+            <div className={styles.buttonContainer}>
+              <button  type="submit">Verify</button>
             </div>
-          ) : (
-            <div></div>
-          )}
-        </ul>
+          </form>
+          {/* <p>{inputValue}</p> */}
+        </div>
+        <div className={styles.resultContainer} id="result">
+          {" "}
+          <ul>
+            {result.length > 0 ? (
+              <div>
+                {result.map((file, index) => (
+                  <Preview url={file} />
+                ))}
+              </div>
+            ) : isClicked ? (
+              <div className={styles.imgContainer}>
+                <ImgNotFound />
+              </div>
+            ) : (
+              <div></div>
+            )}
+          </ul>
+        </div>
       </div>
-    </div>
     </Layout>
   );
 }

@@ -20,12 +20,14 @@
     margin: 0;
   }
   
-  .column {
+  .column,
+  .columnID,
+  .columnStatus {
     width: 33.33%; /* Adjust the width based on the number of columns */
     text-align: center;
     color: rgb(217, 223, 223);
     font-weight: bold;
-    font-size: large;
+    font-size:large;
   }
   
   .card {
@@ -67,4 +69,16 @@
   .th {
     background: #abdd93;
   }
-  
+  @media(max-width:540px){
+    .column{
+      display: none;
+    }
+    .columnStatus{
+      
+      margin-left:30px;
+    }
+    .columnID{
+      margin-left:20px;
+    }
+    
+  }

@@ -11,7 +11,7 @@ export default function ImgNotFound() {
         width: "35%",
       }}
     >
-      <Image src="/noresults.png" width={577} height={433}  alt="imagenotfound"/>
+      <Image  src="/noresults.png" width={0} height={0} sizes="100vw" style={{width:"auto", height:"auto"}} alt="imagenotfound"/>
     </div>
   );
 }

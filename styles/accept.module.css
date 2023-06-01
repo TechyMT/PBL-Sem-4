@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    min-height: 80vh;
     font-family: Roboto, 'Helvetica Neue', Arial, sans-serif;
     
   }
@@ -18,8 +18,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    
+  }
+  .resultContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .input {
     margin: 0 0.5rem;
@@ -50,3 +53,18 @@
     flex-wrap: wrap;
    width: 10%;
   }
+@media(max-width:540px){
+  .body{
+    min-height: 50vh;
+  }
+  .input{
+    height: 30px;
+    width:30px;
+  }
+  .heading{
+    font-size: 1.5rem;
+  }
+  .buttonContainer{
+    scale:0.9;
+  }
+}

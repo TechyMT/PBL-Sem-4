@@ -1,8 +1,10 @@
+import styles from "../styles/pdfPreview.module.css"
+
 function Preview(props){
 const url = props.url + "#1"
 
     return(
-        <embed src={url} width={500} height={1000} style = {{margin: "100px"} }type="application/pdf"
+        <embed src={url} className={styles.preview} width={0} height={0}
         frameBorder="0"
         scrolling="auto"></embed>    )
 }

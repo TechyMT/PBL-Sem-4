@@ -1,5 +1,6 @@
 const fs = require("fs");
 const { exec } = require("child_process")
+const path  = require("path");
 
 export default function handler(req, res) {
   const links = req.body;
@@ -12,7 +13,8 @@ export default function handler(req, res) {
   });
 
   // Execute the .bat file
-  exec('E:\\PBL-Project\\PBL-Sem-4\\download_print.bat', (error, stdout, stderr) => {
+  const relativePath = path.join(__dirname,"..","..","..","..","\download_print.bat");
+  exec(relativePath, (error, stdout, stderr) => {
     if (error) {
       console.error(`Error executing .bat file: ${error.message}`);
       res.status(500).json({ error: 'Internal Server Error' });

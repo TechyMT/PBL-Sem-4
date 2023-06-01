@@ -1,0 +1,13 @@
+.preview{
+    width:500px;
+    height:1000px;
+    margin:100px
+}
+@media (max-width:540px){
+.preview{
+    margin:20px auto;
+    width:auto;
+    height: auto;
+
+}
+}

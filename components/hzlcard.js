@@ -42,11 +42,13 @@ function hzlcard(props) {
       
         </AccordionSummary>
         <AccordionDetails>
+          <ul>
             {nameArr.map((url) =>(
              
                 <li className={styles.paralist}>{url.name}</li>
                
             ))}
+            </ul>
         </AccordionDetails>
       
     </Accordion>

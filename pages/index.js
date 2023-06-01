@@ -8,15 +8,16 @@ export default function App() {
     <Layout>
       <div>
         <div className={styles.center}>
-          <Image src="/logo.png" width={537} height={238} alt="logo"/>
+          <Image className={styles.image} src="/logo.png" width={0} height={0} sizes="100vw"   alt="logo"/>
         </div>
-        <div className={styles.center}>
-          <div className={styles.div1}></div>
+        <div className={styles.centerMiddle}>
+          <div className={styles.div1}>
           <div className={styles.div2}>
             <h1> " What is PrintEZ? "</h1>
             <h2>
               <i>Print at your Ease</i>
             </h2>
+            <div className={styles.content}>
             <p>
               In today's digital age, there are various applications that allow
               users to store and manage their documents online.
@@ -29,9 +30,11 @@ export default function App() {
               So this app helps to upload or scan documents or images and then
               print them according to the user’s specifications.{" "}
             </p>
+            </div>
+          </div>
           </div>
         </div>
-        <div className={styles.center}>
+        <div className={styles.centerButtons}>
           <Link href="/request">
             <button className={styles.request}> Print docs </button>
           </Link>
@@ -45,8 +48,8 @@ export default function App() {
         </div>
         <div className={styles.sectionStyle}>
           <h1>ABOUT US</h1>
-          <div className={styles.center}>
-            <section className={styles.center}>
+          <div className={styles.centerCards}>
+            <section className={styles.aboutCards}>
               <CardUs
                n="aunty" 
                t="Mustafa Trunkwala"

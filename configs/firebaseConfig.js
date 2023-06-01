@@ -1,17 +1,11 @@
 // Import the functions you need from the SDKs you need
 const { initializeApp } = require("firebase/app");
-const fetch = require("isomorphic-unfetch");
 const {
   getStorage,
-  ref,
-  listAll,
-  getDownloadURL,
-  uploadBytes,
 } = require("firebase/storage");
 const {
   getFirestore,
   collection,
-  addDoc,
   getDocs,
   doc,
   updateDoc,
@@ -19,9 +13,6 @@ const {
   where,
   runTransaction,
 } = require("firebase/firestore");
-const NodeCache = require("node-cache");
-const cache = new NodeCache({ stdTTL: 300, checkperiod: 320 });
-
 // test
 // const firebaseConfig = {
 //   apiKey: "AIzaSyBri3HfJ4EtW7kLOYcBA7wDkXJ9RQBcPsk",
@@ -35,7 +26,6 @@ const cache = new NodeCache({ stdTTL: 300, checkperiod: 320 });
 // };
 
 //pbl
-
 const firebaseConfig = {
   apiKey: "AIzaSyBVPeHcLwRpUN4eVGEZwUIQKX_E6SYXX80",
   authDomain: "pbl-sem-4.firebaseapp.com",
@@ -62,7 +52,6 @@ const printFolder = [];
 
 // <------------------------------ STORAGE ---------------------------------------->
 
-const rootFolderRef = ref(storage, "temp");
 const printRef = collection(db, "print");
 
 async function URL() {

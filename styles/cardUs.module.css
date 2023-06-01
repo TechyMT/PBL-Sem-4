@@ -27,7 +27,7 @@
 }
 .cardUs:hover{
     background-color: rgb(0, 4, 4);
-    color: azure;
+    color: #DDDDDD;
     box-shadow: 0 0 5px rgb(76, 5, 112), 0 0 10px rgb(157, 143, 164),0 0 20px rgb(76, 5, 112);}
 .cardUs:hover .child .aHover{
     transform: scale(1.25);

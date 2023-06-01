@@ -1,6 +1,7 @@
 import SocialCircle from "./circleSocial";
 // import SocialIcon from "react-social-icons"
-import {FaInstagram,FaLinkedin,FaGithub} from "react-icons/Fa"
+
+import { FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
 import styles from "../styles/circleRow.module.css"
 
 function CircleRow(props)

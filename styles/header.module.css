@@ -9,12 +9,14 @@
 }
 
 .color_3 {
-  color:#ECF8F9;
+  color:#faf8f8;
   text-align: right;
   font-size:1.5rem;
   font-weight: bold;
 }
-
+.color_3:hover{
+  color:#5f4ba5;
+}
 .logo {
   
   text-align: center; 
@@ -40,8 +42,6 @@
 .nav {
   display: flex;
   justify-content: space-between;
-
- 
   align-items: center;
   border-style: solid;
   border-radius: 12px;

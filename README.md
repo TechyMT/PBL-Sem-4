@@ -1,78 +1,105 @@
-# PrintEZ - Print Request Portal
+<div align="center">
+  <img src="https://github.com/TechyMT/PBL-Sem-4/blob/e06a1b8f1abe005d6f8d4999b9f37089a2938bde/public/logo.png"/>
+  </div>
 
-PrintEZ is a web and app-based portal designed for users to easily send print requests for their documents. The portal includes a default document feature, providing users with a collection of necessary documents available at the college stationary. Users can upload their own documents or select from the available default documents. After payment, the print requests are managed through a web portal accessible by the stationary personnel.
+# PrintEZ
 
-## Technologies Used
-
-- Next.js
-- React
-- Firestore Authentication
-- Firebase Storage
-- Flutter (for the app)
-- Firebase features (for the app)
+Are you tired of the chaos and long queues at the stationery during submission time or on any regular day? Introducing PrintEZ, an app-based portal designed to streamline the printing process and eliminate the hassle of crowded stationeries. We've also developed a web-based portal specifically for the receivers at the stationery. This portal provides them with a comprehensive overview of incoming print requests, allowing them to manage and prioritize tasks effectively. With the PrintEZ receiver portal, stationery staff can now process print jobs seamlessly, even check through the history of printed documents to keep track of prints, thus reducing chaos and improving overall efficiency.
 
 ## Features
 
-1. User Authentication: Users can create accounts or sign in to access the print request portal.
-2. Print Requests: Users can submit print requests by uploading their documents or selecting from the default documents available.
-3. Payment Integration: Users can make payments for their print requests.
-4. Web Portal: The stationary personnel can view and manage print requests through a dedicated web portal.
-5. Verification and Collection: Users can verify and collect their printed documents using the accept page.
-6. Print History: The stationary owner can view the history of prints done in a day, including the amount earned and pages printed.
-7. Unique Print ID: The stationary personnel can verify the printed documents by entering a unique 5-digit ID.
+- User App Portal (Flutter):
+  - Browse and choose from default documents
+  - User Authentication: Users can create accounts or sign in to access the print request portal.
+  - Upload and print PDFs from local storage
+  - View print history with details such as date, number of pages, and amount
+  - Integration with Firebase for backend operations (Firestore, Authentication, and Storage)
 
-## Installation
+- Stationery Worker Web Portal (React, Next.js):
+  - Print uploaded documents
+  - View print history with details such as date, number of pages, and amount
+  - Collect page to verify printed documents and distribute them to users
+  - Integration with Firebase for backend operations (Firestore and Storage)
 
-1. Clone the repository:
+## Screenshots
 
-   ```shell
-   git clone https://github.com/your-username/PrintEZ.git
-   ```
+### App Portal
+![App Portal](/screenshots/app_portal.png)
 
-2. Navigate to the project directory:
+### Web Portal
 
-   ```shell
-   cd PrintEZ
-   ```
+<h2 align= "center">Home Page</h2>
+  
+![Web Portal](https://github.com/TechyMT/PBL-Sem-4/blob/cb2a48e433e93e81ba5ef5fa4c257c2018acfef3/images/Screenshot%202023-06-02%20123228.png)
+  
 
-3. Install the dependencies for the web portal:
 
-   ```shell
-   cd web-portal
-   npm install
-   ```
+<h2 align= "center">Meet The Team</h2>
 
-4. Install the dependencies for the app:
+![Web Portal](https://github.com/TechyMT/PBL-Sem-4/blob/cb2a48e433e93e81ba5ef5fa4c257c2018acfef3/images/Screenshot%202023-06-02%20123317.png)
 
-   ```shell
-   cd app
-   flutter pub get
-   ```
 
-5. Set up Firebase:
 
-   - Create a Firebase project and enable Firestore Authentication and Firebase Storage.
-   - Obtain the Firebase configuration details (API key, project ID, etc.) for both the web and app projects.
-   - Update the configuration files in the web portal (`web-portal/firebase.js`) and the app (`app/lib/firebase.dart`) with your Firebase credentials.
+<h2 align= "center">Print Docs</h2>
 
-6. Start the web portal development server:
+![Web Portal](https://github.com/TechyMT/PBL-Sem-4/blob/cb2a48e433e93e81ba5ef5fa4c257c2018acfef3/images/Screenshot%202023-06-02%20123330.png)
 
-   ```shell
-   npm run dev
-   ```
 
-7. Build and run the app on an emulator or physical device:
 
-   ```shell
-   flutter run
-   ```
+<h2 align= "center">Collect Documents</h2>
 
-## Contributing
+![Web Portal](https://github.com/TechyMT/PBL-Sem-4/blob/cb2a48e433e93e81ba5ef5fa4c257c2018acfef3/images/Screenshot%202023-06-02%20123343.png)
 
-Contributions to the PrintEZ project are welcome! If you find any issues or have suggestions for improvement, please feel free to open an issue or submit a pull request.
 
-Please ensure that your contributions align with the project's coding style and guidelines.
+
+<h2 align= "center">History</h2>
+
+![Web Portal](https://github.com/TechyMT/PBL-Sem-4/blob/cb2a48e433e93e81ba5ef5fa4c257c2018acfef3/images/Screenshot%202023-06-02%20123408.png)
+
+
+
+## Technologies Used
+
+- Flutter: A cross-platform framework for building mobile applications.
+- Firebase: A comprehensive platform for developing mobile and web applications, providing authentication, database, and cloud storage functionalities.
+  - Firestore: A NoSQL document database for storing and querying data.
+  - Authentication: A service for user authentication and authorization.
+  - Storage: A service for storing and retrieving files.
+- React: A JavaScript library for building user interfaces.
+- Next.js: A React framework for server-side rendering and static site generation.
+- Firebase: A comprehensive platform for developing mobile and web applications, providing authentication, database, and cloud storage functionalities.
+  - Firestore: A NoSQL document database for storing and querying data.
+  - Storage: A service for storing and retrieving files.
+
+## Getting Started
+
+### App Portal
+
+To get started with the App Portal, follow these steps:
+
+1. Clone the repository: `git clone https://github.com/TechyMT/PBL-Sem-4.git`
+2. Navigate to the app portal directory: `git checkout app-portal`
+3. Install dependencies: `flutter pub get`
+4. Launch the app: `flutter run`
+
+Note: Make sure to configure Firebase credentials in the app portal for database and storage operations.
+
+### Web Portal
+
+To get started with the Web Portal, follow these steps:
+
+1. Clone the repository: `git clone https://github.com/TechyMT/PBL-Sem-4.git`
+2. Open the web portal directory: `git checkout web`
+3. Install dependencies: `npm install`
+4. Start the development server: `npm run dev`
+
+Note: Make sure to configure Firebase credentials in the web portal for database and storage operations.
+
+## Links
+
+- [App Portal Branch](https://github.com/your-username/PrintEZ/tree/app-portal)
+- [Web Portal Branch](https://github.com/TechyMT/PBL-Sem-4/tree/web)
 
 ## License
 
-The PrintEZ project is licensed under the [MIT License](LICENSE). Feel free to use, modify, and distribute the code as per the terms of the license.
+PrintEZ is released under the [MIT License](LICENSE).

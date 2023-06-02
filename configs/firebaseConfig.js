@@ -77,26 +77,9 @@ async function URL() {
 //<=====================================POST PRINT ========================================>
 
 // Function to reset the variable to zero at the start of the day
-function resetVariable() {
-  const now = new Date();
-  const tomorrow = new Date(
-    now.getFullYear(),
-    now.getMonth(),
-    now.getDate() + 1
-  );
-  const timeUntilTomorrow = tomorrow - now;
 
-  setTimeout(() => {
-    pages = 0;
-    amounts = 0;
-    console.log("Variable reset to zero");
-    resetVariable(); // Schedule the next reset for the following day
-  }, timeUntilTomorrow);
-}
 
-// Start the reset process
-resetVariable();
-
+// Start the reset 
 async function posPrint(id, urlArray) {
   const docRef = doc(collection(db, "print"), id);
   const { urlArr } = urlArray;

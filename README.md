@@ -6,6 +6,17 @@
 
 Are you tired of the chaos and long queues at the stationery during submission time or on any regular day? Introducing PrintEZ, an app-based portal designed to streamline the printing process and eliminate the hassle of crowded stationeries. We've also developed a web-based portal specifically for the receivers at the stationery. This portal provides them with a comprehensive overview of incoming print requests, allowing them to manage and prioritize tasks effectively. With the PrintEZ receiver portal, stationery staff can now process print jobs seamlessly, even check through the history of printed documents to keep track of prints, thus reducing chaos and improving overall efficiency.
 
+
+
+
+## Links
+
+- [App Portal Branch](https://github.com/your-username/PrintEZ/tree/app-portal)
+- [Web Portal Branch](https://github.com/TechyMT/PBL-Sem-4/tree/web)
+
+
+
+
 ## Features
 
 - User App Portal (Flutter):
@@ -95,10 +106,7 @@ To get started with the Web Portal, follow these steps:
 
 Note: Make sure to configure Firebase credentials in the web portal for database and storage operations.
 
-## Links
 
-- [App Portal Branch](https://github.com/your-username/PrintEZ/tree/app-portal)
-- [Web Portal Branch](https://github.com/TechyMT/PBL-Sem-4/tree/web)
 
 ## License
 

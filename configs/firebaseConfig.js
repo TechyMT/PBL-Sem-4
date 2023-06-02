@@ -13,28 +13,26 @@ const {
   where,
   runTransaction,
 } = require("firebase/firestore");
-// test
-// const firebaseConfig = {
-//   apiKey: "AIzaSyBri3HfJ4EtW7kLOYcBA7wDkXJ9RQBcPsk",
-//   authDomain: "fir-test-d90e2.firebaseapp.com",
-//   databaseURL: "https://fir-test-d90e2-default-rtdb.firebaseio.com",
-//   projectId: "fir-test-d90e2",
-//   storageBucket: "fir-test-d90e2.appspot.com",
-//   messagingSenderId: "102923422659",
-//   appId: "1:102923422659:web:bc4f35a0db29548d6b0b76",
-//   measurementId: "G-MD5CFQE16C",
-// };
+
+const apiKey = process.env.API_KEY;
+const authDomain = process.env.AUTH_DOMAIN;
+const dbUrl = process.env.DB_URL;
+const prjctId = process.env.PRJCT_ID;
+const storageBucket = process.env.STORAGE_BUCKET;
+const msgId = process.env.MSG_SENDER_ID;
+const appId = process.env.APP_ID;
+const measureId = process.env.MEASURE_ID;
 
 //pbl
 const firebaseConfig = {
-  apiKey: "AIzaSyBVPeHcLwRpUN4eVGEZwUIQKX_E6SYXX80",
-  authDomain: "pbl-sem-4.firebaseapp.com",
-  databaseURL: "https://pbl-sem-4-default-rtdb.firebaseio.com",
+  apiKey: apiKey,
+  authDomain: authDomain,
+  databaseURL: dbUrl,
   projectId: "pbl-sem-4",
-  storageBucket: "pbl-sem-4.appspot.com",
-  messagingSenderId: "345714848225",
-  appId: "1:345714848225:web:70a01a24e1a35b81f9a2a0",
-  measurementId: "G-Z7HXXVYV0F"
+  storageBucket: storageBucket,
+  messagingSenderId: msgId,
+  appId: appId,
+  measurementId: measureId
 };
 
 // Initialize Firebase

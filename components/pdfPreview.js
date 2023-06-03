@@ -4,7 +4,7 @@ function Preview(props){
 const url = props.url + "#1"
 
     return(
-        <embed src={url} className={styles.preview} width={0} height={0}
+        <embed src={url} className={styles.preview} width={500} height={1000}
         frameBorder="0"
         scrolling="auto"></embed>    )
 }

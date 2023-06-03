@@ -11,7 +11,7 @@ Are you tired of the chaos and long queues at the stationery during submission t
 
 ## Links
 
-- [App Portal Branch](https://github.com/your-username/PrintEZ/tree/app-portal)
+- [App Portal Branch](https://github.com/TechyMT/PBL-Sem-4/tree/app)
 - [Web Portal Branch](https://github.com/TechyMT/PBL-Sem-4/tree/web)
 
 
@@ -35,7 +35,26 @@ Are you tired of the chaos and long queues at the stationery during submission t
 ## Screenshots
 
 ### App Portal
-![App Portal](/screenshots/app_portal.png)
+<table>
+  <tr>
+    <td valign="top"> <img src = "https://github.com/TechyMT/PBL-Sem-4/blob/2626d0b5ec4900c5011f4dd54cd5fc48d55d684c/images/4.png" /></td>
+    <td valign="top"><img src="https://github.com/TechyMT/PBL-Sem-4/blob/2626d0b5ec4900c5011f4dd54cd5fc48d55d684c/images/1.png" /></td>
+  </tr>
+  <tr>
+    <td valign="top"><img src="https://github.com/TechyMT/PBL-Sem-4/blob/2626d0b5ec4900c5011f4dd54cd5fc48d55d684c/images/5.png" /></td>
+    <td valign="top"><img src="https://github.com/TechyMT/PBL-Sem-4/blob/2626d0b5ec4900c5011f4dd54cd5fc48d55d684c/images/2.png" /></td>
+  </tr>
+   <tr>
+    <td align="center"><img src="https://github.com/TechyMT/PBL-Sem-4/blob/2626d0b5ec4900c5011f4dd54cd5fc48d55d684c/images/3.png" /></td>
+    
+  </tr>
+</table>
+
+  
+  
+  
+  
+  
 
 ### Web Portal
 

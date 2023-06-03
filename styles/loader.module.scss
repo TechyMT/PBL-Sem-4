@@ -76,3 +76,8 @@ $color-yellow: rgb(230, 255, 4);
   }
 }
 
+@media (max-width:540px){
+  .center{
+    height:40vh;
+  }
+}

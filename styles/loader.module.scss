@@ -79,15 +79,3 @@ $color-yellow: rgb(230, 255, 4);
     transform: translateY(0);
   }
 }
-
-@media (max-width:540px){
-  .logo {
-    width:169px;
-    height:99px;
-    justify-content: center;
-  }
-  .balls{
-    scale:0.7;
-    top:49%;
-  }
-}

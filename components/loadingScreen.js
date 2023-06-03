@@ -5,7 +5,7 @@ const LoadingScreen = () => {
   return (
     <div className={styles.screen}>
       <div className={styles.center}>
-        <Image src="/logo.png"  width={369} height={169} alt ="logo" />
+        <Image className={styles.logo} src="/logo.png"  width={369} height={169} alt ="logo" />
         <div className={styles.balls}>
           <div className={`${styles.ball} ${styles.one}`}></div>
           <div className={`${styles.ball} ${styles.two}`}></div>

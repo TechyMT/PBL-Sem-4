@@ -4,6 +4,20 @@ import Image from "next/image";
 import Layout from "../components/layout";
 import CardUs from "../components/cardUs_1";
 import Head from "next/head";
+import aboutUs from "../components/aboutUs";
+
+function createEntry(details)
+{
+  return <CardUs
+  key = {details.id}
+  n = {details.n}
+  t = {details.t}
+  d = {details.d}
+  lg = {details.lg}
+  ll = {details.ll}
+  li = {details.li}
+  />
+}
 export default function App() {
   return (
     <Layout>
@@ -56,7 +70,8 @@ export default function App() {
           <h1>ABOUT US</h1>
           <div className={styles.centerCards}>
             <section className={styles.aboutCards}>
-              <CardUs
+              {aboutUs.map(createEntry)}
+              {/* <CardUs
                n="aunty" 
                t="Mustafa Trunkwala"
                d="Full Stack Web Developer"
@@ -95,7 +110,7 @@ export default function App() {
                 lg="https://github.com/AmoghThakurdesai"
                 ll="https://www.linkedin.com/in/amogh-thakurdesai-5a3456149/"
                 li="https://www.instagram.com/amoghptd/"
-              />
+              /> */}
             </section>
           </div>
         </div>

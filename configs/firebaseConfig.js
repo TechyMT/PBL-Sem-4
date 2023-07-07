@@ -104,12 +104,16 @@ async function posPrint(id, urlArray) {
       // Request was successful
       const data = await response.json();
       console.log("Response:", data);
+      return true;
     } else {
       // Request failed
       console.error("Error:", response.status);
+      return false;
+
     }
   } catch (error) {
     console.error("Error:", error);
+    return false;
   }
 }
 

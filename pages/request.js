@@ -4,6 +4,8 @@ import Head from "next/head";
 import Layout from "../components/layout";
 import { useState, useEffect, Fragment } from "react";
 import { URL, posPrint } from "../configs/firebaseConfig";
+import {ToastContainer, toast} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import ImgNotFound from "../components/notFound";
 import Link from "next/link";
@@ -27,7 +29,12 @@ function Requests() {
   const handleClick = async (docId, urlArr) => {
     try {
       const {pages, Amount} = urlArr;
-      await posPrint(docId, urlArr);
+      await toast.promise(posPrint(docId, urlArr), {
+        pending: `Printing`,
+        success: "Printed",
+        error: "Error while printing",
+      })
+      
       console.log("api-executed");
       setUrls((prevUrls) => [...prevUrls.filter((urlData) => urlData.docId !== docId)]);
       console.log("seturl executed");
@@ -43,6 +50,7 @@ function Requests() {
 
   return (
     <div>
+      
       <Layout>
         <Head>
           <meta name="viewport" content="initial-scale=1, width=device-width" />
@@ -50,6 +58,7 @@ function Requests() {
         </Head>
 
         <div>
+        <ToastContainer />
           {/* <button className={homeStyles.flexBox}>
             <Link style={linkStyle} href="/accept">
               Accept
